@@ -1,0 +1,82 @@
+
+.logo-box {
+  display: inline-block; 
+  /* width: 62px; */
+  /* height: 62px; */
+  padding: 6px;
+  /* margin: 2px; */
+  min-width: 60px; 
+  border-radius: 6px;  
+  border-radius: 20%;  
+  text-align: center!important;
+  /* border-bottom: 2px solid #b1dcff;   */
+  /* border-bottom: 1px solid #e1f0ff;   */  
+}
+.logo-box.clickable {
+  background-color: #bfdfff;     
+   border-bottom: 1px solid #7cc0ff; 
+}
+.logo-box.clickable:hover {
+  /* background-color: #8cc8ff;    */
+  background-color: gold; 
+  cursor: pointer;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  /* border-bottom: 3px solid #0084ff;   */
+  border-bottom: 3px solid goldenrod;
+} 
+.logo-box.clicked { 
+  background-color: gold;         
+  border-bottom: 1px solid goldenrod;   
+}
+.logo-box > img {
+  max-width: 50px!important;  
+  /* max-width: 100%; */ 
+  /* height: auto!important;  */ 
+} 
+
+/* ============= */
+/* LIG LOGO BOX */
+/* =========== */
+.lig-logo-box {
+  display: inline-block;  
+  padding: 4px;
+  margin: 0px 2px;
+  min-width: 60px; 
+  border-radius: 6px;   
+  text-align: center!important; 
+  background-color: #bfdfff;     
+   border-bottom: 1px solid #7cc0ff; 
+}
+.lig-logo-box:hover { 
+  background-color: #49ffb9; 
+  cursor: pointer;
+  padding-top: 2px;
+  /* padding-bottom: 6px; */
+  /* border-bottom: 3px solid #0084ff;   */
+  border-bottom: 3px solid #00a868;
+} 
+.lig-logo-box.clicked { 
+  background-color: #49ffb9;      
+   border-bottom: 2px solid #00a868;  
+   padding:4px;
+   /* color: #ffffff; */
+   color: #003f27;
+   font-weight: 500;
+   /* text-decoration: underline; */
+}  
+.lig-selector-container {
+  /* inline-block p-1 curved bg-white */  
+  display: inline-block; 
+  background: linear-gradient(270deg,#ff2882,#963cff 45%);
+  padding: 5px;
+  border-radius: 6px;
+}
+.lig-selector {
+  /* inline-block p-1 curved bg-white */
+  /* display: inline-block; */
+  display: flex;
+  background-color: white;
+  padding:5px;
+  border-radius: 4px;
+}

@@ -1,0 +1,38 @@
+
+.top-users {
+  background-color: rgba(40, 0, 78, 0.692);
+  max-width: 240px;
+  padding: 5px 0;
+  border-radius: 6px;
+}
+
+.top-users > .header {
+  padding: 5px;
+  /* text-align: left; */
+  color: rgb(255, 230, 0);
+}
+
+.top-users > table {  
+    width: 100%; 
+  color: white;
+  margin-bottom: 0;
+}
+.top-users > table> tr> td {
+  text-align: center;
+  /* background-color: yellow;   */
+}
+.top-users > table>tr:hover {
+  background-color: #b47ee6b0;  
+  border-radius: 6px;
+}
+.top-users>table :first  {
+  font-size: small; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(44, 0, 95);  
+}
+
+.selectt {
+  /* border: none ; */
+  padding: 1px 20px;
+
+}

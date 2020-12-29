@@ -1,0 +1,38 @@
+/* Counter Box */
+.counter-box {
+  /* border: 1px solid green; */  
+  border-radius: .3rem;
+  height: 32px;
+  overflow: hidden; 
+  display : inline-block; 
+  /* border: 2px #0077ff solid; */
+  display: flex; 
+}  
+.counter-box > button {   
+  /* margin: auto; */
+  border: none;
+  text-align: center; 
+  padding: 6px 10px;
+  background-color: #39a6ff;
+  /* background-color: white; */
+   color: white;
+   width: 26px; 
+} 
+.counter-box > button:focus { 
+  outline:none;  
+}
+
+.counter-box > .number {
+  background-color:#0077ff;
+  padding: 6px 10px;
+  color: white; 
+  width: 32px; 
+} 
+.counter-box > button:hover{
+  cursor: pointer;
+  background-color: #5cbeff;
+}
+.counter-box > button:disabled{
+  cursor: default;
+  background-color: #73c7ff;
+}

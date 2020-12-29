@@ -1,0 +1,542 @@
+
+.bold{
+  font-weight: 500!important; 
+}
+.boldd{
+  font-weight: 600!important; 
+}
+.bolddd{
+  font-weight: 700!important; 
+}
+
+.box {
+  border: 1px gold solid;
+} 
+
+.uline{
+  text-decoration: underline;
+}
+.italic{
+  font-style: italic;
+}
+.arial{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.clickable {
+  cursor: pointer; 
+}
+.clickable-btn {
+  cursor: pointer; 
+  /* opacity: 0.9; */
+}
+.clickable-btn:hover{
+  box-shadow: 0 0 6px rgb(35 173 255);
+  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4); */
+opacity: 0.9; 
+}
+.inline-block {
+  display: inline-block;
+}
+.ib{
+  display: inline-block;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.italic {
+  font-style: italic;
+}
+.center {  
+  text-align: center !important; 
+}
+.mx-800{
+  max-width: 800px;
+}
+.mx-900{
+  max-width: 900px;
+}
+.mx-100{
+  max-width: 1000px;
+}
+
+/* *********** */
+/* Font Sizing */
+/* *********** */ 
+.fw-400{
+  /* Normal */
+  font-weight: 400!important;
+}
+.fw-500{
+  font-weight: 500!important;
+}
+.fw-600{
+  font-weight: 600!important;
+}
+.fw-700{
+  font-weight: 700!important;
+}
+/* FONT SIZE IN PIXEL */
+.fs-10{
+  font-size:10px !important;
+}
+.fs-12{
+  font-size:12px !important;
+}
+.fs-14{
+  font-size:14px !important;
+}
+.fs-16{
+  font-size:16px !important;
+}
+.fs-18{
+  font-size:18px !important;
+}
+.fs-20{
+  font-size:20px !important;
+}
+.fs-22{
+  font-size:22px !important;
+}
+.fs-24{
+  font-size:24px !important;
+}
+.em-06 {
+  font-size: 0.6em !important;
+  }
+.em-07 {
+font-size: 0.7em !important;
+}
+.em-08 {
+font-size: 0.8em !important;
+}
+.em-09 {
+font-size: 0.9em !important;
+}
+.em-10 {
+font-size: 1em !important;
+}
+.em-11 {
+  font-size: 1.1em !important;
+  }
+.em-12 {
+  font-size: 1.2em !important;
+  }
+.em-14 {
+font-size: 1.4em !important;
+}
+.em-16 {
+font-size: 1.6em !important;
+}
+.em-18 {
+font-size: 1.8em !important;
+} 
+.em-20 {
+font-size: 2em !important;
+}  
+/* ================================================================= */
+/* ****************** */
+/***  W3 CHECKBOX  ***/
+/* **************** */
+/* The container */
+.checkbox-w3 {
+  /* container is <label> */
+  /* display: block; */
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  /* margin-bottom: 10px; */
+  /* cursor: pointer; */
+  /* font-size: 22px; */
+  /* font-size:1rem; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* color: black; */
+} 
+
+/* Hide the browser's default checkbox */
+.checkbox-w3 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+} 
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #9fdaff;
+  border: 1px solid #3ab0ff;
+  border-radius: 3px; 
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-w3:hover input ~ .checkmark {
+  /* background-color: #ffffff; */
+  cursor: pointer;
+}
+.checkbox-w3 input:disabled ~ .checkmark {
+  background-color: #b9e4ff;
+  border: 1px solid #87cfff; 
+  cursor: default;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-w3 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-w3 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-w3 .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+} 
+
+/* https://codepen.io/nikstech/pen/xmMxpr */
+/* https://freefrontend.com/css-input-text/ */
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+.input-container label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color:#fff;	
+	transition: all 0.2s ease-in-out;
+}
+.input-container input{ 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#fff;
+}
+.input-container input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-12px;
+	font-size:12px; 
+}
+
+
+.height-30 {
+  height: 30px;
+}
+.height-32 {
+  height: 32px;
+}
+.height-34 {
+  height: 34px;
+}
+.height-36 {
+  height: 36px;
+}
+.height-38 {
+  height: 38px;
+}
+.height-40 {
+  height: 40px;
+}
+
+.w-40px {
+  width: 40px!important;
+} 
+.w-60px {
+  width: 60px!important;
+} 
+.w-80px {
+  width: 80px!important;
+} 
+.w-100px {
+  width: 100px!important;
+}  
+.w-120px {
+  width: 120px!important;
+} 
+.w-125px {
+  width: 125px!important;
+} 
+.w-150px {
+  width: 150px!important;
+} 
+.w-200px {
+  width: 200px!important;
+}
+.w-300px {
+  width: 300px!important;
+}
+.w-400px {
+  width: 400px!important;
+}
+/* in order to put 3 divs in side by side */
+.w-33 {
+  width: 33%!important;
+  display: inline-block!important;
+}
+.w-90 {
+  width: 90%!important; 
+}
+
+.curved-0 {
+  border-radius: 0px!important;
+  /* overflow: hidden!important; */
+}
+.curved {
+  border-radius: 4px!important;
+  overflow: hidden!important;
+}
+/* No overflow: hidden, In order to prevent issues */
+.curvedd {
+  border-radius: 4px!important; 
+}
+.curved-4 {
+  border-radius: 4px!important;
+  overflow: hidden!important;
+}
+.curved-5 {
+  border-radius: 5px!important;
+  overflow: hidden!important;
+}
+.curved-6 {
+  border-radius: 6px!important;
+  overflow: hidden!important;
+}
+.curved-8 {
+  border-radius: 8px!important;
+  overflow: hidden!important;
+}
+.curved-10 {
+  border-radius:  10px!important;
+  overflow: hidden!important;
+} 
+
+.hidden {
+  display: none!important;
+}
+
+.fr {
+  float:right!important;
+}
+.fl {
+  float: left!important;
+}
+.f-r {
+  float:right!important;
+}
+.f-l {
+  float: left!important;
+}
+ 
+.textr {
+  text-align: right!important;
+}
+.textl {
+  text-align: left!important;
+} 
+.text-r {
+  text-align: right!important;
+}
+.text-l {
+  text-align: left!important;
+} 
+.txtr {
+  text-align: right!important;
+}
+.txtl {
+  text-align: left!important;
+} 
+.right {
+  text-align: right!important;
+}
+.left {
+  text-align: left!important;
+} 
+ 
+.p-2px {
+  padding: 2px!important;
+}
+.py-2px {
+  padding: 2px!important;
+} 
+.pb-2px {
+  padding-bottom: 2px!important;
+}
+.pt-2px {
+  padding-top: 2px!important;
+}
+
+.border-red {
+  border: 1px solid red;
+}
+.border-black {
+  border: 1px solid rgb(0, 0, 0);
+} 
+
+.ulineonhover:hover {
+text-decoration: underline;
+cursor: pointer;
+} 
+
+.border-btm {
+  border-bottom: 1px solid #888888;
+}
+.border-right {
+  border-right: 1px solid #5a5a5a!important;
+}
+
+.btnn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  /* border: 1px solid white; */
+}
+.btn-green {
+  color:#fff;
+  background-color: #00c569!important;
+}
+.btn-blue {
+  color: #fff;
+  background-color: #4285F4!important; 
+}
+.btnn:hover {  
+  /* color:#fff; */
+  /* background-color: #00b15e!important;  */
+  text-decoration: underline;
+  /* border: 1px solid gray; */
+}
+
+ 
+
+
+.badgee {
+  display: inline-block;
+    padding: 0.25em 0.5em; 
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+} 
+.pill {   
+  border-radius: 2rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.badg-pill {
+  display: inline-block;
+  padding: .2em .4em;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10rem; 
+  color: white;
+}
+.badg-pill-lg {
+  display: inline-block;
+  padding: .2em .6em; 
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: top;
+  border-radius: 10rem; 
+  color: white;
+}
+.pill-sm { 
+  display: inline-block;
+  padding: .25em .5em; 
+  border-radius: 10rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.badge-sm {
+  padding: 1px 3px;
+  /* border-radius: 4px; */
+}
+
+
+.border-left-sky {
+  border-left: 4px solid rgb(152, 214, 238);
+}
+.border-left-gray {
+  border-left: 4px solid #cccccc;
+}
+.border-left-orange {
+  border-left: 4px solid orange;
+}
+.border-left-green {
+  border-left: 4px solid rgb(0, 189, 41);
+}
+
+/*  BOOTSTRAP DARK THEME*/
+.bg-dblue-1 {
+background-color:#0e1c2f; 
+color: fff;
+}
+
+
+.border-aaa {
+  border: 1px solid #aaa;
+  /* border: 2px solid #bbb; */
+}
+.border-light {
+  border: 1px solid #5f5f5f;
+  /* border: 2px solid #bbb; */
+}
+.border-888 {
+  border: 1px solid #888;
+  /* border: 2px solid #bbb; */
+}
+.border-666 {
+  border: 1px solid #666;
+  /* border: 2px solid #bbb; */
+}
+
+.bg-none {
+  background-color: inherit!important;
+}
+
+.border-none {
+  border: none!important;
+}

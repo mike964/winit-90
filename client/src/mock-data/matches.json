@@ -1,0 +1,69 @@
+{
+  "matches": [
+    {
+      "id": "100",
+      "competition": "laliga",
+      "teamHost": "barcelona",
+      "teamGst": "rmadrid",
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 25,
+        "hour": 17,
+        "minute": 30
+      }
+    },
+    {
+      "id": "101",
+      "competition": "ucl",
+      "teamHost": "barcelona",
+      "teamGst": "manutd",
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 26,
+        "hour": 17,
+        "minute": 30
+      }
+    },
+    {
+      "id": "102",
+      "competition": "acl",
+      "teamHost": "perspolis",
+      "teamGst": "alsadd",
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 27,
+        "hour": 17,
+        "minute": 30
+      }
+    },
+    {
+      "id": "103",
+      "competition": "premierlig",
+      "teamHost": "liverpool",
+      "teamGst": "manct",
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 27,
+        "hour": 17,
+        "minute": 30
+      }
+    },
+    {
+      "id": "104",
+      "competition": "seriea",
+      "teamHost": "juventus",
+      "teamGst": "acmilan",
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 25,
+        "hour": 17,
+        "minute": 30
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+ /* I think I will fix this later using SASS */
+.sidebar {
+  margin: 0;
+  padding: 0; 
+  min-width: 150px;  
+  width: 15%;
+  background-color: #010029c4;
+  /* position: fixed; */
+  height: 100%;
+  min-height: 900px;
+  overflow: none;
+  /* display: inline-block;  */
+  float: left;
+  /* position: relative; */
+  /* top: 0; */
+  /* left: 0; */   
+}
+ 
+
+.sidebar a {
+  display: block;
+  color: rgb(190, 190, 190);
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  /* margin-left: 100px;  */
+  /* padding: 1px 16px; */ 
+   width: 80%;
+  display: inline-block; 
+}
+
+@media screen and (max-width: 900px) {
+  .sidebar { 
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 20px;
+    display: flex;
+    justify-content: center;
+  } 
+  div.content {
+    margin-left: 0;
+    width: 100%;  
+  }
+  /* .sidebar > a > span { 
+   display: none;
+  } */
+}
+ 
+@media screen and (max-width: 600px) { 
+  .sidebar > a > span { 
+   display: none;
+  }
+}
+ 
+
+/* ========================================== */
+/* New Sidebar Fix */
+/* Make it responsive */
+/* Hide sidebar when phone */
+.sidebar-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* padding-bottom: 0;  */  
+}
+.sidenav---sidenav---_2tBP {
+  /* position: absolute;   */
+  /* display: flex!important; */
+  top: auto!important;
+  bottom: auto!important;
+  left: 0;
+  z-index: 1006;  
+  /* background: #28b452!important; */
+  background: #30006e!important;  
+  /* background: none!important;  */
+  -webkit-transition: min-width 0.2s;
+  -moz-transition: min-width 0.2s;
+  -o-transition: min-width 0.2s;
+  -ms-transition: min-width 0.2s;
+  transition: min-width 0.2s;
+}
+
+.sidenav---sidenav-toggle---1KRjR {
+  /* Fix hamburger btn size */
+  height: 50px!important; 
+}
+  
+
+/* Media Queries */
+@media screen and (max-width: 900px) {  
+  .sidenav---sidenav-toggle---1KRjR {
+    /* Hide Hambergur btn when collapse */
+     display: none;
+   }
+  .sidenav---sidenav---_2tBP { 
+    display: flex!important;   
+  }
+  .sidenav---sidenav-nav---3tvij {
+    display: flex!important;
+  }
+  .sidebar-container {
+    padding-bottom: 50px; 
+    background: #30006e!important; 
+    /* Hide the sidebar */
+    /* display: none;    */
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  /* body {
+    background-color: lightgreen;
+  }   */
+}
+
+
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
+  min-width: 200px!important;
+}

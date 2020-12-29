@@ -1,0 +1,45 @@
+{
+  "week": "12342423",
+  "winners": [
+    {
+      "username": "Omar_Kharbin",
+      "country": "ksa",
+      "points": 750
+    },
+    {
+      "username": "Mohammed_Jahfali",
+      "country": "bahrain",
+      "points": 745
+    },
+    {
+      "username": "Nawaf Ghamdi",
+      "country": "KSA",
+      "points": 400
+    },
+    {
+      "username": "Salem_Dawsari",
+      "country": "ksa",
+      "points": 300
+    },
+    {
+      "username": "Hattan_bahebri",
+      "country": "irq",
+      "points": 250
+    },
+    {
+      "username": "Carlos_Eduardo",
+      "country": "irn",
+      "points": 247
+    },
+    {
+      "username": "Sebastian_007",
+      "country": "jor",
+      "points": 240
+    },
+    {
+      "username": "Hattan_Shooly",
+      "country": "ksa",
+      "points": 35
+    }
+  ]
+}

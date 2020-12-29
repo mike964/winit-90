@@ -1,0 +1,60 @@
+
+.home-page {
+  background-color: #000000;
+  /* background-image: url("../img/messi-free-kick.jpg"); */
+  /* background-repeat: no-repeat;  */
+  /* margin:auto */
+}
+
+.containerr {
+  position: relative;
+  /* min-width: 1200px;  */
+  /* min-width: 500px;   */
+  /* min-height: 300px; */
+  /* height: 600px;  */
+}
+
+.bg-img{
+  width: 100%;
+  min-width: 1199px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.boxx{
+  font-family: 'Lemonada', cursive;
+  /* font-size: 2em; */
+  text-align: right;
+  position: absolute;
+  top: 10%;
+  left: 50%; 
+  /* left: 80%;  */
+  transform: translate(-50%, -10%);
+  background-color: #000000a1;
+  min-width: 600px;
+  width: 80%;
+  min-height: 800px;
+  border-radius: 5px;
+} 
+
+
+.winit96 {
+  font-family: 'Lato', sans-serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+
+@media only screen and (max-width: 1000px) {
+ 
+  .winners-col{
+    display: none;
+  }
+}
+@media only screen and (max-width: 800px) {
+  body {
+    /* background-color: lightblue; */
+  
+  } 
+}

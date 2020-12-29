@@ -1,0 +1,217 @@
+/* Table */
+#predictions {
+  /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+  border-collapse: collapse; 
+  width: 100%;
+  /* max-width: 800px; */
+  background-color: #ffffff;
+  color: #000e5c;
+  margin: auto; 
+}  
+
+#predictions td  {
+  /* border: 1px solid #ddd; */
+  border-bottom: 1px solid #ace7ff; 
+  padding: 8px;
+  font-size: .9rem;
+}
+#predictions td, #predictions th {
+  /* border: 1px solid #ddd; */ 
+  border-right: 1px solid #ace7ff;
+  padding: 8px;
+}
+
+ 
+#predictions tr:nth-child(odd){ 
+  background-color: #eefaff;
+}
+
+  #predictions tr:hover {
+    background-color: #d7f3ff; 
+  }  
+
+#predictions th {
+  padding : 12px; 
+  text-align: center; 
+  font-weight: 600;
+  /* background-color:  #4285F4; */
+  background-color:  #bde9ff;
+  /* background-color:  #c1e1ff; */
+  color: #00065f;
+  /* color: #ffffff;  */
+  /* border-bottom: 1px #003764 solid; */
+}
+  
+
+/* VIP Predictions Table */
+#gold-table {
+  border-collapse: collapse; 
+  width: 100%;
+  /* padding : 12px;  */
+  text-align: center; 
+  font-weight: 400;
+  /* background-color:  #4285F4; */
+  background-color:  #fff4b8;
+  /* background-color:  #c1e1ff; */
+  color: #000000;
+}
+
+#gold-table td  {
+  /* border: 1px solid #ddd; */
+  border-bottom: 1px solid gold;
+  padding: 8px;
+  font-size: .9rem;
+}
+#gold-table td, #gold-table th {
+  /* border: 1px solid #ddd; */ 
+  border-right: 1px solid gold;
+  padding: 8px;
+}
+
+ 
+#gold-table tr:nth-child(odd){ 
+  background-color: #fffce6;
+}
+
+#gold-table tr:hover {
+    background-color: #ffeb79; 
+  }  
+
+  #gold-table th {
+  padding : 12px; 
+  text-align: center; 
+  font-weight: 600;
+  /* background-color:  #4285F4; */
+  background-color:  gold;
+  /* background-color:  white;   */
+  color: #ffffff;  
+  color: black;
+  /* border-bottom: 1px #003764 solid; */
+}
+
+.winners-table {
+  max-width: 600px;
+  margin: auto;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#winners-table {
+  /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+  border-collapse: collapse; 
+  width: 100%;
+  /* max-width: 800px; */
+  background-color: #ffffff;
+  color: #000e5c;
+  margin: auto; 
+  border-radius: 6px;
+  overflow: hidden;
+}  
+
+#winners-table td  {
+  /* border: 1px solid #ddd; */
+  border-bottom: 1px solid #ace7ff; 
+  padding: 6px; 
+}
+#winners-table td, #predictions th {
+  /* border: 1px solid #ddd; */ 
+  border-right: 1px solid #ace7ff;
+  /* padding: 6px; */
+}
+
+ 
+#winners-table tr:nth-child(odd){ 
+  background-color: #eefaff;
+}
+
+  #winners-table tr:hover {
+    background-color: #d7f3ff; 
+  }  
+
+#winners-table th {
+  padding : 8px; 
+  text-align: center; 
+  font-weight: 600;
+  /* background-color:  #4285F4; */
+  background-color:  #afe4ff;
+  /* background-color:  #c1e1ff; */
+  color: #00065f;
+  /* color: #ffffff;  */
+  /* border-bottom: 1px #003764 solid; */
+}
+
+.winners-table-container {
+
+  text-align: center; 
+  /* border: 1px solid red; */
+  border-radius: 5px;
+  overflow: hidden;
+}
+.winners-table-box{
+  background-color: #6ecfff;   
+  min-width: 500px;
+  max-width: 800px;
+ padding: .4rem;
+  text-align: center; 
+  margin: 5px auto;
+  border-radius: 6px;
+}
+
+.prds-table-container {
+  background-color: #00000070; 
+  background-color: #6ecfff;  
+  padding: .4rem!important;
+  /* padding-bottom: 100px!important; */
+  border-radius: 6px;
+  min-width: 600px;
+  max-width: 900px;
+  /* display: inline-block; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prds-table-footer {
+  border-radius: 6px;
+  background-color: rgb(215, 244, 255); 
+  color: #002981;
+  /* border: 1px solid #5ac8ff; */
+  padding : 10px;
+  font-weight: 500;
+  font-size: .9rem;
+}
+
+#matches {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: .4rem;
+  overflow: hidden; 
+  background-color: white;
+  color: black;
+  margin: auto; 
+}
+
+#matches td {
+  /* border: 1px solid rgb(192, 192, 192); */
+  border-bottom: 1px solid rgb(192, 192, 192);
+  border-right: 1px solid rgb(192, 192, 192);
+  padding: 6px;
+}
+ 
+
+#matches tr:nth-child(even){
+  background-color: #dddddd;
+}
+
+#matches tr:hover {
+  background-color: rgb(234, 244, 255);
+}
+
+#matches th {
+  padding : 10px;
+  text-align: center;
+  background-color: #008cdd;
+  color: white;
+}
+
+ 

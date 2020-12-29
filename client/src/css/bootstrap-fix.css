@@ -1,0 +1,69 @@
+/* FIX BOOTSTRAP */
+.row {
+  margin: 0 ;
+  /* padding: 0 ; */
+}
+.row > div {
+  padding: 0;
+}
+.d-flex{
+  margin: 0 ;
+  padding: 0 ;
+}
+
+.spinner-grow { 
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+}
+.spinner-grow-sm {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+.spinner-border {
+  vertical-align: middle;
+}
+.modal-sm {
+  max-width: 400px!important;
+}
+.modal-content{
+  border-radius: .5em;
+  overflow: hidden;
+}
+.modal-header {
+  text-align: center;
+  display: block;
+  /* padding: .6em; */
+  padding:0px;
+  /* background-color: #0044ff;  */
+  /* background-color: #2e70ff;  */
+  background-color: #00c569;  
+  /* color: #0051ff;  */ 
+  /* color: #002446; */
+  color: #ffffff;  
+  /* color: gold; */
+  /* border-bottom: 2px #49a7ff solid; */
+  border-bottom: none; 
+} 
+.modal-body {
+  padding: 0px;
+}
+.modal-90w {
+  width: 90%;
+  max-width: none!important;
+}
+.form-group{
+  margin-bottom:0.4rem;
+}
+/* .col {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+/* .col{
+  padding: 0 5px;
+} */
+
+
+.nav-tabs > a {
+  color: white;
+}

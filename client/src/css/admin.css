@@ -1,0 +1,12 @@
+
+
+.viprd-item   {
+  background: #d6d6d6;
+  border-bottom: 2px solid #888888;
+}
+/* .viprd-item > .scnd-row > .x > div:nth-child(even) {
+  background: #eee;
+}  */
+.striped >   :nth-child(even) { 
+  background: #eee;
+}

@@ -1,0 +1,292 @@
+/* ************** */
+/* *** COLORS *** */
+/* ************** */
+
+.red{
+  color: #da0000 !important; 
+} 
+.crimson{
+  color: crimson !important; 
+} 
+.green{
+  color: rgb(0, 163, 27) !important; 
+}
+.lime{
+  color: lime !important; 
+}
+.blue{
+  color: #418aff!important;   
+}
+.blue1{
+  color: #6db6ff;
+}
+.blue2{
+  color: #0044b3!important;   
+} 
+.blue3{
+  color: #003283!important;   
+}
+.skyblue{
+  color: skyblue;
+}
+.yellow{
+  color: #FFBB00!important; 
+}
+.orange{
+  color:orange!important; 
+}
+.yahoo{
+  color: #7B0099!important; 
+}
+.bein{
+  color: #5c2d91!important; 
+}
+.d-bein{
+  color: #210047!important; 
+} 
+.gold{
+  color:gold!important; 
+} 
+.goldenrod{
+  color:goldenrod!important; 
+} 
+.gray{
+  color: gray!important; 
+} 
+
+
+
+
+
+.white{
+  color: #fff!important; 
+} 
+.c-eee {
+  color: #eee!important; 
+}
+.c-ddd {
+  color: #ddd!important; 
+}
+.c-ccc {
+  color: #ccc!important; 
+}
+.c-bbb {
+  color: #bbb!important; 
+}
+.c-aaa {
+  color: #aaa!important; 
+}
+.c-888 {
+  color: #888!important; 
+}
+.c-666 {
+  color: #666!important; 
+}
+.c-555 {
+  color: #555!important; 
+}
+.c-444 {
+  color: #444!important; 
+}
+.c-333 {
+  color: #333!important; 
+}
+.c-222 {
+  color: #222!important; 
+}
+.black{
+  color: #000000!important; 
+}
+
+
+/* ***************** */
+/* Background Colors */
+/* ***************** */ 
+.bg-fff{
+  background-color: #fff!important; 
+}
+.bg-eee{
+  background-color: #eee!important; 
+}
+.bg-ddd{
+  background-color: #ddd!important; 
+}
+.bg-ccc{
+  background-color: #ccc!important; 
+}
+.bg-bbb{
+  background-color: #bbbbbb!important; 
+} 
+.bg-aaa{
+  background-color: #aaa!important; 
+}
+.bg-888{
+  background-color: #888888!important; 
+} 
+.bg-777{
+  background-color: #777!important; 
+} 
+.bg-666{
+  background-color: #666666!important; 
+}
+.bg-555{
+  background-color: #555555!important; 
+}
+.bg-444{
+  background-color: #444444!important; 
+}
+.bg-333{
+  background-color: #333333!important; 
+}
+.bg-222{
+  background-color: #222222!important; 
+}
+.bg-b{
+  background-color: #000000!important; 
+}
+
+.bg-shadow-8{
+  background-color: #00000080!important; 
+}
+.bg-shadow-7{
+  background-color: #00000070!important; 
+}
+.bg-shadow-6{
+  background-color: #00000060!important; 
+}
+.bg-shadow-5{
+  background-color: #00000050!important; 
+}
+.bg-shadow-4{
+  background-color: #00000040!important; 
+}
+.bg-shadow-3{
+  background-color: #00000030!important; 
+}
+
+
+
+.bg-gold{
+  background-color:gold!important; 
+} 
+.bg-goldenrod{
+  background-color:goldenrod!important; 
+} 
+.bg-blue {
+  background-color: #4285F4; 
+}
+.bg-lblue {
+  background-color: #bed7ff; 
+}
+.bg-blue-2 {
+  background-color: #1e74ff; 
+}
+.bg-crimson {
+  background-color: crimson;
+}
+.bg-redpink {
+  background-color: #ff0080;
+}
+.bg-red {
+  background-color: #ea3535;
+} 
+.bg-dred {
+  background-color: #ca1c2d;
+} 
+.bg-brown {
+  background-color: brown;
+} 
+.bg-lred {
+  background-color: #ff5555;
+} 
+.bg-green {
+  background-color:#00c52b!important;  
+}
+.bg-orange {
+  background-color: orange!important; 
+}
+.bg-lgreen {
+  background-color: rgb(187, 255, 193); 
+}
+.bg-laliga {
+  background-color: #00dd93!important; 
+  /* background: linear-gradient(90deg, rgba(0,221,147,1) 60%, rgb(0, 255, 85) 90%); */
+}
+.bg-silver {
+  background-color: silver!important; 
+}
+.bg-bronze {
+  background-color: #e7994c!important; 
+}
+.bg-prlig {   
+  /* background: rgb(150,60,255); */
+  /* background: linear-gradient(90deg, rgb(124, 0, 177) 50%, rgba(255,40,130,1) 100%); */
+  background: linear-gradient(90deg, #510074 50%, #e628ff 95%);
+}  
+.bg-sky{
+  background-color: #89ddff;
+}
+.bg-lsky{
+  background-color: #cef1ff;
+}
+.bg-france{ 
+  /* background-color:#001964!important;  */
+  background: linear-gradient(90deg, #001d75 50%, #1946cf 95%);
+}
+.bg-white{
+  background-color: #ffffff!important;
+}
+.bg-w{
+  background-color: #ffffff!important;
+}
+.bg-black{
+  background-color: #000000!important;
+}
+.bg-shadow {
+  background-color: #0000009d!important;
+}
+
+.bg-blueviolet {
+  background-color:blueviolet!important;
+}
+.bg-coral {
+  background-color:coral!important;
+}
+.bg-orange {
+  background-color:orange!important;
+} 
+.bg-turq {
+  background-color:turquoise!important;
+}
+.bg-dodgerblue {
+  background-color:dodgerblue!important;
+}
+.bg-orchid {
+  background-color:orchid!important;
+}
+.bg-magenta {
+  background-color:magenta!important;
+}
+.bg-violet {
+  background-color:violet!important;
+}
+.bg-pink {
+  background-color:pink!important;
+}
+.bg-purple {
+  background-color:purple!important;
+}
+.bg-indigo {
+  background-color:indigo!important;
+}
+.bg-tomato {
+  background-color:#ff4b2b!important;
+}
+.bg-red {
+  background-color:red!important;
+}
+
+/* PayPal Btn */
+.bg-ffc439 {
+  background-color: #ffc439;
+}

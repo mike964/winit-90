@@ -1,0 +1,149 @@
+/* NAVBAR AUTH BUTTON */
+.auth {
+border: none;
+border-radius: .3rem;
+padding: 4px 8px ;
+color: white;
+background-color: #6900b4;
+/* border: 1px white solid; */
+} 
+
+.auth:hover {
+  background-color: #9500ff; 
+  /* background-color: #0099ff; */
+  
+}
+
+.auth.signup:hover {
+  /* background-color: #0990ff; */
+}
+
+
+
+/* LOGIN BUTTONS */
+.facebook-google {
+  padding: 4px;
+  /* background-color: rgb(176, 243, 255); */
+  border-radius: .3rem;
+}
+
+.facebook-btn {
+  background-color: #3B5998;
+  color: white;
+  border: none;
+}
+.facebook {
+ color: #3B5998;
+}
+.google {
+  background-color: #e24934;
+  color: white;
+  border: none; 
+}
+
+/* Login btn inside form */
+.login-btn{
+  background-color: rgb(81, 136, 255); 
+  color: white;
+  font-weight: 500;
+  display: block;
+    width: 100%;
+  border: none;
+}
+.login-btn__red{
+  background-color:#f03b4d;
+  color: white;
+  font-weight: 500;
+  display: block;
+    width: 100%;
+  border: none;
+}
+.login-btn:hover{
+  background-color: rgb(40, 108, 255); 
+  color: white;
+  border: none;
+}
+
+.dice-btn {  
+  width: 32px; 
+  height: 32px; 
+  background-color: #ffc964; 
+  border-radius: .3rem;
+  cursor: pointer; 
+  /* border: 1px solid #ffc353; */ 
+  background-color: #ffbe46;
+  border-bottom: 3px solid #ffa600;
+  display: inline-block;
+}
+/* .dice-btn:active { 
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+} */
+.dice-btn__disabled {
+  display: inline-block;
+  width: 32px; 
+  height: 32px;  
+  background-color: #ffbe46b2; 
+  border-radius: .3rem;
+  cursor: default;    
+}  
+.dice-btn:active { 
+  border-bottom: 1px solid #ffa600;
+} 
+.dice-btn:active  > img{ 
+  /* box-shadow: 0 2px #666; */
+  transform: translateY(2px);
+}
+.dice-img   {
+  height: 26px; 
+  margin-top: 2px;
+} 
+
+.signup-now-btn {
+  display: inline-block;
+  /* background-color: rgb(0, 150, 0); */
+  text-decoration: underline;
+  color: gold;
+  padding: 1px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.signup-now-btn:hover{
+  /* background-color: rgb(0, 130, 0);  */
+  color: rgb(0, 255, 0);
+  /* text-decoration: underline; */
+}
+
+/* Submit single vip prediction btn */
+.submit-btn {
+  background-color:#00c569;
+  color: white;
+  padding: 4px 14px;
+  width: 120px;
+  /* border: 1px solid green; */
+  border: none;
+  border-radius:  15px ;
+  text-align: center;
+}
+/* WHEN VIP PREDICTINO SUBMIT FAIL */
+.submit-btn__red {
+  background-color: #da3e46;
+  color: white;
+  padding: 4px 10px;
+  width: 120px; 
+  border: none;
+  border-radius:  15px ;
+  text-align: center;
+}
+
+.submit-all-btn-box {
+  max-width: 600px; 
+  margin: auto;
+}
+.submit-all-btn {
+  padding: 6px 14px;
+  font-size: 1rem;
+  width: 100%; 
+  background-color:#007bff;
+  color: white;
+}
