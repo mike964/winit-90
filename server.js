@@ -73,6 +73,7 @@ app.use( errorHandler )
 
 
 // *** Passport js routes ( Google / Facebook )
+app.get( '/test', ( req, res ) => res.send( "Testing server ..." ) )
 app.use( '/auth', require( './server/routes/auth.route' ) )
 // *** Mount API Routers ***  ) ) 
 app.use( '/api', require( './server/routes' ) )
