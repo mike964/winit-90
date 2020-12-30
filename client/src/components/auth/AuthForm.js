@@ -78,7 +78,7 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
   // Handle Login with Google/Facebook
   const handleLoginWith = async ( x ) => {
     // e.preventDefault()
-    loginWithPassport( x )
+    loginWithPassport( x )   // x : ['google', 'pssport']
   }
 
 

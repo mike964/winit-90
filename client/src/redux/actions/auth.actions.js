@@ -11,7 +11,7 @@ const { dispatch } = store
 // If google login success: set token google : 'true'
 
 
-// Register new User
+// Register new User - JWT
 export const signupUser = async user => {
   // setLoading()
 
@@ -20,16 +20,16 @@ export const signupUser = async user => {
     const res = await axos.post( `/auth/signup`, user )
     console.log( res )
 
-    // if ( res.data.success === true ) {
     Cookies.set( 'wntkn', res.data.token, { expires: 7 } )
 
-    setReqHeaders()
-    // loadUser()   // *** Then Load User data
+    setReqHeaders()     // Set req.header token
+
     dispatch( {
       type: 'SET_USER',
       payload: res.data.user
     } )
 
+    // loadUser()      // *** Then Load User data
     return true
     // }
   } catch ( error ) {
@@ -46,16 +46,13 @@ export const signupUser = async user => {
     // }
     return false
   }
-
-  // } else if ( res.data.success === false ) { 
-  // return err_msg
 }
 
 
+// Login User - JWT
 export const loginUser = async ( user ) => {
 
   try {
-    // const res = await axios.post( /auth/login`, user )
     const res = await axos.post( `/auth/login`, user )
     console.log( res )    // res.data => {success: true, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC..."}
 
@@ -148,17 +145,16 @@ const loadUser_google = async () => {  // passport
 
 
   try {
-    const response = await axios( {
-      method: 'get',
-      url: '/auth',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true
-      },
-      withCredentials: true   // In order to send cookies
-    } )
-
+    // const response = await axios.get( {
+    //   url: '/auth',
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Credentials": true
+    //   },
+    //   withCredentials: true   // In order to send cookies
+    // } )
+    const response = await axos.get( 'http://localhost:5000/auth' )
 
     // if ( response.data.success ) {
     dispatch( {
@@ -194,7 +190,8 @@ export const logout = async () => {
   // await axios.get( /auth/logout` )   // Doesn't work
 
   // The line below works :solved the problem.
-  window.open( `/auth/logout`, "_self" );
+  let base_url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER : ''
+  window.open( `${ base_url }/auth/logout`, "_self" );
 
   // Reaload page in order to clear Redux store
   // window.location.reload()
@@ -236,7 +233,10 @@ export const loginWithPassport = ( x ) => {   // x: ['google','facebook']
 
   Cookies.set( 'loggedinwithpassport', 'true' )
 
-  window.open( `/auth/${ x }`, "_self" )   // This line works inside client server (3000 for ex)
+  // window.open( `/auth/${ x }`, "_self" )   // This line works inside client server (3000 for ex)
+
+  let base_url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER : ''
+  window.open( `${ base_url }/auth/${ x }`, "_self" )
   // const res = await axos.get( '/auth/google' )  // Doesn't work
   // console.log( res )
 } 

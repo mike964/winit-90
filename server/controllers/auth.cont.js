@@ -36,6 +36,9 @@ const sendTokenResponse = ( user, statusCode, res ) => {
   const { name, email, balance, ide } = user
   let user_ = { name, email, balance, ide }
 
+  if ( user.role === 'admin' )
+    user_.isAdmin === true
+
   res
     .status( statusCode )  // statusCode: 200 
     .cookie( 'token', token, cookie_options )   // (cookie name - value - options) 
@@ -136,12 +139,16 @@ exports.getMe = asyncHandler( async ( req, res, next ) => {
   // *** In order to prevent returning user._id
   let user_ = { name, email, balance, ide }
 
+  if ( user.role === 'admin' )
+    user_.isAdmin === true
+
   // check to see _id should be send or not
 
   // If logged in user is Admin 
   res.status( 200 ).json( {
     success: true,
-    user: user.role === 'admin' ? { ...user_, isAdmin: true } : user_  // Works fine
+    // user: user.role === 'admin' ? { ...user_, isAdmin: true } : user_  // Works fine
+    user: user_  // Works fine
   } )
 } )
 

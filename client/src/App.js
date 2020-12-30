@@ -34,6 +34,8 @@ import SettingsPg from './pages/SettingsPg'
 
 const App = () => {
 
+  console.log( 'NODE_ENV: ' + process.env.NODE_ENV )   // output: ['development' , 'production']
+
   // const token = Cookies.get( 'wntkn' ) 
 
   // OLD WAY of loading user when app mount

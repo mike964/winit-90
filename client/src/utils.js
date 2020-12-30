@@ -1,14 +1,16 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
+console.log( 'NODE_ENV: ' + process.env.NODE_ENV )   // output: ['development' , 'production']
+
 
 const token = Cookies.get( 'wntkn' )
-console.log( 'token: ' + token )   // Undefined
+// console.log( 'token: ' + token )   // Undefined
 // console.log( document.cookies )  // This shit doesn't work at all
 
 export const axos = axios.create( {
   withCredentials: true,   // Send Cookie to server to retrieve user when login with Passport js
   // *** 'https://some-domain.com/api/',
-  // baseURL: process.env.REACT_APP_SERVER    // http://localhost:5000
+  // baseURL: ( process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER : '' ),   // http://localhost:5000
   // baseURL: '/'    // FOR PRODUCTION
   // headers: {'X-Custom-Header': 'foobar'}
 
@@ -17,6 +19,12 @@ export const axos = axios.create( {
   // headers: { 'Authorization': ( token ? `Bearer ${ token }` : '' ) }   // *** FOR JWT
   // headers: { 'Authorization': `Bearer ${ token }` }   // *** FOR JWT
   // For Bearer tokens and such, use `Authorization` custom headers.
+
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Credentials": true
+  }
 } )
 
 
