@@ -31,20 +31,22 @@ import SettingsPg from './pages/SettingsPg'
 
 
 
-
+//==================================================================================
 const App = () => {
 
   console.log( 'NODE_ENV: ' + process.env.NODE_ENV )   // output: ['development' , 'production']
 
-  // const token = Cookies.get( 'wntkn' ) 
-
-  // OLD WAY of loading user when app mount
 
   useEffect( () => {
-    // Get Matches from DB
+    // ** Get Matches & Weeks from DB
+    console.log( '--- App mounted.' )
     getMatches_DB()
     getAllWeeks()
+  }, [] )
 
+
+  useEffect( () => {
+    // ** Load User once the App mount 
     const load_user = async () => {
       // Passport js : Get {...user} from DB when App Mounts :if cookie/token exist in browser'
 
@@ -52,46 +54,23 @@ const App = () => {
 
       console.log( '--- User loaded success: ' + user_loaded_successfully )
 
-      if ( user_loaded_successfully ) {
-
-
-        load_user_data()   // Load user data: msgs, prds, karnames, ... 
+      if ( user_loaded_successfully ) {  // ** Load user data:  prds, msgs, karnames, ... 
+        // ** Load prds of this and next week of user to redux
+        loadPredictions()
+        // *** Get all my predictions from DB, in order to display in Dashboard
+        // getAllMyPredictions()
+        // getMyVipredictions()
+        // GET My Karnames from DB
+        // getMyKarnames_DB() 
+        // getAllMyPredictions()
+        // getMyMessages()
       }
     }
-
-
-
-    // document.cookie = "userrrr=mikeeee"  // Works fine
 
     load_user()
     // if ( token ) loadUserr()
     // eslint-disable-next-line
   }, [] )
-
-  const load_user_data = () => {   // Load user data: msgs, prds, karnames, ... 
-
-    // *** Load prediction of this and next week of current user to Redux
-    loadPredictions()
-    // *** Get all my predictions from DB, in order to display in Dashboard
-    // getAllMyPredictions()
-    // getMyVipredictions()
-    // GET My Karnames from DB
-    // getMyKarnames_DB()
-    // Get all my predictions and set them to redux store
-    // loadPredictions()
-    // getAllMyPredictions()
-    // getMyMessages()
-  }
-
-
-
-  // *** PASSPORT JS ***
-  //====================
-  // useEffect( () => { 
-  // }, [] )
-
-
-
 
   //===========================================================================================
   return <div className="app">

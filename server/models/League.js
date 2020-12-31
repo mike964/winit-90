@@ -14,6 +14,10 @@ const leagueSchema = new Schema( {
     //unique: true,
     required: true
   },
+  id_: {   // api-football id  :integer
+    type: Number,
+    default: 999
+  },
   // season: {   // 2019-20
   //   type: String,
   //   required: true
@@ -23,8 +27,7 @@ const leagueSchema = new Schema( {
   //   default: false
   // },
   country: {   // England
-    type: String,
-    required: true
+    type: String
   },
   // CAF AFC UEFA CONCACAF CONMEBOL OFC
   confederation: {

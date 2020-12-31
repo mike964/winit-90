@@ -41,8 +41,7 @@ const sendTokenResponse = ( user, statusCode, res ) => {
 
   res
     .status( statusCode )  // statusCode: 200 
-    .cookie( 'token', token, cookie_options )   // (cookie name - value - options) 
-    // .cookie( 'wntkn', token, cookie_options )   // (cookie name - value - options) 
+    .cookie( 'token', token, cookie_options )   // (cookie name - value - options)  
     .json( {
       success: true,
       token,   // so important
@@ -88,10 +87,13 @@ exports.login = asyncHandler( async ( req, res, next ) => {
 
   // Check if User exist & password is correct
   // select the password as well in order to validate it for login
-  const user = await User.findOne( { email } ).select( '+password' )
+  const user = await User.findOne( { email: email } ).select( '+password' )
 
-  // if ( !user ) { return next( new ErrorResponse( "User not found.", 401 ) ) }
-  if ( !user ) { return next( new ErrorResponse( 'Wrong email or password!', 401 ) ) }
+
+  if ( !user ) {
+    // return next( new ErrorResponse( "User not found.", 401 ) 
+    return next( new ErrorResponse( 'Wrong email or password!', 401 ) )
+  }
 
   // Check if entered password matches the one in db
   // Will return true or false
@@ -123,12 +125,12 @@ exports.logout = asyncHandler( async ( req, res, next ) => {
   // } )
 } )
 
-// @desc      Get current logged in user data from DB
+// @desc      Get current logged in user info
 // @route     POST /api/v1/auth/me
 // @access    Private
 exports.getMe = asyncHandler( async ( req, res, next ) => {
   console.log( '--- getMe() ---' )
-  // req.user.id comes from protect mdlwr 
+  // *** req.user.id comes from protect mdlwr 
   // const user = await User.findById( req.user.id ).select( '-password' )   // works
   // const user = await User.findById( req.user.id ).select( '-_id' )          // works 
   // const user = await User.findById( req.user.id ).select( '-password, -_id', )   // works
@@ -139,9 +141,7 @@ exports.getMe = asyncHandler( async ( req, res, next ) => {
   // *** In order to prevent returning user._id
   let user_ = { name, email, balance, ide }
 
-  if ( user.role === 'admin' )
-    user_.isAdmin === true
-
+  if ( user.role === 'admin' ) { }
   // check to see _id should be send or not
 
   // If logged in user is Admin 

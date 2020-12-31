@@ -3,6 +3,7 @@
 const initState = {
   karnames: [],  // My Karnames of Year 2020 (year filter not implemented yet)
   current: {}    // Current Karname in order to display details in My Predictions table footer
+  // selected: {}
 }
 
 

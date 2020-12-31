@@ -53,7 +53,7 @@ const UserSchema = new Schema( {
     type: String,
     // required: [ true, 'Please add a password!' ],  // Bcuz some user will login by google
     minlength: 4,
-    select: false
+    select: false   // Don't return for sercurity
   },
   balance: {
     type: Number,

@@ -5,7 +5,7 @@ import { getAllMyPredictions } from '../redux/actions/prediction.actions'
 import RefreshBtn from '../components/RefreshBtn'
 import WeekSelector from '../components/WeekSelector'
 import PrdsTableFooter from '../components/prediction/PrdsTableFooter'
-import { getMyKarnames_DB, setCurrentKarname } from '../redux/actions/week-karname.actions'
+import { getMyKarnames_DB, setSelectedKarname } from '../redux/actions/week-karname.actions'
 import axios from 'axios'
 
 //=======================================================================================
@@ -29,14 +29,14 @@ const PredictionsPg = () => {
 
 
   useEffect( () => {
-    if ( thisWeek && thisWeek._id && karnames )
-      setCurrentKarname( thisWeek._id )
+    if ( thisWeek._id && karnames )
+      setSelectedKarname( thisWeek._id )
   }, [ thisWeek, karnames ] )
 
 
   useEffect( () => {
     if ( selectedKarname ) {
-      // get_prds_of_karname( selectedKarname._id )
+      get_prds_of_karname( selectedKarname._id )
     } else {
 
     }
@@ -62,7 +62,7 @@ const PredictionsPg = () => {
 
     if ( karnameId ) {
       console.log( '-- karnameId: ' + karnameId )   // *** UNDEFINED
-      const response = await axios.get( `/api/predictions / me ? karname = ${ karnameId }` )
+      const response = await axios.get( `/api/predictions/me?karname=${ karnameId }` )
 
 
       console.log( response.data.data )   // Good Good

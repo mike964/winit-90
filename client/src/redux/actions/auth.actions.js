@@ -60,11 +60,8 @@ export const loginUser = async ( user ) => {
     Cookies.set( 'wntkn', res.data.token, { expires: 7 } )   // 7 days
     // Cookies.set( 'logintokin', 'loginnnn', { expires: 7 } )   // 7 days 
 
-    setReqHeaders()   // SET TOKEN
+    setReqHeaders()   // SET TOKEN 
 
-    // loadUser()
-    // loadUser_jwt()
-    // if ( res.data.success )
     dispatch( {
       type: 'SET_USER',
       payload: res.data.user
@@ -80,13 +77,11 @@ export const loginUser = async ( user ) => {
 }
 
 
+// ** When browser reload 
 export const loadUser = async () => {
-  // When pages reload 
   console.log( '--- loadUser()  :auth actions' )
 
-  // const token = Cookies.get( 'wntkn' )
-  // console.log( token )
-  console.log( Cookies.get() )
+  // console.log( Cookies.get() )
   // console.log( document.cookies )   // undefined
 
   let cookies = Cookies.get()
@@ -99,26 +94,29 @@ export const loadUser = async () => {
 
 
   let success = false   // false by default
-  if ( cookies.wntkn ) success = await loadUser_jwt()   // FOR TEST
+  // if ( cookies.wntkn ) success = await loadUser_jwt()   // FOR TEST
   // success = token ? await loadUser_jwt() : await loadUser_google()
 
-  if ( cookies.loggedinwithpassport === 'true' )
-    success = await loadUser_google()
+  // if ( cookies.passportlogin === 'true' )
+  //   success = await loadUser_google()
+
+  if ( cookies.passportlogin === 'true' || cookies.wntkn )
+    success = await loadUserr()
 
   console.log( 'success: ' + success )   // Good  success: true
 
   return success
 }
 
-const loadUser_jwt = async () => {
-  console.log( '--- loadUser_jwt()' )
-  // console.log( Cookies.get() )
-  // *** JWT *** 
-  setReqHeaders()   // Set token
-  // const res = await axios.get( /auth/me` )
+
+const loadUserr = async () => {
+  console.log( '--- loadUserr ()' )
+  // console.log( Cookies.get() ) 
+  setReqHeaders()   // Set token 
 
   try {
-    const res = await axos.get( `/auth/me` )
+    // const res = await axos.get( `/auth/me` )
+    const res = await axos.get( `/auth` )
 
     console.log( res.data )
 
@@ -139,37 +137,6 @@ const loadUser_jwt = async () => {
   }
 }
 
-
-const loadUser_google = async () => {  // passport
-  console.log( '--- loadUser_google()' )
-
-
-  try {
-    // const response = await axios.get( {
-    //   url: '/auth',
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Credentials": true
-    //   },
-    //   withCredentials: true   // In order to send cookies
-    // } )
-    const response = await axos.get( 'http://localhost:5000/auth' )
-
-    // if ( response.data.success ) {
-    dispatch( {
-      type: 'SET_USER',
-      payload: response.data.user
-    } )
-
-    return true  // In order to handle App.js
-
-  } catch ( error ) {
-    return false
-  }
-}
-
-
 // Logout
 export const logout = async () => {
   // *** This logout() works both for 'jwt' , 'passport-google'
@@ -177,7 +144,7 @@ export const logout = async () => {
   // Then Clear Redux Store
   // localStorage.removeItem( 'token' )
   Cookies.remove( 'wntkn' )
-  Cookies.remove( 'loggedinwithpassport' )
+  Cookies.remove( 'passportlogin' )
 
   // Cookies.set( 'session.sig', 'null' )   // Doesn't work!
 
@@ -231,7 +198,7 @@ export const loginWithPassport = ( x ) => {   // x: ['google','facebook']
   // window.open( `/ auth / ${ x }`, "_self" )   // This line works inside client server (3000 for ex)
   // window.open( /auth/${ x }`, "_self" )   // This line works inside client server (3000 for ex)
 
-  Cookies.set( 'loggedinwithpassport', 'true' )
+  Cookies.set( 'passportlogin', 'true' )
 
   // window.open( `/auth/${ x }`, "_self" )   // This line works inside client server (3000 for ex)
 

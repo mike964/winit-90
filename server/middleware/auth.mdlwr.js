@@ -9,8 +9,8 @@ exports.protect = asyncHandler( async ( req, res, next ) => {
 
   console.log( '----- protect() mdlwr -----'.yellow )
 
-  console.log( '- req_user: ' )
-  console.log( req.user )   // Fuck yes: Either undefined or {...user} comes from passport js
+  console.log( '- req.user: ' )
+  console.log( req.user )   // Fuck yes: Either undefined or {...user} comes from passportJs
 
   console.log( '- req.headers.authorization: ' )
   console.log( req.headers.authorization )
@@ -34,12 +34,12 @@ exports.protect = asyncHandler( async ( req, res, next ) => {
       // Always can load token with every request from cookie - req.cookies is set when user login
       token = req.cookies.token
       console.log( '- Token comes from req.cookies' )
+      // ** This block is not complete yet
 
       // } else if ( !token ) {
-    } else {
-      // Make sure token exists
-      console.log( 'No Token!' )
-      return next( new ErrorResponse( 'No Token!', 401 ) )
+    } else {    // Make sure token exists
+      console.log( 'No token!' )
+      return next( new ErrorResponse( 'No token!', 401 ) )
     }
 
     // console.log( token )   // output: Bearer 5ee0e50fa350c44dd0daa385
@@ -71,7 +71,7 @@ exports.setUser = asyncHandler( async ( req, res, next ) => {
   // console.log( req.params )   // { year: '2021', weekNumber: '29' }
   // console.log( req.query )    // { week: 'thisweek' } 
 
-  console.log( '--- setUser() mdlwr ---'.yellow )
+  console.log( '--- setUser() ---'.yellow )
 
   // for (GET requset)
   if ( req.user ) {   // req.user comes from protect mdlwr

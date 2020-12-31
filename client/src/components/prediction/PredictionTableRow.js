@@ -8,15 +8,17 @@ const PredictionTableRow = ( { prediction, vip } ) => {
   // console.log( prediction )
 
   const { match, answerKey, goalDifference, correct, correctGD, points } = prediction
-  const { team1, team2, league, date, finished, resultKey, result } = match
+  const { team1, team2, team_home, team_away, league, date, finished, resultKey, result } = match
 
   let resultt = resultKey ? ( result.score ? result.score : '-' ) : 'x'
 
 
   const match_isToday = ( ( moment( date ).format( 'YYYY-MM-DD' ) === moment().format( 'YYYY-MM-DD' ) ) ? true : false )
 
-  const team1_acronym = team1.shortName.substring( 0, 3 ).toUpperCase()
-  const team2_acronym = team2.shortName.substring( 0, 3 ).toUpperCase()
+  const team1_acronym = team1 ? team1.shortName.substring( 0, 3 ).toUpperCase()
+    : team_home.name.substring( 0, 3 ).toUpperCase()
+  const team2_acronym = team2 ? team2.shortName.substring( 0, 3 ).toUpperCase()
+    : team_away.name.substring( 0, 3 ).toUpperCase()
 
 
   const trClassName = () => {
@@ -68,19 +70,19 @@ const PredictionTableRow = ( { prediction, vip } ) => {
   return <>
     { prediction && <tr>
       <td className="text-center">
-        <Logo name={ league.id } lig size={ 25 } />
+        <Logo src={ `/api/logos/_ligs/${ league.id }.png` } size='25' />
       </td>
       <td>
         <div className="row">
           <div className="col text-right">
             { team1_acronym } { ' ' }
-            <Logo name={ team1.shortName } country={ team1.country } size='25' />
+            <Logo src={ team_home.logo } size='25' />
           </div>
           <div className="col text-center">
             { resultt }
           </div>
           <div className="col text-left">
-            <Logo name={ team2.shortName } country={ team2.country } size='25' /> { ' ' }
+            <Logo src={ team_away.logo } size='25' /> { ' ' }
             { team2_acronym }
           </div>
         </div>

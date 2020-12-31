@@ -73,15 +73,16 @@ router.get( "/login/failed", ( req, res ) => {
 
 
 // *** AUTH CHECK *** (Google)
-// *** Check every time when client browser reload if user logged in or not
+// *** Check every time when browser reload if user logged in or not
+// ** Get logged in user info each time browser reload 
 // if User is already login, send the profile response, (load user)
 // otherwise, send a 401 response that the user is not authenticated
 // @route   /auth
-router.get( "/", ( req, res ) => {
-  console.log( '--- auth check - get me ---'.yellow )
+router.get( "/", protect, ( req, res ) => {
+  console.log( "--- 'host.com/auth/'  auth check - get me ---".yellow )
   // This function is acturlly similar to '/auth/login/success'
 
-  // @toFix: this function should be user both for 
+  // @toFix: this function should be use both for Jwt & Google
   // Google and jwt auth
   console.log( req.user )
 
@@ -89,16 +90,21 @@ router.get( "/", ( req, res ) => {
     res.status( 401 ).json( {
       authenticated: false,
       message: "user has not been authenticated"
-    } );
+    } )
   }
+  // For security: To prevent returning user._id & password
+  const { name, email, balance, ide, image } = req.user
+  // *** In order to prevent returning user._id
+  let user_ = { name, email, balance, image, ide }
 
   res.status( 200 )
     .json( {
       success: true,   // moslm added this line
       message: "user successfully authenticated",
-      user: req.user,
+      // user: req.user,
+      user: user_,
       // cookies: req.cookies
-    } );
+    } )
 } )
 
 

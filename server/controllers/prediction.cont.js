@@ -12,6 +12,9 @@ const Karname = require( '../models/Karname' )
 // @access    Private/Admin
 // exports.getPredictions = crud.getAll( Prediction, 'match week' )
 exports.getPredictions = asyncHandler( async ( req, res, next ) => {
+  console.log( '--- getPredictions() cont ---'.yellow )
+
+  console.log( req.query.karname )
 
   // Modify query in order to add sorting and selecting fields
   const qr = qrFunc( req.query, Prediction )
@@ -20,12 +23,18 @@ exports.getPredictions = asyncHandler( async ( req, res, next ) => {
   // const matches = await Match.find( { week: req.weekId } )
   const docs = await qr
     .populate( 'week' )
-    // .populate( 'match' )
-    // Get friends of friends - populate the 'friends' array for every friend (nested populate)
+    .populate( 'match' )
+    // ** Get friends of friends - populate the 'friends' array for every friend (nested populate)
     .populate( {
       path: 'match',
       populate: { path: 'team1 team2' }
     } )
+
+
+  if ( !docs ) {
+    // return Error
+    console.log( 'No karname found!'.pink )
+  }
 
 
   res.status( 200 ).json( {

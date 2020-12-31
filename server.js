@@ -54,7 +54,7 @@ app.use(
   } )
 )
 
-// *** Parse cookies
+// ** Parse cookies - to use req.cookies
 app.use( cookieParser() )
 
 // initalize passport
