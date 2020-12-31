@@ -1,11 +1,12 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
-const SpinnersBox = () => {
+const SpinnersBox = ( { small } ) => {
+
   return <div className='p-1'>
-    <Spinner as="span" animation="grow" size="smm" variant="success" />{ ' ' }
-    <Spinner as="span" animation="grow" size="smm" variant="warning" /> { ' ' }
-    <Spinner as="span" animation="grow" size="smm" variant="danger" />
+    <Spinner as="span" animation="grow" size={ small ? 'sm' : 'x' } variant="success" />{ ' ' }
+    <Spinner as="span" animation="grow" size={ small ? 'sm' : 'x' } variant="warning" /> { ' ' }
+    <Spinner as="span" animation="grow" size={ small ? 'sm' : 'x' } variant="danger" />
   </div>
 }
 

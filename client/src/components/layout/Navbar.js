@@ -7,6 +7,8 @@ import { logout } from '../../redux/actions/auth.actions'
 import { setNavbar } from '../../redux/actions/global.actions'
 import WinitLogo from './WinitLogo'
 import NotificationBell from './NotificationBell'
+import { Spinner } from 'react-bootstrap'
+import SpinnersBox from '../../components-common/SpinnersBox'
 // import Clock from './Clock'
 
 
@@ -17,20 +19,25 @@ const Navbar = () => {
   const history = useHistory()
 
   const [ hideNavbar, sethideNavbar ] = useState( true )
-  // console.log( location.pathname )   //  output: /   /weeklycontest  
+  const [ showAuthBtns, setShowAuthBtns ] = useState( false )
+  // console.log( location.pathname )   //  output: /   /weeklycontest   
 
-  useEffect( () => {
-    location.pathname === '/' ? sethideNavbar( true ) : sethideNavbar( false )
-  }, [ location ] )
-
-
-  const { isAuthenticated, currentUser } = useSelector( state => state.auth )
+  const { isAuthenticated, currentUser, loading: userLoading } = useSelector( state => state.auth )
   // Check if Current Loggedin User is Admin or not
   const isAdmin = ( currentUser ? ( currentUser.isAdmin ? true : false ) : false )
   const { navbar } = useSelector( state => state.global )
 
   // console.log( navbar )
 
+  useEffect( () => {
+    location.pathname === '/' ? sethideNavbar( true ) : sethideNavbar( false )
+  }, [ location ] )
+
+  useEffect( () => {
+    if ( !userLoading && !isAuthenticated ) {
+      setShowAuthBtns( true )
+    }
+  }, [ userLoading, isAuthenticated ] )
 
   const handleLogout = () => {
     logout()
@@ -80,7 +87,11 @@ const Navbar = () => {
   </>
 
   const guestLinks = <>
-    <AuthBtnsModal type="signup" />
+    {showAuthBtns
+      ? <AuthBtnsModal type="signup" />
+      : <div className='py-1' style={ { color: '#2b005c' } }>.</div>
+      // Line above in order to prevent navbar collpase when no btns
+    }
   </>
   //====================================================================================
   return <div className={ hideNavbar ? "hidden" : "navbar-main" }  >

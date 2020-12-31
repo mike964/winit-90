@@ -10,6 +10,13 @@ const { dispatch } = store
 
 // If google login success: set token google : 'true'
 
+const setUserLoading = ( x ) => {   // x [Boolean]
+  dispatch( {
+    type: 'SET_USER_LOADING',
+    payload: x
+  } )
+}
+
 
 // Register new User - JWT
 export const signupUser = async user => {
@@ -29,11 +36,11 @@ export const signupUser = async user => {
       payload: res.data.user
     } )
 
-    // loadUser()      // *** Then Load User data
     return true
     // }
   } catch ( error ) {
     console.log( 'Sign up faill.' )
+    setUserLoading( false )
 
     // if ( response.data.err_code === 11000 ) {
     //   if ( response.data.err_keyvalue.email ) {
@@ -72,6 +79,7 @@ export const loginUser = async ( user ) => {
   } catch ( error ) {
     console.log( 'Login fail!' )
     console.log( error )
+    setUserLoading( false )
     return false
   }
 }
@@ -100,9 +108,11 @@ export const loadUser = async () => {
   // if ( cookies.passportlogin === 'true' )
   //   success = await loadUser_google()
 
-  if ( cookies.passportlogin === 'true' || cookies.wntkn )
+  if ( cookies.passportlogin === 'true' || cookies.wntkn ) {
     success = await loadUserr()
-
+  } else {
+    setUserLoading( false )
+  }
   console.log( 'success: ' + success )   // Good  success: true
 
   return success
@@ -133,6 +143,7 @@ const loadUserr = async () => {
 
   } catch ( error ) {
     console.log( error )
+    setUserLoading( false )
     return false
   }
 }
