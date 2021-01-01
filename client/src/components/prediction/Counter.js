@@ -12,10 +12,8 @@ const Counter = ( {
   const [ state, setState ] = useState( -1 )
   // const [ disabled, st_disabled ] = useState( disabledd ? disabledd : false )
 
-  // Possible options for counter to display
-  // const possibleOpts = [ '0', '1', '2', '3', '4', '5', '5', '5+' ]
 
-  const counterMax = ( penalties ? 6 : 5 )   // counter max values
+  const counterMax = ( penalties ? 5 : 4 )   // counter max values
 
   // If props.value change, change state here as well
   useEffect( () => {
@@ -70,7 +68,7 @@ const Counter = ( {
     } else if ( counterValue === 0 ) {
       return '0'
     } else if ( counterValue === 5 ) {
-      return '5+'
+      return '4+'
     } else if ( counterValue === counterMax ) {
       return 'P'   // penalties
     } else {

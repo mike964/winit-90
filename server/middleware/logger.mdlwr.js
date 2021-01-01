@@ -22,7 +22,7 @@ const logger = ( req, res, next ) => {
       // `${ req.method } ${ req.protocol } :// ${ req.get( 'host' ) } ${ req.originalUrl }`
       `${ req.method }: ${ req.get( 'host' ) } ${ req.originalUrl }`.magenta
     )
-    console.log( `Minute: ${ d.getMinutes() }:${ d.getSeconds() }:${ d.getMilliseconds() }`.magenta )
+    console.log( `min-sec-milis: ${ d.getMinutes() }:${ d.getSeconds() }:${ d.getMilliseconds() }`.cyan )
     console.log( '--- req.body: ' )
     console.log( req.body )
     console.log( '--- req.params: ' )

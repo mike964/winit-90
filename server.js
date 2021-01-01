@@ -85,8 +85,7 @@ app.use( '/api', express.static( path.join( __dirname, 'server/public' ) ) )
 
 
 if ( process.env.NODE_ENV === 'production' ) {
-  // *** When we deploy to the server
-  // Run React js client as static folder
+  // *** When we deploy to the server - Run React js client as static folder
   app.use( express.static( path.join( __dirname, '/client/build' ) ) )
   app.get( '*', ( req, res ) => res.sendFile( path.resolve( __dirname, 'client', 'build', 'index.html' ) ) )
 
