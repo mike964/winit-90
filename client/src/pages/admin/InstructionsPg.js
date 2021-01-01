@@ -50,41 +50,49 @@ const InstructionsPg = () => {
           <tr>
             <td>3</td>
             <td> Admin update match results of week </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> All predictions of match (vip + free) get updated automaticly as [correct / finished] </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> Admin click 'U Prds' of a match to update all prds of that match (calculate points)  </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> Admin click 'Up karname stats' of weekId to update points for karnames of that week </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> Admin add fake karnames to take first positions </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> Admin click 'up postions' to update karnames position </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> Admin click 'pay winners' to update top users balance </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
           <tr>
             <td>3</td>
             <td> Admin click 'update week.topUsers' in order to see winners in frontend table </td>
+            <td> route </td>
             <td> <Checkmark /> </td>
           </tr>
         </tbody>

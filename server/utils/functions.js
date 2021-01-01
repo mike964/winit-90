@@ -44,12 +44,9 @@ const filterObj = ( obj, ...allowedFields ) => {
 module.exports = filterObj
 
 
-exports.getPercentage = ( num, total ) => {
-
-  // for ex. if total 5 n num = 2 , result should be 40 percent 
-
-  return parseInt( ( 100 * num ) / total )
-}
+// for ex. if total 5 n num = 2 , result should be 40 percent 
+exports.getPercentage = ( num, total ) => parseInt( ( 100 * num ) / total )
+// export const getPercentage = ( num, total ) => parseInt( ( 100 * num ) / total )
 
 
 // Generate Top Users League IDE - // for ex A-22

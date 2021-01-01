@@ -26,7 +26,6 @@ const MatchPg = () => {
 
   const { filters } = useSelector( state => state )
   const { matches } = useSelector( state => state.match )
-
   const [ filteredMatches, setFilteredMatches ] = useState( [] )
   // const filteredMatches = ( matches ? filterMatches( matches, filters ) : [] )
 

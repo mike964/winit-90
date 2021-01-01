@@ -10,7 +10,7 @@ export const getWeekWinners = async ( weekNumb ) => {
 
 
   try {
-    const response = await axios.get( `/api/weeks / 2020 / ${ weekNumb }` )
+    const response = await axios.get( `/api/weeks/2020/${ weekNumb }` )
     // const response = await axios.get( ` / api / winners / 2020 - ${ weekNumb }` ) 
     console.log( response )
 

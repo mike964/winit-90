@@ -44,7 +44,7 @@ exports.getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
     if ( karname.name ) {
       _name = karname.name
     } else {
-      _name = karname.user.username
+      _name = karname.user.name
     }
 
     if ( karname.user ) {

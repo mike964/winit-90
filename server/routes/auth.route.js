@@ -97,6 +97,9 @@ router.get( "/", protect, ( req, res ) => {
   // *** In order to prevent returning user._id
   let user_ = { name, email, balance, image, ide }
 
+  if ( req.user.role === 'admin' )
+    user_.isAdmin = true
+
   res.status( 200 )
     .json( {
       success: true,   // moslm added this line

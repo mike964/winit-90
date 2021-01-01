@@ -12,6 +12,7 @@ import SpinrSuccsFail from '../../components-common/SpinrSuccsFail'
 import Tooltipp from '../../components-common/Tooltipp'
 import Checkmark from '../../components-common/Checkmark'
 import { updateWeekTopUsers } from '../../redux/actions/admin.actions'
+import { axos } from '../../utils'
 
 const KarnamesModal = ( { week, show, handleShow } ) => {
 
@@ -31,7 +32,7 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
     // {{URL}}/api/v1/karnames?week=5ef7b5667a1ede43c8bde471&sort=-points
 
     try {
-      const response = await axios.get( `/api/karnames ? week = ${ week._id } & sort=-points` )
+      const response = await axos.get( `/api/karnames?week=${ week._id }&sort=-points` )
       // console.log( response )
       setkarnames( response.data.data )
 

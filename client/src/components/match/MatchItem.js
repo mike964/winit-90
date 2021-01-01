@@ -52,8 +52,8 @@ const MatchItem = ( { match } ) => {
 
   // Check If user already made prediction for this match
   useEffect( () => {
-    if ( predictions && predictions.length ) {
-      let prd = predictions.find( prd => prd.match._id === match._id )
+    if ( predictions && predictions.length > 0 ) {
+      let prd = predictions.find( prd => prd.match && prd.match._id === match._id )
 
       if ( prd && prd._id.length > 20 ) { // means prd has mongodb _id
         setalreadyPredicted( true )
@@ -72,8 +72,6 @@ const MatchItem = ( { match } ) => {
           setclickedTeam( 'team2' )
           setwinnerName( team2.name )
         }
-      } else {   // RESET
-
       }
     } else {   // If no prds in redux store (when logout) :Reset
       setclickedTeam( '' )

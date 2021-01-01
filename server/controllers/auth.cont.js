@@ -37,7 +37,7 @@ const sendTokenResponse = ( user, statusCode, res ) => {
   let user_ = { name, email, balance, ide }
 
   if ( user.role === 'admin' )
-    user_.isAdmin === true
+    user_.isAdmin = true
 
   res
     .status( statusCode )  // statusCode: 200 

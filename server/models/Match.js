@@ -106,7 +106,7 @@ const MatchSchema = new Schema( {
     // 11 => means team 1 won with gd:3
     // 22 => means team 2 won gd: 2 
     // 15  => team 1 won with gd:5+
-    // 30 => draw 0-0 , 31 => draw at least 1-1
+    // 30 => draw 0-0 
     // 10,  20 => team 1 won in penlaties, team2 won in p
     type: String,
     default: null

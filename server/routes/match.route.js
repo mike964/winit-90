@@ -3,8 +3,7 @@ const express = require( 'express' )
 const { protect } = require( '../middleware/auth.mdlwr' )
 const {
   getMatches, createMatch, getMatch, deleteMatch, updateMatch,
-  updateMatchResult, markPredictions, updateTeamsLast5matches,
-  createMultipleMatches
+  updateMatchResult, markPredictions, createMultipleMatches
 } = require( '../controllers/match.cont' )
 const {
   setWeek, setTeams, setMatch, setLeague

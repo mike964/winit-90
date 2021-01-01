@@ -15,7 +15,7 @@ const PrdsModal = ( { match, show, handleShow, } ) => {
   const getPrdsOfMatch = async () => {
     // {{URL}}/api/v1/predictions?match=5f69d7219734703ed8e815a2 
 
-    const response = await axios.get( `/api/predictions ? match = ${ match._id }` )
+    const response = await axios.get( `/api/predictions?match=${ match._id }` )
 
     console.log( response )
 

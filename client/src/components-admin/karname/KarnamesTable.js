@@ -53,8 +53,8 @@ const KarnamesTable = ( { karnames } ) => {
               <div className="col left"> { karname.user.email } </div>
               <div className="col left">
                 { karname.fake
-                  ? <span className="x">{ karname.name } ( { karname.user.username })</span>
-                  : <span className="x"> { karname.user.username }</span> }
+                  ? <span className="x">{ karname.name }</span>
+                  : <span className="x"> { karname.user.name }</span> }
               </div>
               <div className="col-2"> ${ karname.user.balance } </div>
             </div> }

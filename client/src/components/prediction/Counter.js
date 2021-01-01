@@ -67,7 +67,7 @@ const Counter = ( {
       return ' - '
     } else if ( counterValue === 0 ) {
       return '0'
-    } else if ( counterValue === 5 ) {
+    } else if ( counterValue === 4 ) {
       return '4+'
     } else if ( counterValue === counterMax ) {
       return 'P'   // penalties

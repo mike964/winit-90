@@ -7,12 +7,14 @@ const crud = require( '../utils/crudHandler' )
 const { qrFunc } = require( '../utils/queryFunction' )
 const Prediction = require( '../models/Prediction' )
 const Viprediction = require( '../models/Viprediction' )
-const { getPercentage } = require( '../utils/functions' )
+// const { getPercentage } = require( '../utils/functions' )
 const Team = require( '../models/Team' )
-const { teams } = require( './teams_arr' )   // import teams array
+const { teams } = require( './teams_arr' );   // import teams array
 
 //==========================================================
-// exports.createMatch = crud.createOne( Match )
+// exports.createMatch = crud.createOne( Match ) 
+
+const getPercentage = ( num, total ) => parseInt( ( 100 * num ) / total )
 
 // create match by api-football id's 
 exports.createMatch = asyncHandler( async ( req, res, next ) => {
@@ -142,8 +144,8 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
 
   // 1.First pull out match result from req.body 
   // 2.Then Update match
-  // 3.Update Associated prediction
-  // 4.Update Associated vip prediction
+  // 3.Update associated prediction
+  // 4.Update associated vip prediction
 
   console.log( req.body )
 
@@ -178,7 +180,7 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
       team2: goals2
     },
     gd,   // goal difference
-    panalties: endedInPenalties,
+    panalties: endedInPenalties ? { team1: pen1, team2: pen2 } : false,
     score: resultString
   }
 
@@ -187,97 +189,59 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
     result
   }
 
-  // *** Identify Result Keys *** //  
-  //============================== 
-  if ( endedInPenalties ) {
 
-    // _match.result.gd = null   // NO NEED
-
-    if ( pen1 > pen2 ) {
-      _match.resultKey2 = '10'
-    } else {
-      _match.resultKey2 = '20'
-    }
-
-    result.goals.team1pen = pen1
-    result.goals.team2pen = pen2
-
-  } else {
-    // IF NOT ENDED IN PENALTIES
-    if ( goals1 > goals2 ) {
-      _match.resultKey = 1
-      _match.resultKey2 = `1${ gd }`
-
-    } else if ( goals2 > goals1 ) {
-      _match.resultKey = 2
-      _match.resultKey2 = `2${ gd }`
-
+  // *** Specify Result Keys  
+  //========================= 
+  const getResultKey = () => {
+    if ( goals1 > goals2 || pen1 > pen2 ) {
+      return 1
+    } else if ( goals2 > goals1 || pen2 > pen1 ) {
+      return 2
     } else if ( goals1 === goals2 ) {
-      _match.resultKey = 3
-      _match.resultKey2 = '30'
+      return 3
     }
   }
+
+  const getResultKey2 = () => {
+    if ( endedInPenalties ) {
+      // _match.result.gd = null   // NO NEED
+      if ( pen1 > pen2 ) {
+        return '10'
+      } else {
+        return '20'
+      }
+    } else {    // ** IF NOT ENDED IN PENALTIES
+      let gd_ = ( gd >= 4 ? 4 : gd )  // Exclude 4+ goal difference
+      if ( goals1 > goals2 ) {
+
+        return `1${ gd_ }`
+      } else if ( goals2 > goals1 ) {
+        return `2${ gd_ }`
+      } else if ( goals1 === goals2 ) {
+        return '30'
+      }
+    }
+  }
+
+
+  _match.resultKey = getResultKey()
+  _match.resultKey2 = getResultKey2()
 
   console.log( '---- match To be updated ----' )
   console.log( _match )
 
-  console.log( '---- updatedMatch ----' )
+
 
   let updatedMatch = await Match.findByIdAndUpdate( matchId, _match, { new: true, runValidators: true } )
-  console.log( updatedMatch )   // in 1st attempt it works but don't show result 
+  // console.log( '---- updatedMatch ----' )
+  // console.log( updatedMatch )   // in 1st attempt it works but don't show result 
 
   // In order to use populated team1 n team2  
   req.match = { team1, team2, ..._match }   // in order to use match in next mdlwrs  
 
-  // return  // In order to Stop
-
-  next()
-} )
-
-//========================================
-// ** Update Teams 'team.last5' Matches **
-//========================================
-exports.updateTeamsLast5matches = asyncHandler( async ( req, res, next ) => {
-  console.log( '------ updateTeamsLast5matches() ------'.yellow )
-  //   console.log( req.body ) 
-  console.log( req.match )
-
-  const { team1, team2, resultKey } = req.match
-
-  let team1_last5 = team1.last5
-  let team2_last5 = team2.last5
-
-  console.log( team1_last5 )
-  console.log( team2_last5 )
-
-  // The unshift() method adds new items to the beginning of an array 
-
-  if ( resultKey === 1 ) {
-    team1_last5.push( 'w' )
-    team2_last5.push( 'l' )
-
-  }
-  if ( resultKey === 2 ) {
-    team1_last5.push( 'l' )
-    team2_last5.push( 'w' )
-
-  }
-  if ( resultKey === 3 ) {
-    team1_last5.push( 'd' )
-    team2_last5.push( 'd' )
-  }
-
-  // Update Teams last 5 matches
-  // Use negative numbers to select from the end of an array
-  let response22 = await Team.findByIdAndUpdate( team1._id, { last5: team1_last5.slice( -5, 6 ) }, { new: true } )
-  let response23 = await Team.findByIdAndUpdate( team2._id, { last5: team2_last5.slice( -5, 6 ) }, { new: true } )
-  console.log( response22 )
-  console.log( response23 )
-
-
-  // return // In order to Stop
   next()
 
+  // return  // ** In order to Stop
 } )
 
 
@@ -315,7 +279,10 @@ exports.markPredictions = asyncHandler( async ( req, res, next ) => {
     { correct: true } )
 
   const response2 = await Prediction.updateMany(    // $ne means not equal to 
-    { match: matchId, answerKey: { $ne: match.resultKey } },
+    {
+      match: matchId,
+      answerKey: { $ne: match.resultKey }
+    },
     { correct: false, correctGD: false } )
 
   const response3 = await Prediction.updateMany(
@@ -361,7 +328,7 @@ exports.markPredictions = asyncHandler( async ( req, res, next ) => {
 // 2020-7-30
 // // Calculate points for weekly predictions of matchId
 exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => {
-  console.log( '--------calculatePointsForMatchPrds()-----------'.yellow )
+  console.log( '----- calculatePointsForMatchPrds() --------'.yellow )
   // console.log( req.params )
   const { matchId } = req.params
 
@@ -381,6 +348,8 @@ exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => 
   // Number of tatal predictinos for this match
   const nTotalPredictions = predictions.length
   const nCorrectPredictions = correctPredictinosArray.length
+
+  console.log( '- correctPredictinosArray: ' + correctPredictinosArray.length )
 
   // Percentage of Predictions with correct = true
   let correctPrdPercentage = getPercentage( nCorrectPredictions, nTotalPredictions )
