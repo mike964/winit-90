@@ -1,6 +1,6 @@
 const passport = require( "passport" )
 const GoogleStrategy = require( "passport-google-oauth20" )
-const User = require( '../server/models/User' )
+const User = require( '../models/User' )
 // const JwtStrategy = require( 'passport-jwt' ).Strategy, ExtractJwt = require( 'passport-jwt' ).ExtractJwt
 
 

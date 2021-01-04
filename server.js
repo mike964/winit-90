@@ -7,13 +7,13 @@ const cors = require( 'cors' )
 const fileupload = require( 'express-fileupload' )
 const cookieParser = require( 'cookie-parser' )
 const compression = require( 'compression' )
-const connectDB = require( './config/db' )
+const connectDB = require( './server/config/db' )
 const logger = require( './server/middleware/logger.mdlwr' )
 const errorHandler = require( './server/utils/errorHandler' )
 const stripe = require( 'stripe' )( 'sk_test_51HIswIHUvZEzaEJSZAoYSNE2wPa96IsgfQeQ9bk3n4t80IXFp7M5TgqczGu40mK1e2KyksktGtbFFQTtLyDYE1cV00UIO4qHfs' );
 const cookieSession = require( "cookie-session" )
 const passport = require( "passport" )
-require( "./config/passport-config" )   // *** REQUIRED! ***
+require( "./server/config/passport-config" )   // *** REQUIRED! ***
 
 //=====================================================================
 // connect mongodb
@@ -84,14 +84,14 @@ app.use( '/api', express.static( path.join( __dirname, 'server/public' ) ) )
 // http://localhost:3500/api/some-picture.jpg 
 
 
-if ( process.env.NODE_ENV === 'production' ) {
-  // *** When we deploy to the server - Run React js client as static folder
-  app.use( express.static( path.join( __dirname, '/client/build' ) ) )
-  app.get( '*', ( req, res ) => res.sendFile( path.resolve( __dirname, 'client', 'build', 'index.html' ) ) )
+// if ( process.env.NODE_ENV === 'production' ) {
+//   // *** When we deploy to the server - Run React js client as static folder
+//   app.use( express.static( path.join( __dirname, '/client/build' ) ) )
+//   app.get( '*', ( req, res ) => res.sendFile( path.resolve( __dirname, 'client', 'build', 'index.html' ) ) )
 
-} else {      //  if NODE_ENV == development
-  app.get( '/', ( req, res ) => res.send( "Hello from '/'" ) )
-}
+// } else {      //  if NODE_ENV == development
+//   app.get( '/', ( req, res ) => res.send( "Hello from '/'" ) )
+// }
 
 // Fetch PayPal Client ID (for frontend)
 // @Route    http://localhost:3500/api/config/paypal

@@ -80,7 +80,6 @@ const App = () => {
 
       {/* <div className="container"> */ }
 
-
       {/* <Sidebare /> */ }
 
       <Switch>

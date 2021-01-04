@@ -313,8 +313,6 @@ const MatchItem = ( { match } ) => {
         </div>
 
       </div>
-
-
     </div>
     }
   </>
