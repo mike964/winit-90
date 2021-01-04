@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux';
 import MatchItem from './MatchItem';
 
 
@@ -6,6 +7,8 @@ import MatchItem from './MatchItem';
 const MatchList = ( { matches, league } ) => {
 
   // const [ matches, st_matches ] = useState( matches ? matches : [] )
+
+  const { loading: matches_loading } = useSelector( state => state.match )
 
 
   // console.log( matches )
@@ -38,18 +41,17 @@ const MatchList = ( { matches, league } ) => {
   //=============================================================================
   return <div className="match-list">
 
-    {/* <div className="header-box">
-      <div className="header">
-        { matches && leagueTitle && <>
-          <Logo name={ league } size='30' /> { ' ' }
-          <span className="align-bottom">{ leagueTitle }</span>
-        </> }
-      </div>
-    </div> */}
-
     { matches && matches.map( ( mch ) =>
-      <MatchItem match={ mch } key={ mch._id } /> ) }
+      <MatchItem match={ mch } key={ mch._id } /> )
+    }
+
+    { !matches && !matches_loading && <div className="py-5 text-center bold">
+      <span className="bold">لا توجد مباریات لهذا الاسبوع</span>
+    </div> }
+
   </div>
+
+
 }
 
 export default MatchList

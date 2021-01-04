@@ -132,11 +132,12 @@ const Navbar = () => {
         </Link>
 
         {/* Will Be Added Very Soon  */ }
-        <Link to="/goldencontest"
+        { isAuthenticated && <Link to="/goldencontest"
           className={ ( navbar === 'goldencontest' ? 'navitem__selected' : 'navitem' ) }
           onClick={ () => setNavbar( 'goldencontest' ) }
         > <i className="fas fa-gem" /> <span> المسابقة الذهبیة </span>
-        </Link>
+        </Link> }
+
 
         <Link to="/matches"
           className={ ( navbar === 'matches' ? 'navitem__selected' : 'navitem' ) }

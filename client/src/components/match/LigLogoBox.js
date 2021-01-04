@@ -36,15 +36,15 @@ const LigLogoBox = ( {
   // http://localhost:5000/api/logos/_ligs/prlig.png
   //=============================================================
   return <div className={ classname } onClick={ handleClick }  >
+
     <Logo
       size={ size }
       src={ `/api/logos/_ligs/${ name }.png` }
     />
-
-    <br />
-    <span className="em-09 bold">
+    {/* { label && <div className="center">
       { label }
-    </span>
+    </div> } */}
+
   </div>
 }
 

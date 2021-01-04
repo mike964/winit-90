@@ -57,10 +57,8 @@ const MatchItemHeader = ( { match, matchFinished, matchStarted, vip } ) => {
   return <div className={ classname }>
     <div className="row">
       <div className="col pl-2">
-        <Logo
-          size='20'
-          src={ `/api/logos/_ligs/${ lig_.shortName }.png` }
-        /> { ' ' }
+        {/* <Logo size='20' src={ `/api/logos/_ligs/${ lig_.shortName }.png` } />   */ }
+        <img className='match-item-header-img' src={ `/api/logos/_ligs/${ lig_.shortName }.png` } alt="" />
         <span className="align-middle">{ lig_.name }</span>
       </div>
 

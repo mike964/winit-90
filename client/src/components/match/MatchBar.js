@@ -38,14 +38,20 @@ const MatchBar = ( { matchesCount } ) => {
 
   ////////////////////////////////////////////////////////////////////////////////////
   // =================================================================================
-  return <>
+  return <div className="match-bar">
 
-    <div className="row py-3 mb-2 em-11 white">
-      <div className="col-3 center">
+
+    <div className="row row-1 py-2 py-sm-3 mb-2 white">
+
+      <div className="col-6 col-sm-3 center">
+        <RefreshBtn onclick={ handleRefreshBtn } />
+      </div>
+
+      <div className="col-6 col-sm-4 center">
         مجموع المباریات : { matchesCount }
       </div>
 
-      <div className="col text-center">
+      <div className="col col-sm-5 text-center">
         <Switch
           //label='Hide finished matches'
           label='اخفي المباریات المنتهیة'
@@ -56,30 +62,22 @@ const MatchBar = ( { matchesCount } ) => {
         />
       </div>
 
-      <div className="col-3 center">
-        <RefreshBtn onclick={ handleRefreshBtn } />
-      </div>
     </div>
 
 
-    <div className="text-center mb-2">
-      <div className="match-bar w-300px m-auto">
-        <div className={ selectedWeek === 'nextWeek' ? "item__selected" : "item" }
-          onClick={ () => handleWeekSelect( 'nextWeek' ) }
-        > الاسبوع القادم </div>
-        <div className={ selectedWeek === 'thisWeek' ? "item__selected" : "item" }
-          onClick={ () => handleWeekSelect( 'thisWeek' ) }
-        > هذا الاسبوع </div>
-      </div>
+    <div className="week-selectorr text-center mb-2">
+      <div className={ selectedWeek === 'nextWeek' ? "item__selected" : "item" }
+        onClick={ () => handleWeekSelect( 'nextWeek' ) }
+      > الاسبوع القادم </div>
+      <div className={ selectedWeek === 'thisWeek' ? "item__selected" : "item" }
+        onClick={ () => handleWeekSelect( 'thisWeek' ) }
+      > هذا الاسبوع </div>
     </div>
 
-
-    <div className=" text-center mb-2">
-      <LigSelector />
-    </div>
+    <LigSelector />
 
     <div className="mb-3"></div>
-  </>
+  </div>
 }
 
 export default MatchBar

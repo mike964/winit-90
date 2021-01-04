@@ -12,8 +12,14 @@ body {
   color: #f8f9fa ; 
 }
 
+@media only screen and (max-width: 500px) { 
+ /* body {
+    font-size: .8rem;
+  } */
+}
+
 .app {
-  min-width: 400px;
+  min-width: 340px;
 }
 
 .page {
@@ -21,20 +27,10 @@ body {
   background-size: auto; 
     background-repeat: repeat;
   min-height: 900px; 
+  background-color: #00000050;
 }
 
-.app-box {
-  margin: auto;
-  /* margin-top: 50px; */  
-  background-color: #00000050;
-  color: white;
-  /* background-color: white;   */ 
-  /* border: solid 1px ; */
-  /* border-radius: 10px;  */
-  max-width: 1000px; 
-  min-width: 500px;
-  min-height: 600px; 
-}
+ 
 .winners-list {
   display: inline-block; 
   /* background-color: #fffdea;  */
@@ -116,7 +112,7 @@ background: linear-gradient(270deg,#ff2882,#963cff 45%);
 .match-item {  
   /* min-width: 460px; */
   /* width: 100%; */
-  max-width: 600px;
+  max-width: 620px;
   /* margin-bottom: 10px !important; */
   margin : 0 auto  10px;
   background-color: #ffffff; 
@@ -153,6 +149,10 @@ padding: 4px;
 overflow: hidden;
 width: 100%; 
 }  
+.match-item-header-img{ 
+  max-width: 20px;
+  margin: 0 5px;
+  }
 
 .team-name {
   /* font-size: 1.1em; */
@@ -165,24 +165,26 @@ width: 100%;
 }
 
 
-
-.match-bar {
+/* Week Selector inside MatchBar */
+.week-selectorr {
   /* Use !important in order to prevent overtake by othe css */ 
   color: black;  
   display: flex; 
+  max-width: 400px;
+  margin: auto;
   border-radius: 5px;
   overflow: hidden;
   padding: 2px; 
   background-color: #d2ffd9;
   /* background-color: #d6ecff; */
 } 
-.match-bar > .item { 
+.week-selectorr > .item { 
   color: #78bb82; 
   padding: 5px;
   width: 50%;
   text-align: center;
 }
-.match-bar > .item__selected { 
+.week-selectorr > .item__selected { 
   padding: 5px;
   width: 50%;
   text-align: center;
@@ -193,7 +195,7 @@ width: 100%;
   font-weight: 500;  
   border-radius: 4px;
 }
-.match-bar>.item:hover{  
+.week-selectorr>.item:hover{  
   /* background-color: #4dff67; */
   color: #0eb126;   
   font-weight: 500;  

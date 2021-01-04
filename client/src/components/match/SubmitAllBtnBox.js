@@ -48,31 +48,27 @@ const SubmitAllBtnBox = () => {
   //================================================================================================
   //================================================================================================
   return <div className='submit-all-btn-box'>
-    <div dir="rtl" className="row submit-error-box justify-content-around pb-1">
+    <div dir="rtl" className="row submit-error-box pb-1">
 
       <div className="col-auto p-1 mr-2">
         { error
           ? <span className="bg-white red bold p-1 curved-4">
             <i className="fas fa-exclamation-triangle" /> { ' ' } { error.msg }
           </span>
-          : <span className="white em-09"> اضغط علی الزر الاسفل الآن <i className="fas fa-hand-point-down" /></span> }
+          : <span className="white"> اضغط علی الزر الاسفل الآن <i className="fas fa-hand-point-down" /></span> }
       </div>
 
-      <div className="col text-center">
-        {/* { error && error.type === 'noAuth' &&
-          <div className="signup-now-btn bold">
-            <i className="fas fa-hand-point-left"></i> { ' ' }
-            <span className='em-12' onClick={ handleSignupNowClick }>سجل الآن</span>
-          </div> } */}
 
-        { error && error.type === 'noBalance' &&
-          <span className="em-12 bold gold clickable ulineonhover"
-            onClick={ handleChargeBalaceClick }>
-            <i className="fas fa-hand-point-left"></i> { ' ' }اشحن رصیدک
-          </span> }
-      </div>
 
-      <div className="col text-l bold pl-3 pt-1">
+      { error && error.type === 'noBalance' && <div className="col-auto px-1 text-center">
+        <span className="bold gold clickable ulineonhover"
+          onClick={ handleChargeBalaceClick }>
+          <i className="fas fa-hand-point-left"></i> { ' ' }اشحن رصیدک
+          </span>
+      </div> }
+
+
+      <div className="col text-l pl-2 pt-1">
         مجموع توقعاتک : { predictions && predictions.length }
       </div>
 

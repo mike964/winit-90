@@ -81,7 +81,7 @@ const App = () => {
       {/* <div className="container"> */ }
 
 
-      <Sidebare />
+      {/* <Sidebare /> */ }
 
       <Switch>
         <Route exact path="/" component={ HomePg } />

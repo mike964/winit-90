@@ -18,9 +18,9 @@ const Logo = ( {
 
   const logoStyle = {
 
-    height: ( size ? `${ size }px` : '35px' ),
-    // width: `${ size } px`,
-    width: 'auto',
+    // height: ( size ? `${ size }px` : '35px' ),
+    width: `${ size } px`,
+    // width: 'auto',
     // borderRadius: '50%',
     borderRadius: ( rounded ? '50%' : '' ),
     backgroundColor: ( bg ? bg : '' )

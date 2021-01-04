@@ -1,0 +1,66 @@
+.team_name_2 {
+  /* font-size: 0.8rem; */
+}
+
+/* XS */
+@media only screen and (max-width: 476px) {
+  .container {
+    padding: 0 10px !important;
+  }
+  .team_name_md {
+    display: none;
+  }
+  .team_name_xs {
+    display: block;
+    font-size: .7rem;
+  }  
+    .match-item {
+    font-size: .8rem;
+  }  
+  .lig-logo-box {  
+     font-size: .7rem;  
+     padding : 4px 0;
+    }
+    .logo-box > img {
+      max-width: 40px!important;  
+      max-height: 40px!important;    
+    } 
+    .match-bar > .row-1 {
+      font-size: .8rem;
+    }
+    .submit-all-btn-box  {
+      font-size: .8rem;
+    }
+}
+
+/* SM */
+@media only screen and (min-width: 476px) and (max-width: 767.98px) {
+  .team_name_md {
+    display: block;
+    /* font-size: 0.8rem; */
+  }
+  .team_name_xs {
+    display: none;
+  } 
+  .match-item {
+    font-size: .8rem;
+  }  
+  .lig-logo-box {   
+    font-size: .8rem; 
+  }
+  .match-bar >  .row-1 {
+    font-size: .8rem;
+  }
+}
+
+/* MD */
+@media (min-width: 768px)  {
+  .team_name_md {
+    display: block;
+  }
+  .team_name_xs {
+    display: none;
+  } 
+  .lig-logo-box {   font-size: .9rem; }
+}
+

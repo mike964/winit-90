@@ -111,11 +111,11 @@ export const getViPredictinTxt = ( gd, winner, p ) => {
 
 // Get What to display for vip predictin item in Arabic
 //========================================================
-export const getPredictionTxt = ( gd, _winner ) => {
+export const getPredictionTxt = ( gd, winner ) => {
   // take in goal difference , winner name , penalty
   // gd = 6 means penalties
 
-  let winner = _winner.slice( 0, 10 )
+  // let winner = _winner.slice( 0, 10 )
 
   gd = parseInt( gd )
 

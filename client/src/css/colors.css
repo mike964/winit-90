@@ -243,7 +243,19 @@
   background-color: #000000!important;
 }
 .bg-shadow {
-  background-color: #0000009d!important;
+  background-color: #00000090!important;
+}
+.bg-shadow-8 {
+  background-color: #00000080!important;
+}
+.bg-shadow-7 {
+  background-color: #00000070!important;
+}
+.bg-shadow-6 {
+  background-color: #00000060!important;
+}
+.bg-shadow-5 {
+  background-color: #00000050!important;
 }
 
 .bg-blueviolet {

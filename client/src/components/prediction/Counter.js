@@ -34,8 +34,8 @@ const Counter = ( {
 
   // Random Number
   const randomNumberr = () => {
-    const odds = [ 0, 1, 2, 0, 1, 2, 3, 4 ]
-    const randomNumber = Math.floor( Math.random() * 8 )
+    const odds = [ 0, 1, 2, 3, 4 ]
+    const randomNumber = Math.floor( Math.random() * 5 )
     // setState(randomNumber)
     // onclick( randomNumber )
     setState( odds[ randomNumber ] )

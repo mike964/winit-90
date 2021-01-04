@@ -60,20 +60,15 @@ const LogoBox = ( {
 
 
   //=============================================================
-  return <div className="text-center inline-block">
-    <div className={ classname } onClick={ handleClick }  >
-      { logoSrc && <Logo
-        //name={ _name ? _name : team.shortName }
-        //country={ team ? team.country : '' }
-        //team={ team }
-        //lig={ lig ? lig : false }
-        size={ size }
-        src={ logoSrc }
-      /> }
-    </div>
-    {/* <br /> */ }
-    {/* <span >{ label ? label : team.fullName }</span> */ }
-
+  return <div className={ classname } onClick={ handleClick }  >
+    { logoSrc && <Logo
+      //name={ _name ? _name : team.shortName }
+      //country={ team ? team.country : '' }
+      //team={ team }
+      //lig={ lig ? lig : false }
+      size={ size }
+      src={ logoSrc }
+    /> }
   </div>
 }
 

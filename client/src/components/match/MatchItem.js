@@ -35,6 +35,8 @@ const MatchItem = ( { match } ) => {
   const [ hidden, sethidden ] = useState( false )   // If true => hide this match Item 
   const [ showSpiner, setShowSpiner ] = useState( true )   // If true => hide this match Item 
 
+  const getShortName = ( x ) => x.slice( 0, 10 )
+
 
   useEffect( () => {
     const matchTimeUnix = parseInt( moment( date ).format( 'X' ) )
@@ -225,7 +227,7 @@ const MatchItem = ( { match } ) => {
          <LastFive last5matches={ team1.last5 } />  
         </div> */}
 
-        <div className="col-auto px-3 pt-2 text-center">
+        <div className="col-2 pt-2 center" >
           <LogoBox
             team={ team1 ? team1 : team_home }
             size={ 50 }
@@ -234,11 +236,17 @@ const MatchItem = ( { match } ) => {
             //clicked={ true }   // for test
             clicked={ clickedTeam === 'team1' ? true : false }
           />
+          {/* DIV below will apper when page XS */ }
+          <div className="team_name_xs py-1">
+            <span onClick={ () => handleTeamLogoClick( 'team1' ) } >
+              { ( team1.name ).slice( 0, 10 ) }
+            </span>
+          </div>
         </div>
 
         {/* ** Middle Colmn ** */ }
 
-        <div className="col p-1 text-center" >
+        <div className="col pt-1 center" >
 
           { showSpiner ? <Spinr />
             : <>
@@ -249,42 +257,45 @@ const MatchItem = ( { match } ) => {
               </div> }
 
               { !matchStarted && !alreadyPredicted &&
-                <div className="row center p-2 blue" dir="rtl">
-                  <div className="col-auto px-1">
+                <div className="p-2 blue" dir="rtl">
+                  <span className="fr">
                     { answerKey
                       ? <i className="far fa-times-circle red clickable ml-2" onClick={ () => handleBtnX() } />
                       : <i className="far fa-hand-point-left clickable ml-2" onClick={ () => handleBtnX() } /> }
                     <span className="bold">توقعک :</span>
-                  </div>
-                  <div className="col"> { getPredictionTxt( goalDiff, winnerName ) }</div>
+                  </span>
+                  <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
                 </div> }
 
-              { ( !alreadyPredicted && !matchStarted ) && <div className="row">
-                <div className="col pt-1">
-                  <span className="team-name"
-                    onClick={ () => handleTeamLogoClick( 'team1' ) }
-                  > { team1.name }</span>
+              { !alreadyPredicted && !matchStarted && <>
+                <div className="row">
+                  <div className="col pt-1 team_name_md">
+                    <span onClick={ () => handleTeamLogoClick( 'team1' ) }
+                    > { team1.name }</span>
+                  </div>
+                  <div className="col">
+                    {/* GD Counter + Dice Btn */ }
+                    <Counter
+                      value={ goalDiff }
+                      onclick={ handleGDcounter }
+                      disabledd={ alreadyPredicted }
+                      penalties={ penalties }
+                    />
+                  </div>
+                  <div className="col pt-1 team_name_md">
+                    <span onClick={ () => handleTeamLogoClick( 'team2' ) }
+                    > { team2.name }</span>
+                  </div>
+
                 </div>
-                <div className="col center">
-                  {/* GD Counter + Dice Btn */ }
-                  <Counter
-                    value={ goalDiff }
-                    onclick={ handleGDcounter }
-                    disabledd={ alreadyPredicted }
-                    penalties={ penalties }
-                  />
-                </div>
-                <div className="col pt-1">
-                  <span className="team-name" onClick={ () => handleTeamLogoClick( 'team2' ) }
-                  >{ team2.name }</span>
-                </div>
-              </div> }
+              </> }
             </> }
+
 
 
         </div>
 
-        <div className="col-auto px-3 pt-2 text-center" >
+        <div className="col-2 pt-2 center" >
           <LogoBox
             team={ team2 ? team2 : team_away }
             size='50'
@@ -293,9 +304,17 @@ const MatchItem = ( { match } ) => {
             //clicked={ true }   // for test
             clicked={ clickedTeam === 'team2' ? true : false }
           />
+          {/* DIV below will apper when page XS */ }
+          <div className="team_name_xs py-1">
+            <span onClick={ () => handleTeamLogoClick( 'team2' ) } >
+              { ( team2.name ).slice( 0, 10 ) }
+            </span>
+          </div>
         </div>
 
       </div>
+
+
     </div>
     }
   </>

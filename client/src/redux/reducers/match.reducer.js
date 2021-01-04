@@ -12,7 +12,7 @@
 
 export const matchReducer = ( state = {
   // Initial State
-  loading: false,   // For User
+  loading: true,   // For User
   matches: [],      // Both for User & Admin
   currentMatch: null,   // For Admin when Editing
 }, action ) => {
@@ -27,7 +27,8 @@ export const matchReducer = ( state = {
     case 'SET_MATCHES':   // Set Matches for User
       return {
         ...state,
-        matches: action.payload
+        matches: action.payload,
+        loading: false
       }
     case 'SET_CURRENT_MATCH':
       return {
@@ -51,18 +52,6 @@ export const matchReducer = ( state = {
       return {
         ...state,
         matches: state.matches.filter( mch => mch._id !== action.payload )
-      }
-    case 'DELETE_TODO':
-      return {
-        ...state,
-        todos: state.todos.filter( ( todo ) => todo._id !== action.payload )
-      }
-    case 'COMPLETE_':
-      return {
-        ...state,
-        todos: state.todos.map( ( todo ) =>
-          todo._id === action.payload ?
-            { ...todo, complete: !todo.complete } : todo )
       }
     default:
       return state

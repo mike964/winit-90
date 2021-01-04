@@ -57,25 +57,23 @@ const MatchesPg = () => {
   }, [ matchesLoading ] )
   //===================================================================================
   //===================================================================================
-  return <div className="page matches-pg">
+  return <div className="page">
+    <div className="container bg-shadow-6">
 
-    <div className="app-box m-auto">
       <MatchBar matchesCount={ selectedWeek === 'thisWeek' ? thisWeekMatches.length : nextWeekMatches.length } />
-
 
       { showSpinner ? <div className="text-center p-5">
         <Spinner animation="border" variant="warning" />
       </div>
-        : <div className='container'>
-          <MatchList matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches } league='' />
+        : <>
+          <MatchList matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches } />
 
           {/* Submit All Predictions Btn */ }
           <div className="center">
             <SubmitAllBtnBox />
           </div>
-        </div>
+        </>
       }
-
     </div>
   </div>
 
