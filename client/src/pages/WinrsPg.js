@@ -11,9 +11,11 @@ const WinrsPg = () => {
   // const winnersLoading = useSelector( state => state.wnr.loading )
   // const { selectedWeek } = useSelector( state => state.wnr )
 
-  const getWinersOfWeekId = () => {
-    const response = await axios.get( `/api/weeks/2020/${ weekNumb }` )
+  const getWinersOfWeekId = async () => {
+    // const response = await axios.get( `/api/weeks/2020/${ weekNumb }` )
   }
+
+  const winners = []
 
   // console.log( winners )
   // const [ visibleWinners, setvisibleWinners ] = useState( '' )  // array
