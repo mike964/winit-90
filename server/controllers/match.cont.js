@@ -8,8 +8,8 @@ const { qrFunc } = require( '../utils/queryFunction' )
 const Prediction = require( '../models/Prediction' )
 const Viprediction = require( '../models/Viprediction' )
 // const { getPercentage } = require( '../utils/functions' )
-const Team = require( '../models/Team' )
-const { teams } = require( './teams_arr' );   // import teams array
+const Team = require( '../models/Team' );
+const { teams } = require( '../utils/api-football' );
 
 //==========================================================
 // exports.createMatch = crud.createOne( Match ) 
@@ -180,7 +180,7 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
       team2: goals2
     },
     gd,   // goal difference
-    panalties: endedInPenalties ? { team1: pen1, team2: pen2 } : false,
+    penlty: endedInPenalties ? { team1: pen1, team2: pen2 } : false,
     score: resultString
   }
 
@@ -478,6 +478,7 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
     let week_year = moment.utc( fixture.timestamp * 1000 ).endOf( "week" ).format( "YYYY" )
 
     newItem = {
+      id_: fixture.id,
       date: fixture.date,
       timestamp: fixture.timestamp,
       week: {
@@ -531,7 +532,7 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
     nResults: fixtures_stg_1.length,
     docsInserted: ( docs.length > 0 ? docs.length : 'none' ),
     // response,
-    // fixtures_stg_1,
+    fixtures_stg_1,
     fixtures_stg_2,
     fixtures_stg_3,
     // docs: docs.length

@@ -71,7 +71,6 @@ body {
   margin: auto;
 } 
 
-
 .match-list {
 /* background-color: #7715d394; */
 /* border-radius: 9px; */
@@ -82,6 +81,7 @@ margin: auto;
   /* min-width: 400px ;   */
   /* width: 100%; */
   /* max-width: 600px; */
+  /* height: ; */
 } 
 .match-list > .header-box >.header {  
   /* background-color:#5c0099;   */

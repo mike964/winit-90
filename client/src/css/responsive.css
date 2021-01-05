@@ -31,6 +31,9 @@
     .submit-all-btn-box  {
       font-size: .8rem;
     }
+    .match-item-vip {
+      font-size: .8rem;
+    }  
 }
 
 /* SM */
@@ -51,6 +54,9 @@
   .match-bar >  .row-1 {
     font-size: .8rem;
   }
+  .match-item-vip {
+    font-size: .9rem;
+  }  
 }
 
 /* MD */

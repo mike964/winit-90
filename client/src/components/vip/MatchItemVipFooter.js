@@ -82,13 +82,9 @@ const MatchItemVipFooter = ( { match, answerKey, clickedTeam, odds } ) => {
   }
   //======================================================================================================
   //======================================================================================================
-  return <div className="row bg-555 ">
-    <div className="col-4 text-r p-1">
-      {/* <button className={ submitBtnClass } onClick={ handleSubmit }  >
-        { showSpinner ?
-          <Spinner as="span" animation="border" size="sm" variant="warning" />
-          : <span className="bold">{ submitBtnLabel }</span> }
-      </button> */}
+  return <div className="row bg-555">
+    {/* SM & Bigger Screen Submit Btn */ }
+    <div className="col-4 d-none d-sm-block p-1 center">
       <SubmitBtn
         label="تسجیل التوقع"
         onclick={ handleSubmit }
@@ -140,6 +136,18 @@ const MatchItemVipFooter = ( { match, answerKey, clickedTeam, odds } ) => {
           <span className="white">{ error.msg }</span>
         </div>
       </div> }
+
+    {/* XS Submit Btn */ }
+    <div className="col-12 d-sm-none p-1 center">
+      <SubmitBtn
+        label="تسجیل التوقع"
+        onclick={ handleSubmit }
+        setError={ setError }
+        vip
+        stake={ stake }
+      />
+    </div>
+
   </div>
 }
 

@@ -49,10 +49,10 @@ const MatchItemVip = ( { match } ) => {
           setPossWinning( prd.possibleWinning )
 
           if ( prd.answerKey === 1 ) {
-            setwinnerName( team1.fullName )
+            setwinnerName( team1.name )
           }
           if ( prd.answerKey === 2 ) {
-            setwinnerName( team2.fullName )
+            setwinnerName( team2.name )
           }
 
 
@@ -91,13 +91,13 @@ const MatchItemVip = ( { match } ) => {
         // setClickedTeam( 'team1' )
         setAnswerKey( 1 )
         //setwinnerId( team1._id )
-        setwinnerName( team1.fullName )
+        setwinnerName( team1.name )
       }
       if ( x === 'team2' ) {
         // setClickedTeam( 'team2' )
         setAnswerKey( 2 )
         //setwinnerId( team2._id )
-        setwinnerName( team2.fullName )
+        setwinnerName( team2.name )
       }
       if ( x === 'draw' ) {
         // setClickedTeam( '' )
@@ -116,8 +116,7 @@ const MatchItemVip = ( { match } ) => {
     setShowFooter( false )
   }
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////////////// 
+  //========================================================================================
   return <>
     { match && <div className="match-item-vip">
 
@@ -129,89 +128,113 @@ const MatchItemVip = ( { match } ) => {
         vip={ true }
       />
 
-      {/* BODY */ }
-      <div className="body"  >
 
-        {/* TEAM LOGOS ROW */ }
-        <div className="row p-1">
+      {/* TEAM LOGOS ROW */ }
+      <div className="row p-1 center">
 
-          <div className="col-auto p-3" onClick={ () => handleOptionSelect( 'team1' ) } >
-            <Logo name={ team1.shortName } country={ team1.country } size='60' />
-          </div>
-
-          <div className="col 6 text-center">
-            { showSpinner ?
-              <div className="py-4">
-                <SpinnersBox />
-              </div>
-              : <>
-                <div className="bg-white green text-r w-300px px-2 py-1 mx-auto my-2 curved-6" dir="rtl">
-                  { answerKey && !alreadyPredicted &&
-                    <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } /> }
-                  { ' ' }
-                  <i className="far fa-hand-point-left mx-2" />
-                  <span> توقعک :  </span>
-                  <span>{ answerKey === 3 ? 'تعادل' : ( answerKey ? `فوز ${ winnerName }` : '-' ) }</span>
-                </div>
-
-                <div className="row">
-                  { showOptionBtns ? <>
-                    <div className="col p-1">
-                      <div className={ answerKey === 1 ? "option__selected" : "option" }
-                        onClick={ () => handleOptionSelect( 'team1' ) } >
-                        <span className="teamname mr-2"> { team1.fullName }</span>{ ' ' }
-                        <span className="gold">{ odds.team1 }</span>
-                      </div>
-                    </div>
-
-                    <div className="col p-1" >
-                      <div className={ answerKey === 3 ? "option__selected" : "option" }
-                        onClick={ () => handleOptionSelect( 'draw' ) }>
-                        <span className="teamname mr-2">{ 'X' }</span>{ ' ' }
-                        <span className="gold">{ odds.draw }</span>
-                      </div>
-                    </div>
-
-                    <div className="col p-1">
-                      <div className={ answerKey === 2 ? "option__selected" : "option" }
-                        onClick={ () => handleOptionSelect( 'team2' ) } >
-                        <span className="teamname mr-2"> { team2.fullName }</span>{ ' ' }
-                        <span className="gold">{ odds.team2 }</span>
-                      </div>
-                    </div>
-                  </>
-                    : <>
-                      { alreadyPredicted && <div className="mx-auto my-1 py-1 c-eee curved">
-                        <div className="ib px-5">
-                          <span className="c-444"> الربح المتوقع: </span>
-                          <span className="gold"> ${ possWinning } </span>
-                        </div>
-                      </div> }
-                    </> }
-                </div>
-              </> }
-          </div>
-
-          <div className="col-auto p-3" onClick={ () => handleOptionSelect( 'team2' ) }>
-            <Logo name={ team2.shortName } country={ team2.country } size='60' />
-          </div>
-
+        <div className="d-none d-md-block col-2 p-2" onClick={ () => handleOptionSelect( 'team1' ) } >
+          {/* MD LOGO */ }
+          <Logo
+            src={ `/api/logos/${ team1.country }/${ team1.shortName }.png` }
+            className='vip-team-logo'
+          />
         </div>
 
 
 
-        {/* FOOOTER - SUBMIT ROW */ }
-        { showFooter && !alreadyPredicted &&
-          <MatchItemVipFooter
-            match={ match }
-            answerKey={ answerKey }
-            odds={ odds }
-          /> }
+        <div className="col text-center">
+          { showSpinner ?
+            <div className="py-4">
+              <SpinnersBox />
+            </div>
+            : <>
+              <div className="row center">
+                <div className="col-2 col-sm-3 p-2 p-sm-3 d-md-none">
+                  {/* <span>sm</span> */ }
+                  <Logo
+                    src={ `/api/logos/${ team1.country }/${ team1.shortName }.png` }
+                    className='vip-team-logo'
+                  />
+                </div>
+
+                <div className="col pt-3 pt-sm-4 py-md-2 "  >
+                  <div className="p-1 bg-white green text-r mx-auto my-auto curved-6" dir="rtl" style={ { maxWidth: '300px' } }>
+                    { answerKey && !alreadyPredicted &&
+                      <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } /> }
+                    { ' ' }
+                    <i className="far fa-hand-point-left mx-1" />
+                    <span> توقعک :  </span>
+                    <span>{ answerKey === 3 ? 'تعادل' : ( answerKey ? `فوز ${ winnerName }` : '-' ) }</span>
+                  </div>
+                </div>
+
+                <div className="col-2 col-sm-3 p-2 p-sm-3 d-md-none">
+                  {/* <span>smm</span> */ }
+                  <Logo
+                    src={ `/api/logos/${ team2.country }/${ team2.shortName }.png` }
+                    className='vip-team-logo'
+                  />
+                </div>
+              </div>
 
 
+              <div className="row center">
+                { showOptionBtns ? <>
+                  <div className="col p-1">
+                    <div className={ answerKey === 1 ? "option__selected" : "option" }
+                      onClick={ () => handleOptionSelect( 'team1' ) } >
+                      <span className="teamname mr-2"> { team1.name }</span>{ ' ' }
+                      <span className="gold">{ odds.team1 }</span>
+                    </div>
+                  </div>
+
+                  <div className="col p-1" >
+                    <div className={ answerKey === 3 ? "option__selected" : "option" }
+                      onClick={ () => handleOptionSelect( 'draw' ) }>
+                      <span className="teamname mr-2">{ 'X' }</span>{ ' ' }
+                      <span className="gold">{ odds.draw }</span>
+                    </div>
+                  </div>
+
+                  <div className="col p-1">
+                    <div className={ answerKey === 2 ? "option__selected" : "option" }
+                      onClick={ () => handleOptionSelect( 'team2' ) } >
+                      <span className="teamname mr-2"> { team2.name }</span>{ ' ' }
+                      <span className="gold">{ odds.team2 }</span>
+                    </div>
+                  </div>
+                </>
+                  : <>
+                    { alreadyPredicted && <div className="mx-auto my-1 py-1 c-eee curved">
+                      <div className="ib px-5">
+                        <span className="c-444"> الربح المتوقع: </span>
+                        <span className="gold"> ${ possWinning } </span>
+                      </div>
+                    </div> }
+                  </> }
+              </div>
+            </> }
+        </div>
+
+        <div className="col-2 pt-2 d-none d-md-block" onClick={ () => handleOptionSelect( 'team2' ) }>
+          {/* MD TEAM LOGO */ }
+          <Logo
+            src={ `/api/logos/${ team2.country }/${ team2.shortName }.png` }
+            className='vip-team-logo'
+          />
+        </div>
 
       </div>
 
+
+
+      {/* FOOOTER - SUBMIT ROW */ }
+      { showFooter && !alreadyPredicted &&
+        <MatchItemVipFooter
+          match={ match }
+          answerKey={ answerKey }
+          odds={ odds }
+        /> }
     </div> }
   </>
 }

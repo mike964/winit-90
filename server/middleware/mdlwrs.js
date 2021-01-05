@@ -13,8 +13,9 @@ const { updateUserBalance } = require( '../controllers/user.cont' )
 // ================================================================================================
 
 //// *** Match Middlewares *** ///
+/////////////////////////////////
 
-// Set Teams & Set week for match
+// Set Teams & League for match
 exports.setTeams = asyncHandler( async ( req, res, next ) => {
   // Convert teams from shortNames to their _id's
   // find teams for match by shortName and replace by _id
@@ -26,14 +27,14 @@ exports.setTeams = asyncHandler( async ( req, res, next ) => {
 
   team11 = await Team.find( { shortName: team1 } )
   team22 = await Team.find( { shortName: team2 } )
-  leaguee = await League.find( { shortName: league } )
+  leaguee = await League.find( { shortName: league } ) // @Fix Neded here
 
   // console.log( team11 )
   // console.log( team11[ 0 ]._id )   // 5eeb67aca91acb1a0c29d094
 
   req.body.team1 = team11[ 0 ]._id
   req.body.team2 = team22[ 0 ]._id
-  req.body.league = leaguee[ 0 ]._id
+  req.body.league = leaguee[ 0 ]
 
   next()
 

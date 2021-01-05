@@ -6,7 +6,10 @@ const Schema = mongoose.Schema
 // Create Match
 const MatchSchema = new Schema( {
   id_: {  // fixture api id
-    type: Number
+    type: Number,
+    unique: true,
+    default: null
+    // required: [ true, 'Match must have api id_' ],
   },
   team1: {
     type: mongoose.Schema.ObjectId,
@@ -158,11 +161,14 @@ MatchSchema.post( /^find/, function ( docs, next ) {
 } )
 
 MatchSchema.pre( 'save', function ( next ) {
+  // const randomId = Math.floor( Math.random() * 10000 ) + 1000
   // console.log( '--- Match.pre( save ) ---' )
   // console.log( req.body )  // No accessible here
-  // this.year = moment( this.date ).format( 'YYYY' )
-  // this.title = `${ this.team1 } x ${ this.team2 }`
-  // console.log( this )   / { ... Match }  
+  // this.year = moment( this.date ).format( 'YYYY' ) 
+  this.timestamp = moment( this.date ).format( 'X' )
+  this.id_ = `${ this.timestamp }-${ this.team1 }-${ this.team2 }`
+  console.log( this )   // { ... Match }  
+
   next()
 } )
 
@@ -196,7 +202,9 @@ MatchSchema.post( 'findOneAndUpdate', function ( docs, next ) {
 
 
 // Prevent duplicate matches; Each team can play one match at time
-MatchSchema.index( { timestamp: 1, team1: 1 }, { unique: true } )
+// id_ is api-football fixture.id
+// MatchSchema.index( { timestamp: 1, id_: 1 }, { unique: true } )
+// Line above make issues
 
 const Match = mongoose.model( 'Match', MatchSchema )
 module.exports = Match

@@ -18,7 +18,11 @@ import {
 
 //================================================================================
 const MatchItem = ( { match } ) => {
-  const { team1, team2, team_home, team_away, league, note, date, finished, penalties } = match
+  const { league, note, date, finished, penalties } = match
+
+  const team1 = match.team1.name === 'null' ? match.team_home : match.team1
+  const team2 = match.team2.name === 'null' ? match.team_away : match.team2
+
   const { predictions } = useSelector( state => state.prd )
   const { selectedLig, selectedWeek, hideFinished } = useSelector( state => state.global )
   const { thisWeek, nextWeek } = useSelector( state => state.week )
@@ -229,7 +233,7 @@ const MatchItem = ( { match } ) => {
 
         <div className="col-2 pt-2 center" >
           <LogoBox
-            team={ team1 ? team1 : team_home }
+            team={ team1 }
             size={ 50 }
             onclick={ () => handleTeamLogoClick( 'team1' ) }
             clickable={ matchStarted ? false : ( alreadyPredicted ? false : true ) }
@@ -297,7 +301,7 @@ const MatchItem = ( { match } ) => {
 
         <div className="col-2 pt-2 center" >
           <LogoBox
-            team={ team2 ? team2 : team_away }
+            team={ team2 }
             size='50'
             onclick={ () => handleTeamLogoClick( 'team2' ) }
             clickable={ matchStarted ? false : ( alreadyPredicted ? false : true ) }

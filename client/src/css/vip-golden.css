@@ -2,29 +2,15 @@
   /* background-color: red; */
   /* display: flex; */
 }
-
-.match-list-vip {
-  /* background-color: springgreen;  */
-  
-  /* background-color: #00000052;     */
-  /* background-color: #949494c7;     */
-  margin: auto; 
-  min-width: 600px;
-  width: 100%;
-  /* max-width: 700px; */
-  /* padding-top: 20px;   */
-  /* padding: 20px 20px; */
-  padding:  20px;
-  text-align: center; 
-} 
  
 
-.match-item-vip { 
-  text-align: left;
+.match-item-vip {  
+  margin: auto!important;  
   margin-bottom: 1rem !important;    
-  min-width: 500px;  
-   width: 700px; 
-  display: inline-block;  
+  /* min-width: 500px;   */
+  width: 100%;
+   max-width: 700px; 
+  /* display: inline-block;   */
   /* background-color: #e7f2fd;  */
   background-color: #888; 
   /* background-color: #000000c0; */
@@ -50,6 +36,14 @@
   padding: 4px;
   /* border-top: 3px #006eff solid;  */
   /* border-bottom: 1px #a1d1ff solid;  */
+}
+
+ 
+img.vip-team-logo {
+width: 100%;
+max-width: 60px;
+margin: auto;
+height: auto;
 }
 
 /* (1 - X - 2 )Three user option btns to select */

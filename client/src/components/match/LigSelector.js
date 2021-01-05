@@ -13,7 +13,6 @@ const LigSelector = () => {
         <LigLogoBox
           name='all-ligs'
           clicked={ selectedLig === 'All' ? true : false }
-          size='50'
           label='ALL'
           onclick={ () => { stClickedLig( 'All' ) } }
         />
@@ -23,7 +22,6 @@ const LigSelector = () => {
         <LigLogoBox
           name='ucl-full'
           clicked={ selectedLig === 'UCL' ? true : false }
-          size='50'
           //label='UCL'
           onclick={ () => { stClickedLig( 'UCL' ) } }
         />
@@ -33,7 +31,6 @@ const LigSelector = () => {
         <LigLogoBox
           name='prlig-full'
           clicked={ selectedLig === 'England' ? true : false }
-          size='50'
           //label='ENGLAND'
           onclick={ () => { stClickedLig( 'England' ) } }
         />
@@ -43,7 +40,6 @@ const LigSelector = () => {
         <LigLogoBox
           name='laliga-full'
           clicked={ selectedLig === 'Spain' ? true : false }
-          size='50'
           //label='SPAIN'
           onclick={ () => { stClickedLig( 'Spain' ) } }
         />
@@ -52,7 +48,6 @@ const LigSelector = () => {
         <LigLogoBox
           name='seria-full'
           clicked={ selectedLig === 'Italy' ? true : false }
-          size='50'
           //label='ITALY'
           onclick={ () => { stClickedLig( 'Italy' ) } }
         />

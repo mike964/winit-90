@@ -41,7 +41,7 @@ const VipContestPg = () => {
   //============================================================================
   return <div className="page">
 
-    <div className="app-box py-3">
+    <div className="container bg-shadow-4 h-100">
 
       <div className="row center py-3">
         <div className="col"></div>
@@ -54,7 +54,7 @@ const VipContestPg = () => {
       </div>
       {/* <div className="border border-light ib p-2  clickable"> Europe | Africa | Asia </div>   */ }
 
-      <div className="match-list-vip">
+      <div className="pb-3">
         { vip_matches && vip_matches.map( ( mch ) =>
           <MatchItemVip match={ mch } key={ mch._id } /> ) }
       </div>

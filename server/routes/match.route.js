@@ -23,9 +23,10 @@ const router = express.Router( { mergeParams: true } )
 
 router
   .route( '/' )
-  .get( setWeek, getMatches )
-  // .post( setWeek, setTeams, createMatch )
-  .post( setWeek, createMatch )
+  // .get( setWeek, getMatches )
+  .get( getMatches )
+  // .post( setWeek, setTeams, createMatch ) 
+  .post( setTeams, createMatch )
 
 router
   .route( '/multiple' )

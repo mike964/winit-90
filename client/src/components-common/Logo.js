@@ -6,7 +6,8 @@ const Logo = ( {
   src,
   size,
   rounded,
-  bg
+  bg,
+  className
 } ) => {
 
   // let logoUrl = ( country ? `http://localhost:3500/logos/${ country }/${ name }.png`
@@ -18,8 +19,7 @@ const Logo = ( {
 
   const logoStyle = {
 
-    // height: ( size ? `${ size }px` : '35px' ),
-    width: `${ size } px`,
+    height: ( size ? `${ size }px` : '' ),
     // width: 'auto',
     // borderRadius: '50%',
     borderRadius: ( rounded ? '50%' : '' ),
@@ -28,6 +28,7 @@ const Logo = ( {
 
   //====================================================================
   return <img
+    className={ className ? className : '' }
     //src={ !altSrc ? logoUrl : altSrc }
     //src='https://media.api-sports.io/football/teams/66.png'
     src={ src ? src : altSrc }

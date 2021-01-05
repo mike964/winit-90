@@ -58,7 +58,7 @@ const MatchesPg = () => {
   //===================================================================================
   //===================================================================================
   return <div className="page">
-    <div className="container bg-shadow-6">
+    <div className="container bg-shadow-4 h-100">
 
       <MatchBar matchesCount={ selectedWeek === 'thisWeek' ? thisWeekMatches.length : nextWeekMatches.length } />
 
