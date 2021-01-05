@@ -84,14 +84,14 @@ app.use( '/api', express.static( path.join( __dirname, 'server/public' ) ) )
 // http://localhost:3500/api/some-picture.jpg 
 
 
-// if ( process.env.NODE_ENV === 'production' ) {
-//   // *** When we deploy to the server - Run React js client as static folder
-//   app.use( express.static( path.join( __dirname, '/client/build' ) ) )
-//   app.get( '*', ( req, res ) => res.sendFile( path.resolve( __dirname, 'client', 'build', 'index.html' ) ) )
+if ( process.env.NODE_ENV === 'production' ) {
+  // *** When we deploy to the server - Run React js client as static folder
+  app.use( express.static( path.join( __dirname, '/client/build' ) ) )
+  app.get( '*', ( req, res ) => res.sendFile( path.resolve( __dirname, 'client', 'build', 'index.html' ) ) )
 
-// } else {      //  if NODE_ENV == development
-//   app.get( '/', ( req, res ) => res.send( "Hello from '/'" ) )
-// }
+} else {      //  if NODE_ENV == development
+  app.get( '/', ( req, res ) => res.send( "Hello from '/'" ) )
+}
 
 // Fetch PayPal Client ID (for frontend)
 // @Route    http://localhost:3500/api/config/paypal

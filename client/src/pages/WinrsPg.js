@@ -3,15 +3,17 @@ import TopUsersTable from '../components/TopUsersTable'
 import { useSelector } from 'react-redux'
 import { getWeekWinners, stWinnersSelectedWeek } from '../redux/actions/winners.actions'
 import WinnersTable from '../components/winrs/WinrsTable'
-import WeekSelector from '../components/winrs/WinrWeekSelector'
+import WinrWeekSelector from '../components/winrs/WinrWeekSelector'
 
 const WinrsPg = () => {
   const lastWeekNumber = useSelector( state => parseInt( state.week.lastWeek.number ) )
-  const { winners } = useSelector( state => state.wnr )
+  // const { winners } = useSelector( state => state.wnr )   // Not used anymore
   // const winnersLoading = useSelector( state => state.wnr.loading )
   // const { selectedWeek } = useSelector( state => state.wnr )
 
-
+  const getWinersOfWeekId = () => {
+    const response = await axios.get( `/api/weeks/2020/${ weekNumb }` )
+  }
 
   // console.log( winners )
   // const [ visibleWinners, setvisibleWinners ] = useState( '' )  // array
@@ -22,7 +24,8 @@ const WinrsPg = () => {
   useEffect( () => {
     // When pages mount, get winners of last week 
     if ( lastWeekNumber ) {
-      getWeekWinners( lastWeekNumber )
+      // getWeekWinners( lastWeekNumber )   // Not used Anymore
+      getWinersOfWeekId
       stWinnersSelectedWeek( lastWeekNumber )
     }
   }, [ lastWeekNumber ] )
@@ -44,7 +47,7 @@ const WinrsPg = () => {
 
     <div className="winners-table-box">
       <div className="text-center mb-2">
-        <WeekSelector />
+        <WinrWeekSelector />
       </div>
 
       <div className="winners-table-container">
