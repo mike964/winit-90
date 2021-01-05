@@ -27,7 +27,7 @@ const WinrsPg = () => {
     // When pages mount, get winners of last week 
     if ( lastWeekNumber ) {
       // getWeekWinners( lastWeekNumber )   // Not used Anymore
-      getWinersOfWeekId
+      getWinersOfWeekId()
       stWinnersSelectedWeek( lastWeekNumber )
     }
   }, [ lastWeekNumber ] )
