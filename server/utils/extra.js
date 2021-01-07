@@ -22,9 +22,12 @@ const updateManyTeams = async () => {
     //  { country: 'england' },
     // { last3: null, position: 3 } )
     // { last5: [ 'w', 'w', 'l', 'd', 'l' ], position: 12 }
-    { confederation: 'UEFA' }, { confederation: 'uefa' }
+    // { confederation: 'UEFA' }, { confederation: 'uefa' }
+    { country: 'france' }, { country: 'France' }
   )
-  console.log( response )   // { n: 23, nModified: 0, ok: 1 }
+  console.log( response )   // { n: 23, nModified: 0, ok: 1 } 
+
+  return response
 }
 
 const updateManyViprds = async () => {
@@ -39,22 +42,24 @@ const updateManyViprds = async () => {
 
 // For ex updateMany teams by admin
 // {{URL}}/api/v1/ad/do-extra
-const doExtra = asyncHandler( async ( req, res, next ) => {
+exports.doExtra = asyncHandler( async ( req, res, next ) => {
   console.log( '===== doExtra() ====='.yellow )
   // console.log( req.query )
 
-  // updateManyTeams()
+  // response = await updateManyTeams()
   // updateManyViprds()
 
-  await Week.insertMany( weekss )
+  // await Week.insertMany( weekss )
 
   res.status( 200 ).json( {
-    success: true
+    success: true,
+    response
   } )
 
 } )
 
 // doExtra()
 
-let x = JSON.stringify( weekss )
-console.log( x )
+// let x = JSON.stringify( weekss )
+// console.log( x )
+

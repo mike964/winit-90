@@ -55,33 +55,33 @@ const MatchItemHeader = ( { match, matchFinished, matchStarted, vip } ) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // =================================================================================
   return <div className={ classname }>
-    <div className="row">
+    <div className="row py-2px">
       <div className="col pl-2">
-        {/* <Logo size='20' src={ `/api/logos/_ligs/${ lig_.shortName }.png` } />   */ }
         <img className='match-item-header-img' src={ `/api/logos/_ligs/${ lig_.shortName }.png` } alt="" />
         <span className="align-middle">{ lig_.name }</span>
       </div>
 
-      {/* <div className="col text-center">  </div> */ }
+      {/* <div className="col d-none d-sm-block">  </div> */ }
 
-      <div className="col-auto px-2 center capitalize">
-
+      <div className="col text-right capitalize">
         { matchFinished
-          ? <span className="bold"> FT انتهت </span>
+          ? <span className="bold mr-3"> FT انتهت </span>
           : <>
             { matchStarted
-              ? <span className='pill px-2 pb-2px bg-w red italic' >
+              ? <span className='pill px-3 py-2px mx-2 bg-w red italic' >
                 <Spinner animation="grow" size="sm" variant='danger' /> { ' ' } LIVE
                 </span>
               : <>
                 { matchIstoday
-                  ? <span className="pill px-2  pb-2px bg-w red">
-                    <Spinner animation="grow" size="sm" variant='danger' /> { ' ' } { moment( date ).calendar() }
+                  ? <span className="pill px-2 py-2px bg-w red">
+                    {/* <Spinner animation="grow" size="sm" variant='danger' />   */ }
+                    { moment( date ).calendar() }
                   </span>
-                  : <span>{ moment( date ).format( 'YYYY-MM-DD' ) }</span> }
+                  : <span className='mx-3'>{ moment( date ).format( 'YYYY-MM-DD' ) }</span> }
               </> }
           </> }
       </div>
+
     </div>
 
   </div>

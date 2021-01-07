@@ -12,7 +12,7 @@
 
 export const matchReducer = ( state = {
   // Initial State
-  loading: true,   // For User
+  loading: true,   // For spinner :tru by default
   matches: [],      // Both for User & Admin
   currentMatch: null,   // For Admin when Editing
 }, action ) => {
@@ -27,8 +27,7 @@ export const matchReducer = ( state = {
     case 'SET_MATCHES':   // Set Matches for User
       return {
         ...state,
-        matches: action.payload,
-        loading: false
+        matches: action.payload
       }
     case 'SET_CURRENT_MATCH':
       return {

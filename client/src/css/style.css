@@ -142,10 +142,8 @@ background: linear-gradient(270deg,#ff2882,#963cff 45%);
   /* border-bottom: 1px solid #85c2ff; */
   /* margin-bottom: 8px!important;  */
 /* color: black; */ 
-/* color: #080052;  */
-font-size: 0.9em;
+/* color: #080052;  */ 
 color: #ffffff; 
-padding: 4px; 
 overflow: hidden;
 width: 100%; 
 }  

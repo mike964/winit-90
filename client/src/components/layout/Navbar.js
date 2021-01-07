@@ -158,6 +158,9 @@ const Navbar = () => {
         > <i className="fas fa-list-ul" /><span> التعلیمات </span>
         </Link>
 
+
+
+
         {/* { isAuthenticated &&
           <Link to="/dashboard"
             className={ ( navbar === 'dashboard' ? 'navitem__selected' : 'navitem' ) }
@@ -167,14 +170,15 @@ const Navbar = () => {
           </Link> } */}
       </div>
 
-      <div className="admin bg-white p-2">
-        { isAdmin &&
+      { isAdmin &&
+        <div className="admin bg-w p-1">
           <Link to="/admin"
             className={ ( navbar === 'admin' ? 'navitem__selected' : 'navitem' ) }
             onClick={ () => setNavbar( 'admin' ) }
           > <i className="fas fa-user-lock" />
-          </Link> }
-      </div>
+          </Link>
+        </div> }
+
     </div>
 
   </div>

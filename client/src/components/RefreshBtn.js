@@ -20,7 +20,7 @@ const RefreshBtn = ( {
 
 
   //==========================================================================
-  return <button className={ className + ' bg-none border-none white ulineonhover' } onClick={ handleClick } >
+  return <button className={ className + ' bg-none border-none white' } onClick={ handleClick } >
     <i className="fas fa-redo" /> Refresh
     </button>
 

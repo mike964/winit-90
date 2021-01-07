@@ -16,7 +16,7 @@ const {
 const {
   giveWinnersPrize
 } = require( '../controllers/admin.cont' )
-// const { doExtra } = require( '../utils/extra' )
+const { doExtra } = require( '../utils/extra' )
 
 // router.use( '/ad', require( './routes/admin.route' ) )
 //=============================================================
@@ -59,7 +59,7 @@ router.route( '/pay-weekly-winners/:weekId' )
 router.route( '/give-prize/:weekId' )
   .get( giveWinnersPrize )
 
-// router.route( '/do-extra' ).get( doExtra )
+router.route( '/do-extra' ).get( doExtra )
 
 // router
 //   .route( '/update-karname-stats' )

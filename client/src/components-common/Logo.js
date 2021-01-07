@@ -35,7 +35,7 @@ const Logo = ( {
     style={ logoStyle }
     //onError={ () => { console.log( 'say hi' ) } } 
     onError={ () => stAltSrc( someclubpng ) }
-    alt="somelogo"
+    alt="logo"
   />
 }
 export default Logo

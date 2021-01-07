@@ -5,7 +5,7 @@ import Switch from '../../components-common/Switch';
 import { setFilter } from '../../redux/actions/filter.actions';
 import { loadPredictions, resetPredictions } from '../../redux/actions/prediction.actions';
 import RefreshBtn from '../RefreshBtn';
-import { getMatches_DB } from '../../redux/actions/match.actions';
+import { getMatches_DB, setMatchesLoading, setMatchesRedux } from '../../redux/actions/match.actions';
 import LigSelector from './LigSelector';
 import { Button } from 'react-bootstrap';
 
@@ -24,9 +24,11 @@ const MatchBar = ( { matchesCount } ) => {
 
 
 
-  const handleRefreshBtn = () => {
+  const HandleRefreshClick = () => {
     // Load prediction of this week and next week of current user to Redux
     // loadPredictions()  // @fix needed: only if user logged in 
+    setMatchesLoading( true )     // ** First set matches loading true
+    setMatchesRedux( [] )         // ** Then set matches to none in redux store
     getMatches_DB()
     stClickedLig( 'All' )
   }
@@ -43,23 +45,24 @@ const MatchBar = ( { matchesCount } ) => {
 
     <div className="row row-1 py-2 py-sm-3 mb-2 white">
 
-      <div className="col-6 col-sm-3 center">
-        <RefreshBtn onclick={ handleRefreshBtn } />
+      <div className="col-16 col-sm-4 center">
+        <span className="x">مجموع المباریات : { matchesCount }</span>
+        <span className="d-sm-none fr">
+          <RefreshBtn onclick={ HandleRefreshClick } />
+        </span>
       </div>
 
-      <div className="col-6 col-sm-4 center">
-        مجموع المباریات : { matchesCount }
-      </div>
-
-      <div className="col col-sm-5 text-center">
+      <div className="col-12 col-sm-4 text-center">
         <Switch
-          //label='Hide finished matches'
           label='اخفي المباریات المنتهیة'
           //onClick={ () => setFilter( 'notFinished' ) }
           onClick={ () => hideFinishedMatches( !hideFinished ) }
-          //checked={ notFinished }
           checked={ hideFinished }
         />
+      </div>
+
+      <div className="d-none d-sm-block col-sm-4 center">
+        <RefreshBtn onclick={ HandleRefreshClick } />
       </div>
 
     </div>

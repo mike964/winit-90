@@ -28,6 +28,7 @@ import PredictionsPg from './pages/PredictionsPg'
 import MsgsPg from './pages/MsgsPg'
 import MyGoldPrdsPg from './pages/MyGoldPrdsPg'
 import SettingsPg from './pages/SettingsPg'
+import XsDropdown from './components/layout/XsDropdown'
 
 
 
@@ -80,7 +81,16 @@ const App = () => {
 
       {/* <div className="container"> */ }
 
-      {/* <Sidebare /> */ }
+      <div className="d-none d-sm-block">
+        <Sidebare />
+      </div>
+
+      {/* XS Drowdown (instead of sidebar) */ }
+      <div className="d-sm-none fl">
+        <XsDropdown />
+      </div>
+
+
 
       <Switch>
         <Route exact path="/" component={ HomePg } />

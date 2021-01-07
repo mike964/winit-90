@@ -130,3 +130,8 @@ div.content {
 .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
   min-width: 200px!important;
 }
+
+/* Change size of sidebar icons */
+.sidenav---navicon---3gCRo > i {
+  font-size: 1.2rem;
+}

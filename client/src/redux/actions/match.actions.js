@@ -11,6 +11,12 @@ export const setMatchesLoading = ( x ) => {  // x : boolean
     payload: x
   } )
 }
+export const setMatchesRedux = ( matchArray ) => {  // x : boolean
+  dispatch( {
+    type: 'SET_MATCHES',
+    payload: matchArray
+  } )
+}
 
 // Load Matches for User & Admin  (
 export const getMatches_DB = async ( weekId ) => {
@@ -20,7 +26,7 @@ export const getMatches_DB = async ( weekId ) => {
   // const startDate = '2020-09-26'   // FOR TEST
   const startDate = moment().subtract( 10, 'days' )   // Get Last 20 days matches
 
-  // setMatchesLoading( true ) // set matches loading to true
+  setMatchesLoading( true ) // set matches loading to true
 
   try {
     let response
@@ -38,7 +44,11 @@ export const getMatches_DB = async ( weekId ) => {
     console.log( 'Error: Load matches fail!' )
     console.log( error )
   }
-  setMatchesLoading( false ) // set matches loding back to false
+
+  // console.log( '--- after try catch --- ' )   // FOR TEST
+  // Good, even if error happens reaches this lines
+  setMatchesLoading( false ) // set matches loding back to false 
+
 }
 
 

@@ -19,13 +19,10 @@ const RulesPg = () => {
   //==============================================================================
   return <div className="page c-eee p-5">
 
-    <Button onClick={ () => Cookies.set( 'somecookie', 'coookkkiii' ) }>Set Cookie</Button>
-    <Button onClick={ () => console.log( document.cookies ) }>Show Cookie</Button>
-    <Button onClick={ () => console.log( Cookies.get() ) }>Show Cookie</Button>
 
     {/* <h4> التعلیمات </h4> */ }
 
-    <div dir='rtl' className="text-r w-75 m-auto curved bg-shadow p-3 curved-6 box">
+    <div dir='rtl' className="text-r container   curved bg-shadow p-3 curved-6 box">
       <Tabs defaultActiveKey="weeklycontest" id="uncontrolled-tab-example">
 
         <Tab eventKey="weeklycontest" title="المسابقة الاسبوعیة" className='p-3' tabClassName='goldd'>

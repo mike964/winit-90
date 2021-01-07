@@ -36,7 +36,7 @@ const Sidebare = () => {
   return <>
     { !hideSidebar && isAuthenticated && <div className="sidebar-container">
 
-      <SideNav className='em-16 bold'
+      <SideNav className='bold'
         onSelect={ ( selected ) => {
           const to = `/${ selected }`
           if ( location.pathname !== to ) history.push( to )
@@ -44,44 +44,44 @@ const Sidebare = () => {
       >
 
         <SideNav.Toggle />
-        <SideNav.Nav defaultSelected="home">
+        <SideNav.Nav defaultSelected="home" className='x'>
           {/* <NavItem eventKey="">
-            <NavIcon><i className="fa fa-fw fa-home em-16" /></NavIcon>
+            <NavIcon><i className="fa fa-fw fa-home " /></NavIcon>
             <NavText> Home </NavText>
           </NavItem> */}
 
           <NavItem eventKey="predictions">
-            <NavIcon><i className="fas fa-flag-checkered em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-flag-checkered " /></NavIcon>
             <NavText> توقعاتي </NavText>
           </NavItem>
 
           <NavItem eventKey="predictions-gold">
-            <NavIcon><i className="fas fa-gem em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-gem " /></NavIcon>
             <NavText>توقعاتي الذهبیة </NavText>
           </NavItem>
 
           <NavItem eventKey="messages">
-            <NavIcon><i className="fas fa-envelope em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-envelope " /></NavIcon>
             <NavText> الرسائل </NavText>
           </NavItem>
 
           <NavItem eventKey="honours">
-            <NavIcon><i className="fas fa-trophy em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-trophy " /></NavIcon>
             <NavText> الالقاب </NavText>
           </NavItem>
 
           <NavItem eventKey="cashout">
-            <NavIcon><i className="fas fa-hand-holding-usd em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-hand-holding-usd " /></NavIcon>
             <NavText> سحب الجوائز </NavText>
           </NavItem>
 
           <NavItem eventKey="charge-balance">
-            <NavIcon><i className="fas fa-donate em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-donate " /></NavIcon>
             <NavText> شحن الرصید </NavText>
           </NavItem>
 
           <NavItem eventKey="settings">
-            <NavIcon><i className="fas fa-cog em-16" /></NavIcon>
+            <NavIcon><i className="fas fa-cog " /></NavIcon>
             <NavText> الاعدادات </NavText>
           </NavItem>
 
