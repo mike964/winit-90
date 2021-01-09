@@ -58,7 +58,7 @@ const MatchesPg = () => {
   //===================================================================================
   //===================================================================================
   return <div className="page">
-    <div className="container bg-shadow-4 h-100">
+    <div className="container bg-shadow-5">
 
       <MatchBar matchesCount={ selectedWeek === 'thisWeek' ? thisWeekMatches.length : nextWeekMatches.length } />
 
@@ -69,7 +69,7 @@ const MatchesPg = () => {
           <MatchList matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches } />
 
           {/* Submit All Predictions Btn */ }
-          <div className="center">
+          <div className="center bg-shadow-5">
             <SubmitAllBtnBox />
           </div>
         </>

@@ -3,7 +3,7 @@ const express = require( 'express' )
 const router = express.Router()
 
 
-// app.use( '/api/v1', require( './server/routes' ) )
+// app.use( '/api', require( './server/routes' ) )
 //==============================================================
 // router.use( '/auth', require( './routes/auth.route' ) )
 router.use( '/ad', require( './routes/admin.route' ) )

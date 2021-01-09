@@ -14,7 +14,8 @@ const Home = () => {
 
 
 
-  const [ cardTurned, setcardTurned ] = useState( false )
+  const [ cardTurned, setcardTurned ] = useState( true )    // show singup first by default
+
 
   const handleTurn = () => {
     // setshowformSide2( !showformSide2 )
@@ -25,26 +26,21 @@ const Home = () => {
 
   return <div className="home-page" >
 
-    <div className="containerr">
+    <div className="container">
       {/* bg image */ }
-      <img src={ messi_img } alt="bg-mg" className="bg-img" />
+      {/* <img src={ messi_img } alt="bg-mg" className="bg-img" /> */ }
 
       {/* <WinnersList /> */ }
 
 
-      <div className="boxx p-4">
-        <div className="textl center">
+      <div className="textl center white">
 
-          <span className="winit96"> Winit96.com </span>
-          {/* <LionSvg color="#ffffff" /> */ }
+        <span className="winit96"> Winit96.com </span>
+        {/* <LionSvg color="#ffffff" /> */ }
 
-        </div>
         <div className="mb-3">
           <span className="em-2">
             البوابة الاولی لمحترفي کرة القدم
-          </span>
-          <span className="eee">
-            Why bitch?
           </span>
         </div>
 
@@ -57,62 +53,57 @@ const Home = () => {
         </div>
 
 
+      </div>
 
+      <div className="row">
 
-
-        <div className="row">
-
-          {/* NOT YET */ }
-          {/* <div className="col center p-2 winners-col">
+        {/* NOT YET */ }
+        {/* <div className="col center p-2 winners-col">
             <span className="x">فائزون الاسبوع الماضي</span> <br />
             <span className="x">
               المزکز / الدسوقي / النقاط / الجایزة
             </span> 
           </div> */}
 
+        <div className="col"></div>
 
 
+        <div className="col-12 col-sm-8 col-md-6 p-2 center bg-shadow">
 
-          <div className="col p-2 center">
-
-            <div className={ cardTurned ? 'flip-card turned' : 'flip-card' } >
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <AuthForm signup={ false } textColor='gold' />
-                </div>
-                <div className="flip-card-back">
-                  <AuthForm signup={ true } textColor='gold' />
-                </div>
+          <div className="center mb-2" onClick={ handleTurn }>
+            { cardTurned
+              ? <div className="clickable ib">
+                {/* <span className="mx-1"> Already have an account? </span>   */ }
+                <span className="mx-1"> قد سجلت سابقا؟ </span>
+                <span className="gold ulineonhover">ادخل </span>
               </div>
-            </div>
+              : <div className="clickable ib">
+                {/* <span className="x">  Don't have an account? </span> */ }
+                <span className="x"> لیس لدیک حساب؟ </span>
+                <span className="gold ulineonhover" >سجل الآن</span>
+              </div> }
+          </div>
 
-
-            <div className="center mb-2" onClick={ handleTurn }>
-              { cardTurned
-                ? <div className="clickable ib">
-                  <span className=""> Already have an account? </span> { ' ' }
-                  <span className="gold ulineonhover">Log in</span>
-                </div>
-                : <div className="clickable ib">
-                  {/* <span className="x">  Don't have an account? </span> */ }
-                  <span className="x"> لیس لدیک حساب؟ </span>
-                  <span className="gold ulineonhover" >سجل الآن</span>
-                </div> }
-            </div>
-
-            <div className="bg-shadow curved pt-1 pb-1  pr-3 pl-3 ib">
-              <span className="whitee orange ulineonhover clickable" onClick={ handelRedirect }>شاهد المباریات</span>
+          <div className={ cardTurned ? 'flip-card turned' : 'flip-card' } >
+            <div className="flip-card-inner">
+              <div className="flip-card-front">
+                <AuthForm signup={ false } homepage={ true } />
+              </div>
+              <div className="flip-card-back">
+                <AuthForm signup={ true } textColor='gold' />
+              </div>
             </div>
           </div>
 
         </div>
 
 
+        <div className="bg-shadow curved w-200px py-1 mx-auto ">
+          <span className="whitee orange ulineonhover clickable"
+            onClick={ handelRedirect }>شاهد المباریات</span>
+        </div>
+
       </div>
-
-
-
-
 
     </div>
 

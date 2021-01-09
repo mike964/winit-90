@@ -120,7 +120,7 @@ export const getPredictionTxt = ( gd, winner ) => {
   gd = parseInt( gd )
 
   if ( !winner && gd !== 0 ) {
-    return 'اضغط علی شعار الفریق الذي تتقوع سیفوز'
+    return 'انقر علی شعار الفریق الذي تتقوع سیفوز'
   } else if ( gd === 0 ) {
     return 'المباراة ستنتهی بالتعادل'
   } else if ( gd === 1 ) {

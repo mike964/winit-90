@@ -8,10 +8,13 @@ import { loadPredictions } from '../../redux/actions/prediction.actions'
 import { axos, signupValidation } from '../../utils'
 
 //=========================================================================
-const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
+const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
   // if signup = true means form type is signup, not login
   // "AuthForm" is used both for login and signup users
   // handleModalShow if form used inside modal
+  // style = ['homepg' , '']
+
+
   const history = useHistory()
 
   const [ state, setState ] = useState( {
@@ -19,7 +22,12 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
     email: '',
     password: '',
     password2: ''
-  } );
+  } )
+
+  // ** Style 1 for homepg , Style 2 for other pages
+  const style1 = {
+    textColor: 'gold'
+  }
 
   // const { name, email, password, password2 } = state
 
@@ -126,7 +134,7 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
 
   ///////////////////////////////////////////////////////////////////////////////////////
   return <form onSubmit={ signup ? handlesignup : handleLogin }
-    className={ textColor ? 'auth-form ' + textColor : 'auth-form' }
+    className={ homepage ? 'auth-form ' + style1.textColor : 'auth-form' }
   >
 
     { signup && <div className="form-group" dir="rtl">
@@ -145,7 +153,6 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
 
     {/* user name should not contain with number */ }
     {/* name should at least has 6 characters */ }
-
 
     <div className="form-group">
       <label htmlFor="email" className="fr">الایمیل</label>
@@ -172,7 +179,7 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
         onChange={ onChange }
         required
       />
-      { signup && <div className="small text-muted textr">یجب ان تتکون من 8 احرف او عدد علی الاقل</div> }
+      { signup && <div className="small text-muted textr"> یکون 8 احرف او عدد علی الاقل</div> }
     </div>
 
     { signup && <div className="form-group">
@@ -198,14 +205,16 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, textColor } ) => {
       </button>
     </div>
 
-    <div className='center p-2 c-444'>
-      <span className='clickable ulineonhover mx-2' onClick={ () => handleLoginWith( 'google' ) } >
+    <div className='center bold'>
+      <span className='clickable ulineonhover mx-1 c-666' onClick={ () => handleLoginWith( 'google' ) } >
         <GoogleSvg /> Google
-        </span>
-      <span className='facebook clickable ulineonhover mx-2' onClick={ () => handleLoginWith( 'facebook' ) } >
-        <i className="fab fa-facebook em-14 align-middle" /> Facebook
+        </span> { ' ' }
+      <span className='facebook clickable ulineonhover mx-1' onClick={ () => handleLoginWith( 'facebook' ) } >
+        <i className="fab fa-facebook em-12 bg-w" /> Facebook
       </span>
-      <span className='mx-2 c-444 bold fr'>او سجل عبر حساب </span>
+      <span className='mx-1 c-666'>  { signup ? <>تسجیل عبر</> : <>دخول عبر</> }</span>
+
+
     </div>
 
   </form>

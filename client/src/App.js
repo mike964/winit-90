@@ -79,7 +79,6 @@ const App = () => {
       <Navbar />
       {/* <Clock /> */ }
 
-      {/* <div className="container"> */ }
 
       <div className="d-none d-sm-block">
         <Sidebare />
@@ -93,8 +92,9 @@ const App = () => {
 
 
       <Switch>
-        <Route exact path="/" component={ HomePg } />
+        {/* <Route exact path="/" component={ HomePg } /> */ }
         {/* <Route exact path="/news" component={ NewsPg } /> */ }
+        <Route exact path="/" component={ MatchesPg } />
         <Route path="/matches" component={ MatchesPg } />
         <Route path="/goldencontest" component={ VipContestPg } />
         <Route path="/winners" component={ WinrsPg } />
@@ -118,7 +118,6 @@ const App = () => {
         </Route>
 
       </Switch>
-      {/* </div> */ }
 
     </Router>
   </div>

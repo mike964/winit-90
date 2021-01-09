@@ -4,6 +4,7 @@ import AuthForm from './AuthForm';
 import { useSelector } from 'react-redux';
 import { toggleAuthModal } from '../../redux/actions/global.actions';
 
+// ** Navbar Auth Btns modal **/
 const AuthBtnsModal = () => {
   // Get show Modal from Redux Store
   const { showAuthModal } = useSelector( state => state.global )
@@ -36,21 +37,21 @@ const AuthBtnsModal = () => {
   //=============================================================================================
   //=============================================================================================
   return <>
-    <button className='auth signup' onClick={ handleSignupClick }
-    > <i className="fas fa-user-plus" /> تسجیل </button>
+    <button className='auth signup' onClick={ handleSignupClick }>
+      <i className="fas fa-user-plus" /> تسجیل </button>
     {' ' }
-    <button className='auth signup' onClick={ handleLoginClick }
-    >  <i className="fas fa-sign-in-alt" />{ ' ' } دخول </button>
+    <button className='auth signup' onClick={ handleLoginClick }>
+      <i className="fas fa-sign-in-alt" />{ ' ' } دخول </button>
 
     <Modal show={ show } size='sm' onHide={ handleShow }>
       <Modal.Header>
-        <div className="p-2">
+        <div className="p-2 em-12 bold">
           { showSide1 ? <>
             <i className="fas fa-user-plus" />  { ' ' }
-            <span className="em-12 bold">انشاء حساب جدید</span>
+            <span className="x">انشاء حساب جدید</span>
           </> : <>
               <i className="fas fa-sign-in-alt" />{ ' ' }
-              <span className="em-12 fw-500">تسجیل الدخول</span>
+              <span className="x">تسجیل الدخول</span>
             </> }
         </div>
       </Modal.Header>
@@ -62,13 +63,12 @@ const AuthBtnsModal = () => {
             onClick={ () => setShowSide1( !showSide1 ) }>
             { showSide1 ? <>
               {/* <span className=""> Already have an account? </span>  */ }
-              <span className="">قد سجلت سابقا؟</span> { ' ' }
-              <span className="text-success ulineonhover">ادخل</span>
+              <span className="x"> قد سجلت سابقا؟ </span> { ' ' }
+              <span className="text-success ulineonhover">ادخل </span>
             </>
               : <>
-                {/* <span className="x">  Don't have an account? </span> */ }
-                <span className="x"> لیس لدیک حساب؟ </span>
-                <span className="text-success ulineonhover" >سجل الآن</span>
+                <span className="x"> لیس لدیک حساب؟ </span> { ' ' }
+                <span className="text-success ulineonhover" >انشاء حساب جدید</span>
               </> }
           </div>
 

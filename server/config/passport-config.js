@@ -64,7 +64,39 @@ passport.deserializeUser( ( id, done ) => {
 // *** JWT *** //
 ////////////////==========================================================================
 // Not implemented yet - No need for passport jwt
+// Authorization: Barear <token> 
 
 
-// Authorization: Barear <toke> 
 
+// 2020-1-9
+// const FacebookStrategy = strategy.Strategy;
+
+// dotenv.config();
+// passport.serializeUser( function ( user, done ) {
+//   done( null, user );
+// } );
+
+// passport.deserializeUser( function ( obj, done ) {
+//   done( null, obj );
+// } );
+
+// passport.use(
+//   new FacebookStrategy(
+//     {
+//       clientID: process.env.FACEBOOK_APP_ID,
+//       clientSecret: process.env.FACEBOOK_APP_SECRET,
+//       callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+//       profileFields: [ "email", "name" ]
+//     },
+//     function ( accessToken, refreshToken, profile, done ) {
+//       const { email, first_name, last_name } = profile._json;
+//       const userData = {
+//         email,
+//         firstName: first_name,
+//         lastName: last_name
+//       };
+//       new userModel( userData ).save();
+//       done( null, profile );
+//     }
+//   )
+// );

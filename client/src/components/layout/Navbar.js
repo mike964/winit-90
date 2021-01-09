@@ -18,7 +18,7 @@ const Navbar = () => {
   const location = useLocation()
   const history = useHistory()
 
-  const [ hideNavbar, sethideNavbar ] = useState( true )
+  const [ hideNavbar, sethideNavbar ] = useState( false )
   const [ showAuthBtns, setShowAuthBtns ] = useState( false )
   // console.log( location.pathname )   //  output: /   /weeklycontest   
 
@@ -28,10 +28,10 @@ const Navbar = () => {
   const { navbar } = useSelector( state => state.global )
 
   // console.log( navbar )
-
-  useEffect( () => {
-    location.pathname === '/' ? sethideNavbar( true ) : sethideNavbar( false )
-  }, [ location ] )
+  // ** No need right now. For the moment keep it simple
+  // useEffect( () => {
+  //   location.pathname === '/' ? sethideNavbar( true ) : sethideNavbar( false )
+  // }, [ location ] )
 
   useEffect( () => {
     if ( !userLoading && !isAuthenticated ) {

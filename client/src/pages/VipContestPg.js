@@ -41,7 +41,7 @@ const VipContestPg = () => {
   //============================================================================
   return <div className="page">
 
-    <div className="container bg-shadow-4 h-100">
+    <div className="container bg-shadow-5">
 
       <div className="row center py-3">
         <div className="col"></div>

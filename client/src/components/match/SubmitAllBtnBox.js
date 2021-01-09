@@ -47,8 +47,8 @@ const SubmitAllBtnBox = () => {
 
   //================================================================================================
   //================================================================================================
-  return <div className='submit-all-btn-box'>
-    <div dir="rtl" className="row submit-error-box pb-1">
+  return <div className='submit-all-btn-box white'>
+    <div dir="rtl" className="row submit-error-box p-1">
 
       <div className="col-auto p-1 mr-2">
         { error

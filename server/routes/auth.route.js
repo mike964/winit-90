@@ -111,6 +111,27 @@ router.get( "/", protect, ( req, res ) => {
 } )
 
 
+// 2021-1-9
+// ====================================
+// *** Facebook Auth -  PASSPORT JS  ***
+//====================================
+router.get( "/auth/facebook", passport.authenticate( "facebook" ) );
+
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate( "facebook", {
+    successRedirect: "/",
+    failureRedirect: "/fail"
+  } )
+);
+
+router.get( "/fail", ( req, res ) => {
+  res.send( "Failed attempt" );
+} );
+
+router.get( "/", ( req, res ) => {
+  res.send( "Success" );
+} );
 
 // router.put( '/update-details', protect, updateDetails )
 // router.put( '/update-password', protect, updatePassword )
