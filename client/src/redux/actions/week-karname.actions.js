@@ -38,7 +38,8 @@ export const getMyKarnames_DB = async () => {
 
 
 // export const setCurrentKarname = ( weekId ) => {
-export const setSelectedKarname = ( weekId ) => {
+export const setSelectedKarname_forPrds = ( weekId ) => {
+  // set selected karname
   dispatch( {
     type: 'SET_CURRENT_KARNAME',
     weekId

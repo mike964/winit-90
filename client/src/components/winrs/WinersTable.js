@@ -4,26 +4,24 @@ import { useSelector } from 'react-redux'
 import { Spinner } from 'react-bootstrap'
 import Tooltipp from '../../components-common/Tooltipp'
 
-const WinnersTable = ( {
-  winners
+const WinersTable = ( {
+  winners, loading
 } ) => {
-
-  const [ loading, stloading ] = useState( false )
 
   useEffect( () => {
 
-    if ( winners && winners.length > 0 ) {
-      stloading( true )
-
-      setTimeout( () => {
-        // stwinnerss( winners )
-        stloading( false )
-      }, 500 )
-    }
     // setvisibleWinners( '' )
     // setvisibleWinners( winners )
   }, [ winners ] )
 
+
+  const TableSpiner = () => <tr>
+    <th colSpan="5" className="text-center bg-white p-3">
+      <Spinner animation="border" variant="warning" />
+    </th>
+  </tr>
+
+  //==============================================================
   return <table id="winners-table" >
     <thead >
       <tr className="em-11 fw-600">
@@ -44,19 +42,13 @@ const WinnersTable = ( {
         </th>
       </tr>
     </thead>
-    <tbody>
 
+    <tbody>
       { !loading && winners
-        ? winners.map( ( wnr, index ) => <WinrsTR winner={ wnr } key={ index } /> )
-        : ( loading
-          ? <tr>
-            <th colSpan="5" className="text-center bg-white p-3">
-              <Spinner animation="border" variant="warning" />
-            </th>
-          </tr>
-          : <></> ) }
+        && winners.map( ( wnr, index ) => <WinrsTR winner={ wnr } key={ index } /> ) }
+      { loading ? <TableSpiner /> : <></> }
     </tbody>
   </table>
 }
 
-export default WinnersTable 
+export default WinersTable 

@@ -19,8 +19,9 @@ const RefreshBtn = ( {
   }
 
 
+  const classname = className ? className : ''
   //==========================================================================
-  return <button className={ className + ' bg-none border-none white' } onClick={ handleClick } >
+  return <button className={ classname + ' bg-none border-none' } onClick={ handleClick } >
     <i className="fas fa-redo" /> Refresh
     </button>
 

@@ -48,7 +48,7 @@ const MatchBar = ( { matchesCount } ) => {
       <div className="col-16 col-sm-4 center">
         <span className="x">مجموع المباریات : { matchesCount }</span>
         <span className="d-sm-none fr">
-          <RefreshBtn onclick={ HandleRefreshClick } />
+          <RefreshBtn onclick={ HandleRefreshClick } className='white' />
         </span>
       </div>
 
@@ -62,7 +62,7 @@ const MatchBar = ( { matchesCount } ) => {
       </div>
 
       <div className="d-none d-sm-block col-sm-4 center">
-        <RefreshBtn onclick={ HandleRefreshClick } />
+        <RefreshBtn onclick={ HandleRefreshClick } className='white' />
       </div>
 
     </div>

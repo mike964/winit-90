@@ -19,14 +19,14 @@ const PredictionsTable = ( { prds, vip, loading } ) => {
         <th width="40" className="d-none d-sm-table-cell">
           {/* Lig */ }
         </th>
-        <th >
+        <th style={ { minWidth: '180px' } } >
           <i className="fas fa-futbol" /> Match
             </th>
         <th className="d-none d-sm-table-cell">
           <i className="far fa-calendar-alt" /> Date
           </th>
-        <th width="180" >
-          Prediction <span className="fw-300">(GD)</span>
+        <th>
+          Prediction (GD)
         </th>
         <th width="40" >
           { vip

@@ -9,7 +9,7 @@ const initState = {
 
 export default ( state = initState, action ) => {
   switch ( action.type ) {
-    case 'ST_WINNERS':
+    case 'SET_WINNERS':
       return {
         ...state,
         winners: action.payload

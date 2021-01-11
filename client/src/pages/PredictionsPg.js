@@ -5,7 +5,7 @@ import { getAllMyPredictions } from '../redux/actions/prediction.actions'
 import RefreshBtn from '../components/RefreshBtn'
 import WeekSelector from '../components/WeekSelector'
 import PrdsTableFooter from '../components/prediction/PrdsTableFooter'
-import { getMyKarnames_DB, setSelectedKarname } from '../redux/actions/week-karname.actions'
+import { getMyKarnames_DB } from '../redux/actions/week-karname.actions'
 import axios from 'axios'
 import SpinnersBox from '../components-common/SpinnersBox'
 import { Spinner } from 'react-bootstrap'
@@ -17,12 +17,16 @@ const PredictionsPg = () => {
   // const { allPredictions } = useSelector( state => state.prd )
   const { thisWeek } = useSelector( state => state.week )
   // console.log( allPredictions )
-  const { current: selectedKarname, karnames } = useSelector( state => state.karname )
+  // const { current: selectedKarname, karnames } = useSelector( state => state.karname )
+  const { karnames } = useSelector( state => state.karname )
+
+
 
 
   // *** User prds of welected week / karname
   const [ predictions, setPredictions ] = useState( [] ) // filtered prediction of user to display
   const [ prdsLoading, setPrdsLoading ] = useState( true ) // filtered prediction of user to display
+  const [ selectedKarname, setSelectedKarname ] = useState( true ) // filtered prediction of user to display
 
 
   useEffect( () => {
@@ -34,28 +38,34 @@ const PredictionsPg = () => {
 
   useEffect( () => {
     // Set default selected karname to display prds
-    if ( thisWeek._id && karnames )
-      setSelectedKarname( thisWeek._id )
+    if ( thisWeek._id && karnames ) {
+      // setSelectedKarname( thisWeek._id )
+
+      let selectedKarname = karnames.find( kar => kar.week._id === thisWeek._id )
+
+      if ( selectedKarname )
+        getPrdsOfKarname( selectedKarname._id )
+    }
   }, [ thisWeek, karnames ] )
 
 
-  useEffect( () => {
-    if ( selectedKarname ) {
-      getPrdsOfKarname( selectedKarname._id )
-    } else { }
-  }, [ selectedKarname ] )
+  // useEffect( () => {
+  //   if ( selectedKarname ) {
+  //     getPrdsOfKarname( selectedKarname._id )
+  //   } else { }
+  // }, [ selectedKarname ] )
 
 
-  useEffect( () => {
-    console.log( '--- Selected Karname Changed.' )   // Good
-    // *** When week selector changes, get user prds of karname by selected weekId from server
-    // *** GET & SET prds of selected week by karname id for logged in user
+  // useEffect( () => {
+  //   console.log( '--- Selected Karname Changed.' )   // Good
+  //   // *** When week selector changes, get user prds of karname by selected weekId from server
+  //   // *** GET & SET prds of selected week by karname id for logged in user
 
-    if ( selectedKarname ) {
-      setPrdsLoading( true )   // To display spinner inside table
-      getPrdsOfKarname( selectedKarname._id )
-    }
-  }, [ selectedKarname ] )
+  //   if ( selectedKarname ) {
+  //     setPrdsLoading( true )   // To display spinner inside table
+  //     getPrdsOfKarname( selectedKarname._id )
+  //   }
+  // }, [ selectedKarname ] )
 
 
   const getPrdsOfKarname = async ( karnameId ) => {
@@ -66,6 +76,8 @@ const PredictionsPg = () => {
 
     if ( karnameId ) {
       console.log( '-- karnameId: ' + karnameId )   // *** UNDEFINED
+
+      setPrdsLoading( true )
 
       try {
         const response = await axios.get( `/api/predictions/me?karname=${ karnameId }` )
@@ -91,11 +103,27 @@ const PredictionsPg = () => {
     getPrdsOfKarname( selectedKarname._id )
   }
 
+  const handleWeekSelect = ( x ) => {   // x : weekId
+    // First get Karname of weekId
+
+    let selectedKarname = karnames.find( kar => kar.week._id === x )
+    setSelectedKarname( selectedKarname )
+
+    console.log( '--- selectedKarname' )
+    console.log( selectedKarname )
+
+    if ( selectedKarname ) {
+      getPrdsOfKarname( selectedKarname._id )
+    } else {
+      setPredictions( [] )
+    }
+  }
+
   //========================================================================================
   return <div className="pg">
 
-    <div className="my-3 em-14 bold center">
-      My Predictions
+    <div className="my-3 em-14 bold center white">
+      توقعاتي
     </div>
 
 
@@ -105,7 +133,11 @@ const PredictionsPg = () => {
         <div className="col col-sm-3 col-md-4"></div>
 
         <div className="col-6 col-sm-4 center ">
-          <WeekSelector />
+          <WeekSelector
+            onchange={ handleWeekSelect }
+            max='nextWeek'
+            defaultWeek='thisWeek'
+          />
         </div>
         <div className="col-auto col-sm-3 col-md-4 pt-1 px-2 center">
           {/* <RefreshBtn onclick={ () => getPrdsOfKarname( selectedKarname._id ) } /> */ }
@@ -117,9 +149,6 @@ const PredictionsPg = () => {
 
       <div className="mb-2 curved">
         <PredictionsTable prds={ predictions } vip={ false } loading={ prdsLoading } />
-
-
-
       </div>
 
       <PrdsTableFooter karname={ selectedKarname } />

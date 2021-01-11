@@ -131,6 +131,8 @@ const Navbar = () => {
         >  <i className="fas fa-home" />
         </Link>
 
+
+
         {/* Will Be Added Very Soon  */ }
         { isAuthenticated && <Link to="/goldencontest"
           className={ ( navbar === 'goldencontest' ? 'navitem__selected' : 'navitem' ) }
@@ -150,6 +152,13 @@ const Navbar = () => {
           onClick={ () => setNavbar( 'winners' ) }
         >  <i className="fas fa-trophy" /><span> الفائزون </span>
         </Link>
+
+        {/* Line below not added yet */ }
+        {/* <Link to="/"
+          className={ navbar === 'home' ? 'navitem selected home' : 'navitem home' }
+          onClick={ () => setNavbar( 'home' ) }
+        >   <i className="fas fa-list-ol" /> <span>الترتیب</span>
+        </Link> */}
 
         {/* Rules & Instructions */ }
         <Link to="/rules"
