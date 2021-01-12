@@ -78,25 +78,25 @@ const Counter = ( {
   //======================================================================
   return <div className="d-flex justify-content-center">
     <>
-      <div className="counter-box mr-1" >
-        <button
-          className="x"
+      <div className="counter-box mx-1" >
+        <div
+          className="counter-btn"
           onClick={ () => handleCounter( - 1 ) }
           disabled={ disabledd }
-        >{ disabledd ? '' : <i className="fas fa-caret-left" /> }
-        </button>
+        >{ disabledd ? '' : <i className="fas fa-minus" /> }
+        </div>
 
         <div className="number" >
           { disabledd ? ' - ' : <>  { getDisplay( state ) }  </> }
         </div>
 
-        <button
-          className="x"
+        <div
+          className="counter-btn"
           onClick={ () => handleCounter( + 1 ) }
           disabled={ disabledd }
         > { disabledd ? ''
-          : <i className="fas fa-caret-right" /> }
-        </button>
+          : <i className="fas fa-plus" /> }
+        </div>
       </div>
 
       <DiceBtn onclick={ () => randomNumberr() } disabled={ false }></DiceBtn>
@@ -107,3 +107,5 @@ const Counter = ( {
 
 export default Counter
 
+// <i className="fas fa-caret-right" />
+// <i className="fas fa-caret-left" /> 

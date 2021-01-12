@@ -8,7 +8,6 @@ const MatchList = ( { matches, league } ) => {
 
   // const [ matches, st_matches ] = useState( matches ? matches : [] )
 
-  const { loading: matches_loading } = useSelector( state => state.match )
 
 
   // console.log( matches )
@@ -45,7 +44,7 @@ const MatchList = ( { matches, league } ) => {
       <MatchItem match={ mch } key={ mch._id } /> )
     }
 
-    { !matches && !matches_loading && <div className="py-5 text-center bold">
+    { !matches && <div className="py-5 text-center bold">
       <span className="bold">لا توجد مباریات لهذا الاسبوع</span>
     </div> }
 

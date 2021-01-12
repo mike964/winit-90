@@ -224,14 +224,14 @@ const MatchItem = ( { match } ) => {
       />
 
       {/* BODY */ }
-      <div className="row p-1">
+      <div className="row">
 
         {/* <div className="col-auto align-self-center text-center px-2" >
           <span>Pos: { team1.position }</span>
          <LastFive last5matches={ team1.last5 } />  
         </div> */}
 
-        <div className="col-2 pt-2 center" >
+        <div className="col-2 py-2 center" >
           <LogoBox
             team={ team1 }
             size={ 50 }
@@ -250,26 +250,33 @@ const MatchItem = ( { match } ) => {
 
         {/* ** Middle Colmn ** */ }
 
-        <div className="col pt-1 center" >
+        <div className="col p-1 center" >
 
           { showSpiner ? <Spinr />
             : <>
-              { ( alreadyPredicted || matchStarted ) && <div className="py-3" dir='rtl'>
-                { alreadyPredicted
-                  ? <span className="blue" > توقعک : { getPredictionTxt( goalDiff, winnerName ) } </span>
-                  : matchStarted && <span className=" green">انتهی وقت تسجیل التوقع لهذه المباراة</span> }
+
+              { !matchStarted &&
+                <div className="row pt-2 blue" dir="rtl">
+                  { !alreadyPredicted && <div className="col-auto p-1">
+                    { answerKey
+                      ? <i className="far fa-times-circle red clickable"
+                        onClick={ () => handleBtnX() } />
+                      : <i className="far fa-hand-point-left clickable"
+                        onClick={ () => handleBtnX() } /> }
+                    <span className="bold mx-2">توقعک :</span>
+                    <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
+                  </div> }
+
+                </div> }
+
+              { matchStarted && !alreadyPredicted && <div className="py-3">
+                <span className=" green">انتهی وقت تسجیل التوقع لهذه المباراة</span>
               </div> }
 
-              { !matchStarted && !alreadyPredicted &&
-                <div className="p-2 blue" dir="rtl">
-                  <span className="fr">
-                    { answerKey
-                      ? <i className="far fa-times-circle red clickable ml-2" onClick={ () => handleBtnX() } />
-                      : <i className="far fa-hand-point-left clickable ml-2" onClick={ () => handleBtnX() } /> }
-                    <span className="bold">توقعک :</span>
-                  </span>
-                  <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
-                </div> }
+              { alreadyPredicted && <div className="col py-3 center blue" dir="rtl"  >
+                <span className="bold mx-2"> توقعک : </span>
+                <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
+              </div> }
 
               { !alreadyPredicted && !matchStarted && <>
                 <div className="row">
@@ -299,7 +306,7 @@ const MatchItem = ( { match } ) => {
 
         </div>
 
-        <div className="col-2 pt-2 center" >
+        <div className="col-2 py-2 center" >
           <LogoBox
             team={ team2 }
             size='50'

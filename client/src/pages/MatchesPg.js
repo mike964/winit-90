@@ -6,13 +6,13 @@ import SubmitAllBtnBox from '../components/match/SubmitAllBtnBox';
 import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { getMatches_DB } from '../redux/actions/match.actions';
+import InstructionsCollapse from '../components/InstructionsCollapse';
 //=================================================================================================
 const MatchesPg = () => {
 
   // const filters = useSelector( state => state.filters )
   const { selectedWeek } = useSelector( state => state.global )
-  const { matches } = useSelector( state => state.match )
-  const matchesLoading = useSelector( state => state.match.loading )
+  const { matches, loading: matchesLoading } = useSelector( state => state.match )
   // const thisWeekId = useSelector( state => state.week.thisWeek._id )
   // const nextWeekId = useSelector( state => state.week.nextWeek._id )
   const { thisWeek, nextWeek } = useSelector( state => state.week )
@@ -48,33 +48,35 @@ const MatchesPg = () => {
 
 
 
-  useEffect( () => {
-    if ( matchesLoading ) {
-      setShowSpinner( true )
-    } else {
-      setShowSpinner( false )
-    }
-  }, [ matchesLoading ] )
   //===================================================================================
   //===================================================================================
   return <div className="page">
-    <div className="container bg-shadow-5">
+    <div className="container px-2 pb-2 bg-shadow-6">
+
+
 
       <MatchBar matchesCount={ selectedWeek === 'thisWeek' ? thisWeekMatches.length : nextWeekMatches.length } />
 
-      { showSpinner ? <div className="text-center p-5">
+
+      <div className="mb-2 mx-auto" style={ { maxWidth: '640px' } }>
+        <InstructionsCollapse />
+      </div>
+
+
+      { matchesLoading ? <div className="text-center p-5">
         <Spinner animation="border" variant="warning" />
       </div>
         : <>
           <MatchList matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches } />
-
-          {/* Submit All Predictions Btn */ }
-          <div className="center bg-shadow-5">
-            <SubmitAllBtnBox />
-          </div>
-        </>
-      }
+        </> }
     </div>
+    { !matchesLoading && <div className="container p-0 bg-shadow-8">
+      {/* Submit All Predictions Btn */ }
+      <div className="center bg-shadow-6">
+        <SubmitAllBtnBox />
+      </div>
+    </div> }
+
   </div>
 
 }

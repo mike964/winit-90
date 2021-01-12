@@ -13,16 +13,16 @@ const Sidebare = () => {
   const history = useHistory()
 
   const [ hideSidebar, setHideSidebar ] = useState( true )
-  console.log( location.pathname )   //  output: /   /matches  
+  // console.log( location.pathname )   //  output: /   /matches  
 
   const { isAuthenticated } = useSelector( state => state.auth )
 
   useEffect( () => {
-    location.pathname === '/' ? setHideSidebar( true ) : setHideSidebar( false )
+    // location.pathname === '/' ? setHideSidebar( true ) : setHideSidebar( false )
     // Hide sidebar in Amin Page
     let location_pathname = location.pathname
     let x = location_pathname.startsWith( '/admin' )
-    if ( x ) setHideSidebar( true )
+    x === true ? setHideSidebar( true ) : setHideSidebar( false )
 
   }, [ location ] )
 

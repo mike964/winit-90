@@ -47,7 +47,7 @@ const SubmitAllBtnBox = () => {
 
   //================================================================================================
   //================================================================================================
-  return <div className='submit-all-btn-box white'>
+  return <div className='mx-auto pt-1 pb-2 white' style={ { maxWidth: '600px' } }>
     <div dir="rtl" className="row submit-error-box p-1">
 
       <div className="col-auto p-1 mr-2">

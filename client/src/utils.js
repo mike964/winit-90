@@ -120,7 +120,8 @@ export const getPredictionTxt = ( gd, winner ) => {
   gd = parseInt( gd )
 
   if ( !winner && gd !== 0 ) {
-    return 'انقر علی شعار الفریق الذي تتقوع سیفوز'
+    // return 'انقر علی شعار الفریق الذي تتقوع سیفوز'
+    return ''
   } else if ( gd === 0 ) {
     return 'المباراة ستنتهی بالتعادل'
   } else if ( gd === 1 ) {
@@ -134,7 +135,7 @@ export const getPredictionTxt = ( gd, winner ) => {
   } else if ( gd === 5 ) {
     return `${ winner } سیفوز برکلات الترجیح `
   } else {
-    return 'اختر فارق الاهداف باستخدام العداد'
+    return 'حدد فارق الاهداف باستخدام العداد'
   }
 }
 

@@ -46,6 +46,10 @@ router.route( '/update-result/:matchId' )
   // .post( updateMatchResult, updateTeamsLast5matches, markPredictions )
   .post( updateMatchResult, markPredictions )
 
+// ** Update multiple match results using api-football
+router.route( '/update-result-multiple' )
+  .get()
+
 //   .patch( protect, authorize( 'publisher', 'admin' ), updateStep )
 //   .delete( protect, authorize( 'publisher', 'admin' ), deleteStep )
 

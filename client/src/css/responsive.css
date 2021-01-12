@@ -5,7 +5,7 @@
 /* XS */
 @media only screen and (max-width: 476px) {
   .container {
-    padding: 0 10px !important;
+    /* padding: 0 10px !important; */
   }
   .team_name_md {
     display: none;
@@ -70,3 +70,6 @@
   .lig-logo-box {   font-size: .9rem; }
 }
 
+.xasdfdas {
+  color: #00000050 ; 
+}

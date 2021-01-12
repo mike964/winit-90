@@ -38,10 +38,13 @@ const AuthBtnsModal = () => {
   //=============================================================================================
   return <>
     <button className='auth signup' onClick={ handleSignupClick }>
-      <i className="fas fa-user-plus" /> تسجیل </button>
+      <i className="fas fa-user-plus" /> تسجیل
+      </button>
     {' ' }
     <button className='auth signup' onClick={ handleLoginClick }>
-      <i className="fas fa-sign-in-alt" />{ ' ' } دخول </button>
+      <i className="fas fa-sign-in-alt" />{ ' ' } دخول
+      </button>
+    {' ' }
 
     <Modal show={ show } size='sm' onHide={ handleShow }>
       <Modal.Header>

@@ -54,9 +54,9 @@ const MatchPg = () => {
 
   //=======================================================================================
   //=======================================================================================
-  return <div className="w-90 mx-auto">
+  return <div className="w-90 mx-auto ">
 
-    <div className="row mb-2">
+    <div className="row mb-2 ">
       <div className="col-auto py-1 pr-2">
         <Button variant="primary" onClick={ handleAddMatchBtn }>
           + Match

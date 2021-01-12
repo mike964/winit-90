@@ -377,16 +377,14 @@ exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => 
 
   let points = 0
 
-  if ( correctPrdPercentage >= 80 ) {
+  if ( correctPrdPercentage >= 75 ) {
     points = 10
-  } else if ( 60 <= correctPrdPercentage && correctPrdPercentage < 80 ) {
+  } else if ( 50 <= correctPrdPercentage && correctPrdPercentage < 75 ) {
     points = 15
-  } else if ( 40 <= correctPrdPercentage && correctPrdPercentage < 60 ) {
+  } else if ( 25 <= correctPrdPercentage && correctPrdPercentage < 50 ) {
     points = 20
-  } else if ( 20 <= correctPrdPercentage && correctPrdPercentage < 40 ) {
+  } else if ( correctPrdPercentage < 25 ) {
     points = 25
-  } else if ( 0 <= correctPrdPercentage && correctPrdPercentage < 20 ) {
-    points = 30
   }
 
 
@@ -413,7 +411,7 @@ exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => 
 
   // Then update points for all correct predictions
   // const resp1 = await Prediction.updateMany( { match: matchId }, { points: 0 } )   // RESET POINTS 
-  const resp2 = await Prediction.updateMany( { match: matchId, correctGD: true, correct: true }, { points: 50 } )
+  const resp2 = await Prediction.updateMany( { match: matchId, correctGD: true, correct: true }, { points: 30 } )
   const resp3 = await Prediction.updateMany( { match: matchId, correctGD: false, correct: true }, { points } )
   const resp4 = await Prediction.updateMany( { match: matchId, correctGD: false, correct: false }, { points: 0 } )
 

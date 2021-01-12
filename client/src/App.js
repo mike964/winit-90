@@ -20,7 +20,7 @@ import VipContestPg from './pages/VipContestPg'
 import { getMyVipredictions } from './redux/actions/vip.actions'
 import { getMyKarnames_DB } from './redux/actions/week-karname.actions'
 import ProtectedRoute from './components/auth/ProtectedRoute'
-import ChargeBalancePg from './pages/payment/ChargeBalancePg'
+// import ChargeBalancePg from './pages/payment/ChargeBalancePg'
 import CashoutPg from './pages/payment/CashoutPg'
 // import ScssfulPaymentPg from './pages/payment/ScssfulPaymentPg'
 import Sidebare from './components/Sidebare'
@@ -105,7 +105,7 @@ const App = () => {
         <ProtectedRoute path="/admin" admin component={ AdminPg } />
         <Route path="/unauthorized" component={ Unauthorized } />
         <ProtectedRoute path="/cashout" component={ CashoutPg } />
-        <ProtectedRoute path="/charge-balance" component={ ChargeBalancePg } />
+        {/* <ProtectedRoute path="/charge-balance" component={ ChargeBalancePg } /> */ }
         {/* <Route path="/checkout?success=true" component={ ScssfulPaymentPg } /> */ }
 
         <ProtectedRoute path='/predictions' component={ PredictionsPg } />

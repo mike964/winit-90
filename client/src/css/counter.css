@@ -8,31 +8,25 @@
   /* border: 2px #0077ff solid; */
   display: flex; 
 }  
-.counter-box > button {   
-  /* margin: auto; */
-  border: none;
+.counter-box > .counter-btn {  
   text-align: center; 
   padding: 6px 10px;
   background-color: #39a6ff;
   /* background-color: white; */
    color: white;
-   width: 26px; 
+   /* width: 26px;  */
+   font-size:0.9rem;
+   cursor: pointer;
 } 
-.counter-box > button:focus { 
-  outline:none;  
-}
 
 .counter-box > .number {
   background-color:#0077ff;
   padding: 6px 10px;
   color: white; 
-  width: 32px; 
-} 
-.counter-box > button:hover{
-  cursor: pointer;
-  background-color: #5cbeff;
-}
-.counter-box > button:disabled{
+  width: 34px; 
+  text-align: center;
+}  
+.counter-box > .counter-btn:disabled{
   cursor: default;
   background-color: #73c7ff;
 }

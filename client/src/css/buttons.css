@@ -136,11 +136,7 @@ background-color: #6900b4;
   text-align: center;
 }
 
-.submit-all-btn-box {
-  max-width: 560px; 
-  margin: auto;
-  padding-bottom: 20px;
-}
+ 
 .submit-all-btn {
   padding: 6px 14px;
   font-size: 1rem;

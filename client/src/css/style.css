@@ -11,12 +11,7 @@ body {
   /* background-size: 100% auto;  */  
 
 }
-
-@media only screen and (max-width: 500px) { 
- /* body {
-    font-size: .8rem;
-  } */
-}
+ 
 
 .app {
   background-image: url("../img/1348783.jpg");
@@ -82,7 +77,7 @@ body {
 /* background-color: #7715d394; */
 /* border-radius: 9px; */
 overflow: hidden;
-margin-bottom: 10px !important;
+/* margin-bottom: 10px !important; */
 /* border: solid 1px yellow;  */
 margin: auto;  
   /* min-width: 400px ;   */
@@ -119,7 +114,7 @@ background: linear-gradient(270deg,#ff2882,#963cff 45%);
 .match-item {  
   /* min-width: 460px; */
   /* width: 100%; */
-  max-width: 620px;
+  max-width: 600px;
   /* margin-bottom: 10px !important; */
   margin : 0 auto  10px;
   background-color: #ffffff; 

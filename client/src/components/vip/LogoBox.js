@@ -52,7 +52,7 @@ const LogoBox = ( {
 
   useEffect( () => {
     if ( team.shortName ) {
-      setLogoSrc( `/api/logos/${ team.country }/${ team.shortName }.png` )
+      setLogoSrc( `/api/logos/${ team.country.toLowerCase() }/${ team.shortName }.png` )
     } else {
       setLogoSrc( team.logo )
     }

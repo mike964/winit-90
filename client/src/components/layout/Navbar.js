@@ -64,60 +64,69 @@ const Navbar = () => {
   const authLinks = <>
     { currentUser && <>
 
-      <div className="ib mr-3">
-        {/* <div className="ib ">Hello</div>  { ' ' } */ }
-        <span className="ib bold white">
-          {/* { getFirstName( currentUser.name ) } */ }
-          { currentUser.name }
-        </span> { ' ' }
-        <span className="ib fw-400">مرحباً</span> { ' ' }
-
+      <div className="col-auto pt-2 px-1">
+        <span className="mx-3">
+          <span className="fw-400"> مرحباً </span> { ' ' }
+          <span className="bold white">
+            {/* { getFirstName( currentUser.name ) } */ }
+            { currentUser.name }
+          </span>
+        </span>
         <span className="mx-3">
           <NotificationBell />
         </span>
       </div>
 
-      <button
-        //className="btn btn-outline-danger "
-        className="auth logout"
-        onClick={ () => handleLogout() }
-      > <i className="fas fa-sign-out-alt" /> خروج
-      </button>
+      <div className="col-auto py-1 px-2">
+        <div class="dropdown">
+          <button class="btn white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i className="fas fa-ellipsis-v" />
+          </button>
+          <div class="dropdown-menu dropdown-menu-right text-r" aria-labelledby="dropdownMenu1">
+            <a className="dropdown-item" href="#!"> حسابي </a>
+            <a className="dropdown-item" href="#!"
+              onClick={ () => handleLogout() }
+            > <i className="fas fa-sign-out-alt" /> خروج
+            </a>
+          </div>
+        </div>
+      </div>
     </> }
   </>
 
   const guestLinks = <>
     {showAuthBtns
-      ? <AuthBtnsModal type="signup" />
-      : <div className='py-1' style={ { color: '#2b005c' } }>.</div>
+      ? <div className="col text-r p-1">
+        <AuthBtnsModal />
+      </div>
+      : <div className='p-1' style={ { color: '#2b005c' } }>.</div>
       // Line above in order to prevent navbar collpase when no btns
     }
   </>
   //====================================================================================
   return <div className={ hideNavbar ? "hidden" : "navbar-main" }  >
 
-    <div className="lion-logo">
+    {/* <div className="lion-logo">
       <Link to="/" className="x" > <WinitLogo />  </Link>
-    </div>
+    </div> */}
 
 
 
-    <div className="first-row d-flex">
+    <div className="first-row row">
 
-      <div className="flex-grow-1"></div>
-      { isAuthenticated && <span className="gold p-2 mr-3">
+      <div className="col"></div>
+
+      { isAuthenticated && <div className="col-auto pt-2 px-2 gold">
         <i className="fas fa-coins mr-1" />
-        <span className="credit">رصیدک:</span> { ' ' }
+        <span className="credit"> رصیدک : </span> { ' ' }
 
         { currentUser.balance || currentUser.balance === 0
           ? <span> ${ currentUser.balance }</span>
           : <span>$33</span> }
 
-      </span> }
+      </div> }
 
-      <div className="p-1 text-center auth-btns mr-2">
-        { isAuthenticated ? authLinks : guestLinks }
-      </div>
+      { isAuthenticated ? authLinks : guestLinks }
     </div>
 
     {/* Second Row */ }
