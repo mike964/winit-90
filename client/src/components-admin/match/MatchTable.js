@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import TableSpiner from '../../components-common/TableSpiner'
 import MatchTR from './MatchTR'
 
 
-const MatchTable = ( { matches } ) => {
+const MatchTable = ( { matches, loading } ) => {
 
   const { expandAll } = useSelector( state => state.global )
   // const [ expandedRows, setexpandedRows ] = useState( expandAll ? expandAll : false )
@@ -27,7 +28,7 @@ const MatchTable = ( { matches } ) => {
     </thead>
 
     <tbody>
-      { matches && matches.map( ( mch, index ) =>
+      { !loading && matches && matches.map( ( mch, index ) =>
         <MatchTR
           match={ mch }
           key={ mch._id }
@@ -35,6 +36,7 @@ const MatchTable = ( { matches } ) => {
           expanded={ expandAll }
         />
       ) }
+      { loading ? <TableSpiner /> : <></> }
     </tbody>
 
   </table>

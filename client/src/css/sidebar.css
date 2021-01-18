@@ -4,7 +4,7 @@
   padding: 0; 
   min-width: 150px;  
   width: 15%;
-  background-color: #010029c4;
+  background-color: #000d53;
   /* position: fixed; */
   height: 100%;
   min-height: 900px;
@@ -40,30 +40,7 @@ div.content {
    width: 80%;
   display: inline-block; 
 }
-
-@media screen and (max-width: 900px) {
-  .sidebar { 
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 20px;
-    display: flex;
-    justify-content: center;
-  } 
-  div.content {
-    margin-left: 0;
-    width: 100%;  
-  }
-  /* .sidebar > a > span { 
-   display: none;
-  } */
-}
  
-@media screen and (max-width: 600px) { 
-  .sidebar > a > span { 
-   display: none;
-  }
-}
  
 
 /* ========================================== */
@@ -84,7 +61,7 @@ div.content {
   left: 0;
   z-index: 1006;  
   /* background: #28b452!important; */
-  background: #30006e!important;  
+  background: #222222!important;  
   /* background: none!important;  */
   -webkit-transition: min-width 0.2s;
   -moz-transition: min-width 0.2s;
@@ -99,33 +76,7 @@ div.content {
 }
   
 
-/* Media Queries */
-@media screen and (max-width: 900px) {  
-  .sidenav---sidenav-toggle---1KRjR {
-    /* Hide Hambergur btn when collapse */
-     display: none;
-   }
-  .sidenav---sidenav---_2tBP { 
-    display: flex!important;   
-  }
-  .sidenav---sidenav-nav---3tvij {
-    display: flex!important;
-  }
-  .sidebar-container {
-    padding-bottom: 50px; 
-    background: #30006e!important; 
-    /* Hide the sidebar */
-    /* display: none;    */
-    position: relative;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  /* body {
-    background-color: lightgreen;
-  }   */
-}
-
+ 
 
 .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
   min-width: 200px!important;

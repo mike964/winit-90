@@ -136,41 +136,27 @@ exports.getMatch = asyncHandler( async ( req, res, next ) => {
 } )
 
 
-// update match result
-// @route:   'matches/update-result/:matchId'  
-exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
-  console.log( '------ updateMatchResult() ------'.yellow )
-  // Set Winner when admin update match result 
+// ** the function below is necessary
+const getMatchTobeUpdated = ( goals, penalty ) => {  // both objects
+  console.log( '--- getMatchTobeUpdated() ---'.yellow )
 
-  // 1.First pull out match result from req.body 
-  // 2.Then Update match
-  // 3.Update associated prediction
-  // 4.Update associated vip prediction
-
-  console.log( req.body )
-
-  const { matchId } = req.params
-  const { goals, endedInPenalties } = req.body
-
-  // result string (score)
-
-  const match = await Match.findById( matchId ).populate( 'team1 team2' )
-  const { team1, team2 } = match
-  // console.log( match )
+  // const match = fixtureId ?  await Match.find({ id_ : fixtureId }).populate( 'team1 team2' )
+  // : await Match.findById( matchId ).populate( 'team1 team2' )
 
   // Convert String to Int
   let goals1 = parseInt( goals.team1 )
   let goals2 = parseInt( goals.team2 )
-  let pen1 = parseInt( goals.penalty1 )
-  let pen2 = parseInt( goals.penalty2 )
+  let pen1 = penalty ? parseInt( penalty.team1 ) : null
+  let pen2 = penalty ? parseInt( penalty.team2 ) : null
+
+  let endedInPenalties = penalty ? ( penalty.team1 > 0 || penalty.team2 > 0 ) : false
 
   let gd = Math.abs( goals1 - goals2 )   // absolute value (positive) 
 
   // let resultKey    // 1 char reskey  (winner)
   // let resultKey2    // 2 char reskey  (winner + gd)
 
-  let resultString = ( endedInPenalties
-    ? `${ goals1 } - ${ goals2 } (${ pen1 }-${ pen2 } p)`
+  let resultString = ( endedInPenalties ? `${ goals1 } - ${ goals2 } (${ pen1 }-${ pen2 } p)`
     : `${ goals1 } - ${ goals2 }` )
 
 
@@ -180,7 +166,7 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
       team2: goals2
     },
     gd,   // goal difference
-    penlty: endedInPenalties ? { team1: pen1, team2: pen2 } : false,
+    penalty: endedInPenalties ? { team1: pen1, team2: pen2 } : false,
     score: resultString
   }
 
@@ -192,28 +178,34 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
 
   // *** Specify Result Keys  
   //========================= 
-  const getResultKey = () => {
-    if ( goals1 > goals2 || pen1 > pen2 ) {
+  const getResultKey = () => {   // [1,2,3]
+    if ( pen1 > pen2 ) {
       return 1
-    } else if ( goals2 > goals1 || pen2 > pen1 ) {
+    } else if ( pen2 > pen1 ) {
+      return 2
+    } else if ( goals1 > goals2 ) {
+      return 1
+    } else if ( goals2 > goals1 ) {
       return 2
     } else if ( goals1 === goals2 ) {
       return 3
+    } else {
+      return null
     }
   }
 
-  const getResultKey2 = () => {
+  const getResultKey2 = () => {   // [11 ]   resultkey1 + gd
     if ( endedInPenalties ) {
       // _match.result.gd = null   // NO NEED
       if ( pen1 > pen2 ) {
         return '10'
-      } else {
+      } else if ( pen2 > pen1 ) {
         return '20'
       }
-    } else {    // ** IF NOT ENDED IN PENALTIES
+    } else {
+      // ** IF NOT ENDED IN PENALTIES
       let gd_ = ( gd >= 4 ? 4 : gd )  // Exclude 4+ goal difference
       if ( goals1 > goals2 ) {
-
         return `1${ gd_ }`
       } else if ( goals2 > goals1 ) {
         return `2${ gd_ }`
@@ -227,25 +219,112 @@ exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
   _match.resultKey = getResultKey()
   _match.resultKey2 = getResultKey2()
 
+  //  console.log( '---- match To be updated ----' )
+  //  console.log( _match )
+
+  return _match
+}
+
+// update single match result
+// @route:   'matches/update-result/:matchId'  
+exports.updateMatchResult = asyncHandler( async ( req, res, next ) => {
+  console.log( '------ updateMatchResult() ------'.yellow )
+  // Set Winner when admin update match result 
+
+  // 1.First pull out match result from req.body 
+  // 2.Then Update match
+  // 3.Next Update associated prediction
+  // 4.And Update associated vip prediction 
+
+  const { matchId } = req.params
+  const { goals, penalty } = req.body
+
+  // result string (score)
+
+  // const match = await Match.findById( matchId ).populate( 'team1 team2' )
+  // const { team1, team2 } = match
+  // console.log( match )
+
+
+  // ** Get match to be updated
+  _match = getMatchTobeUpdated( goals, penalty )
   console.log( '---- match To be updated ----' )
   console.log( _match )
 
-
+  // return  // ** In order to Stop
 
   let updatedMatch = await Match.findByIdAndUpdate( matchId, _match, { new: true, runValidators: true } )
-  // console.log( '---- updatedMatch ----' )
-  // console.log( updatedMatch )   // in 1st attempt it works but don't show result 
+  console.log( '--- updatedMatch ---' )
+  console.log( updatedMatch )   // in 1st attempt it works but don't show result in json
 
   // In order to use populated team1 n team2  
-  req.match = { team1, team2, ..._match }   // in order to use match in next mdlwrs  
+  // req.match = { team1, team2, ..._match }   // in order to use match in next mdlwrs  
+  req.match = _match    // in order to use match in next mdlwrs  
 
   next()
-
   // return  // ** In order to Stop
 } )
 
 
-// Mark Predictions of MatchId after Match result gets updated
+// ** Mark Weekly + VIP prds of match using updateMany()
+const markPrdsOfMatch = async ( matchId, resultKey, resultKey2 ) => {
+  console.log( '--- markPrdsOfMatch() ---'.yellow )
+
+  if ( matchId && resultKey && resultKey2 ) {
+    try {
+      const response1 = await Prediction.updateMany(
+        {
+          match: matchId,
+          answerKey: resultKey
+        },
+        { correct: true } )
+
+      await Prediction.updateMany(    // $ne means not equal to 
+        {
+          match: matchId,
+          answerKey: { $ne: resultKey }
+        },
+        { correct: false, correctGD: false } )
+
+      await Prediction.updateMany(
+        {
+          match: matchId,
+          answerKey2: resultKey2
+        },
+        { correct: true, correctGD: true } )
+
+      await Prediction.updateMany(
+        {
+          match: matchId,
+          answerKey2: { $ne: resultKey2 }
+        },
+        { correctGD: false } )   // $ne means not equal to
+
+      // ** Update Vip Predictions As well *** 
+      await Viprediction.updateMany(    // $ne means not equal to 
+        { match: matchId, answerKey: resultKey },
+        { correct: true } )
+
+      await Viprediction.updateMany(    // $ne means not equal to 
+        {
+          match: matchId, answerKey: { $ne: resultKey }
+        }, { correct: false } )
+
+      console.log( response1 )   //{ n: 2, nModified: 0, ok: 1 }
+      return true  // means success
+
+    } catch ( error ) {
+      console.log( error )
+      return false
+    }
+
+  } else {
+    return false
+  }
+}
+
+
+// Mark prds of MatchId as correct/not after Match result gets updated
 exports.markPredictions = asyncHandler( async ( req, res, next ) => {
   // 2020-8-13  Mark All Predictions of MatchId as correct or not (update predictions of match)
   console.log( '------ markPredictions() ------'.yellow )
@@ -253,12 +332,11 @@ exports.markPredictions = asyncHandler( async ( req, res, next ) => {
   // console.log( '--- req.match ---' )
   // console.log( req.match )
 
-  const { match } = req
-  const { resultKey, resultKey2 } = match
+  const { resultKey, resultKey2 } = req.match
   const { matchId } = req.params
 
   const predictions = await Prediction.find( { match: req.params.matchId } )
-  const Vipredictions = await Viprediction.find( { match: req.params.matchId } )
+  const vipredictions = await Viprediction.find( { match: req.params.matchId } )
 
   // ==============================================================
   //  1.First Mark Weekly Predictions, Then mark vip prediction  *
@@ -271,54 +349,14 @@ exports.markPredictions = asyncHandler( async ( req, res, next ) => {
   // resultKey = 1 , 2, 3 
   // resultKey2 = 11 , 22 , 10 penalties
 
-  const response1 = await Prediction.updateMany(
-    {
-      match: matchId,
-      answerKey: resultKey
-    },
-    { correct: true } )
-
-  const response2 = await Prediction.updateMany(    // $ne means not equal to 
-    {
-      match: matchId,
-      answerKey: { $ne: match.resultKey }
-    },
-    { correct: false, correctGD: false } )
-
-  const response3 = await Prediction.updateMany(
-    {
-      match: matchId,
-      answerKey2: resultKey2
-    },
-    { correct: true, correctGD: true } )
-
-  const response4 = await Prediction.updateMany(
-    {
-      match: matchId,
-      answerKey2: { $ne: match.resultKey2 }
-    },
-    { correctGD: false } )   // $ne means not equal to
-
-
-
-  // *** Update Vip Predictions As well ***
-  //======================================
-  const response5 = await Viprediction.updateMany(    // $ne means not equal to 
-    { match: matchId, answerKey: match.resultKey },
-    { correct: true } )
-
-  const response6 = await Viprediction.updateMany(    // $ne means not equal to 
-    {
-      match: matchId, answerKey: { $ne: match.resultKey }
-    }, { correct: false } )
-
-  console.log( response1 )   //{ n: 2, nModified: 0, ok: 1 }
+  let success = await markPrdsOfMatch( req.params.matchId, resultKey, resultKey2 )   // boolean
+  // ISSUE: live above no result key input
 
   res.status( 200 ).json( {
-    success: true,
+    success: success,
     updatedMatch: req.match,
     nPredictions: predictions.length,
-    nVipredictions: Vipredictions.length,
+    nVipredictions: vipredictions.length,
     // response1,   // "response1": { "n": 2, "nModified": 0, "ok": 1 },
     predictions,
   } )
@@ -377,37 +415,15 @@ exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => 
 
   let points = 0
 
-  if ( correctPrdPercentage >= 75 ) {
+  if ( correctPrdPercentage >= 70 ) {
     points = 10
-  } else if ( 50 <= correctPrdPercentage && correctPrdPercentage < 75 ) {
+  } else if ( 50 <= correctPrdPercentage && correctPrdPercentage < 70 ) {
     points = 15
   } else if ( 25 <= correctPrdPercentage && correctPrdPercentage < 50 ) {
     points = 20
   } else if ( correctPrdPercentage < 25 ) {
     points = 25
   }
-
-
-
-  // console.log( nTotalPredictions )
-  // console.log( correctPredictinosArray )
-  // console.log( nCorrectPredictions )
-
-
-  // The Formula to calculate points 
-  // const calculatePoints = () => {
-  //   if ( nCorrectPredictions === 0 ) {
-  //     return 0
-  //   } else {
-  //     return parseInt( ( nTotalPredictions * 100 ) / nCorrectPredictions )
-  //     // After site gets lots of user decrese 1000 to 100 and then to 10
-  //   }
-  // }
-
-  // const points = calculatePoints()
-  // After site gets lots of user decrese 1000 to 100 and then to 10
-
-  // console.log( 'Points: ' + points )
 
   // Then update points for all correct predictions
   // const resp1 = await Prediction.updateMany( { match: matchId }, { points: 0 } )   // RESET POINTS 
@@ -436,7 +452,7 @@ exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => 
 
 // 2020-12-17 
 // @route   POST: api/matches/multiple
-// @desc    Create multiple matches using api-football
+// @desc    Create multiple matches using api-football & insertMany()
 exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
   console.log( '--- createMultipleMatches() ---'.yellow )
 
@@ -444,21 +460,20 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
   console.log( req.query )          // { from: '2020-12-18', to: '2020-12-22', createMatches: 'false' }
 
   // Save matches to DB  (default:false)
-  let saveMatches = ( req.query.createMatches === 'true' ? true : false )
+  let req_qr_save_matches = ( req.query.createMatches === 'true' ? true : false )
 
   // In order to prevent issue
   req.query.createMatches = undefined
 
   // console.log( teams )    // array of teams imported from module
 
-  const api = 'https://v3.football.api-sports.io'
+  // const api = 'https://v3.football.api-sports.io'
+  // url: `${ api }/fixtures?season=2020&league=39&from=${ req.params.from }&to=${ req.params.to }`,
 
-  // const response = 'ddd'
   const response = await axios( {
-    // url: `${ api }/fixtures?season=2020&league=39&from=${ req.params.from }&to=${ req.params.to }`,
-    url: `${ api }/fixtures?season=2020`,
-    headers: { 'x-rapidapi-key': 'd3feda58281e0a04b0e895700cee1565' },
-    params: req.query   // YES 
+    url: `${ process.env.API_FOOTBALL_URL }/fixtures`,
+    headers: { 'x-rapidapi-key': process.env.API_FOOTBALL_KEY },
+    params: req.query   // YES :)
   } )
 
   // console.log( response.data )
@@ -468,11 +483,10 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
   let fixtures_stg_1 = response.data.response   // stg => stage
 
   let fixtures_stg_2 = fixtures_stg_1.map( ( item ) => {
-    const { fixture, teams } = item
+    const { fixture, teams, league } = item
 
     let title = `${ teams.home.name } x ${ teams.away.name }`
     let week_number = moment( fixture.timestamp * 1000 ).week()
-    let match_year = moment( fixture.timestamp * 1000 ).format( 'YYYY' )
     let week_year = moment.utc( fixture.timestamp * 1000 ).endOf( "week" ).format( "YYYY" )
 
     newItem = {
@@ -484,10 +498,9 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
         year: week_year,
         id: `${ week_year }-${ week_number }`
       },
-      league: item.league,
+      league,
       team_home: teams.home,
       team_away: teams.away,
-      year: match_year,
       title
     }
 
@@ -495,7 +508,7 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
   } )
 
 
-  // *** Replace team number id (39) to mongoId (_id)
+  // *** Find teams in Mongodb and add mongo _id
   // state 3 is the last stage which will be save to DB
   let fixtures_stg_3 = fixtures_stg_2.map( ( item ) => {
 
@@ -516,11 +529,11 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
   } )
 
   let docs = []
-  if ( saveMatches ) {
+  if ( req_qr_save_matches ) {
     docs = await Match.insertMany( fixtures_stg_3 )
   }
 
-  // console.log( '--- saveMatches: ' + saveMatches )   // Good Good
+  // console.log( '--- req_qr_save_matches: ' + req_qr_save_matches )   // Good Good
 
 
   // res.json( matches_ )
@@ -531,8 +544,78 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
     docsInserted: ( docs.length > 0 ? docs.length : 'none' ),
     // response,
     fixtures_stg_1,
-    fixtures_stg_2,
+    // fixtures_stg_2,
     fixtures_stg_3,
     // docs: docs.length
+  } )
+} )
+
+// 2021-01-13
+// @route   GET: api/matches/update-multiple-result
+// @desc    Update multipe Match results using api-football
+// @acces   Admin only
+exports.updateMultipleResults = asyncHandler( async ( req, res, next ) => {
+  console.log( '--- updateMultipleResults() ---'.yellow )
+
+  console.log( req.params )         // {}
+  console.log( req.query )          // { from: '2020-12-18', to: '2020-12-22', createMatches: 'false' }
+
+  // ** lines below in order to prevent issue
+  let req_qr_update_results = req.query.updateResults === 'true' ? true : false
+  req.query.updateResults = undefined
+
+
+  const response = await axios( {
+    url: `${ process.env.API_FOOTBALL_URL }/fixtures`,
+    headers: { 'x-rapidapi-key': process.env.API_FOOTBALL_KEY },
+    params: req.query   // YES :)
+  } )
+
+  const fixtures = response.data.response
+
+  if ( req_qr_update_results ) {
+    fixtures.map( async ( item ) => {
+      // ** First filter fixtures 
+      // * Then update match result 
+      // * Then uptade/mark match prds (correct/not) 
+
+      let fixture_id = item.fixture.id   // api id
+      console.log( 'fixture_id : ' + fixture_id )
+      console.log( `${ item.teams.home.name } x ${ item.teams.away.name }` )
+      let match_finished = item.fixture.status.short === "FT"
+
+      let goals = {
+        team1: item.goals.home,
+        team2: item.goals.away
+      }
+
+      if ( match_finished ) {
+        let _match = getMatchTobeUpdated( goals )
+        // console.log( _match )
+
+        try {
+          const response = await Match.findOneAndUpdate( { id_: fixture_id }, _match, { new: true, runValidators: true } )
+          // console.log(response)  // output: {... the whole new updated match}
+
+          let success = await markPrdsOfMatch( response._id, response.resultKey, response.resultKey2 )
+
+        } catch ( error ) {
+          console.log( error )
+        }
+
+        // matchesUpdated++    // Doens't work here
+      }
+    } )
+  }
+
+
+  res.json( {
+    success: true,
+    nResults: fixtures.length,
+    // successfully_marked_prds: success   // not defined
+    // matchesUpdated : matchesUpdated.length
+    // fixtures,
+    // docsUpdated: ( docs.length > 0 ? docs.length : 'none' ),
+    // response
   } )
 } )

@@ -22,6 +22,7 @@ import './css/week-selector.css'
 import './css/flip-card.css'
 import './css/admin.css'
 import './css/responsive.css'
+import './css/match-collapse.css'
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import App from './App';

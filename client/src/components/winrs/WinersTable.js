@@ -16,7 +16,7 @@ const WinersTable = ( {
 
 
   const TableSpiner = () => <tr>
-    <th colSpan="5" className="text-center bg-white p-3">
+    <th colSpan="9" className="text-center bg-white p-5">
       <Spinner animation="border" variant="warning" />
     </th>
   </tr>
@@ -44,8 +44,9 @@ const WinersTable = ( {
     </thead>
 
     <tbody>
-      { !loading && winners
-        && winners.map( ( wnr, index ) => <WinrsTR winner={ wnr } key={ index } /> ) }
+      { !loading && winners && winners.map( ( wnr, index ) =>
+        <WinrsTR winner={ wnr } key={ index } />
+      ) }
       { loading ? <TableSpiner /> : <></> }
     </tbody>
   </table>

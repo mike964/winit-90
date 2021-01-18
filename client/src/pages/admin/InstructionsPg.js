@@ -9,8 +9,7 @@ const InstructionsPg = () => {
 
   const Checkmarkk = () => <span> - </span>
 
-  return <div className="bg-ccc black p-2 w-90 mx-auto">
-
+  return <div className="bg-444 black p-2 w-90 mx-auto">
     <h4 className="center"> Admin Instructions / Checklist </h4>
     <p>2020-08-19</p>
 

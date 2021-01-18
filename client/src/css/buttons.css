@@ -1,17 +1,20 @@
 /* NAVBAR AUTH BUTTON */
 .auth {
 border: none;
-border-radius: .3rem;
-padding: 4px 8px ;
+border-radius: 2rem;
+padding: 4px 10px ;
 color: white;
-background-color: #6900b4;
-/* border: 1px white solid; */
+/* background-color: #6900b4; */
+background-color: #505050; 
+/* border: 1px white solid;  */
+font-weight: 500;
 } 
 
 .auth:hover {
-  background-color: #9500ff; 
+  /* background-color: #9500ff;  */
   /* background-color: #0099ff; */
-  
+  color: gold;
+  /* background-color: #3b3b3b;  */
 }
 
 .auth.signup:hover {

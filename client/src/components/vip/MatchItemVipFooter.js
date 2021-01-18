@@ -77,10 +77,27 @@ const MatchItemVipFooter = ( { match, answerKey, clickedTeam, odds } ) => {
     }
     // console.log( success )
     // let success = await addVipPrediction_DB( newPrd )
-    return success   // In order to user in Child Component 
-
+    return success   // In order to user in Child Component   
   }
-  //======================================================================================================
+
+  const payWillWin = () => {
+    // ادفع 10 ستربح 24
+    return <div className="ib pt-1 white">
+      <span className="mx-2">ادفع</span> { ' ' }
+      <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '10' ? 'gold' : '' ) }
+        onClick={ () => handleOptionClick( 10 ) }
+      > $10 </span>
+      <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '20' ? 'gold' : '' ) }
+        onClick={ () => handleOptionClick( 20 ) }
+      > $20 </span>
+      <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '30' ? 'gold' : '' ) }
+        onClick={ () => handleOptionClick( 30 ) }
+      > $30 </span>
+      <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '100' ? 'gold' : '' ) }
+        onClick={ () => handleOptionClick( 100 ) }
+      >$100</span>
+    </div>
+  }
   //======================================================================================================
   return <div className="row bg-555">
     {/* SM & Bigger Screen Submit Btn */ }
@@ -102,28 +119,13 @@ const MatchItemVipFooter = ( { match, answerKey, clickedTeam, odds } ) => {
         <span className="white"> ستربح</span>
       </div>
 
-      <div className="ib pt-1 white">
-        <span className="mx-2">ادفع</span> { ' ' }
-        <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '10' ? 'gold' : '' ) }
-          onClick={ () => handleOptionClick( 10 ) }
-        > $10 </span>
-        <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '20' ? 'gold' : '' ) }
-          onClick={ () => handleOptionClick( 20 ) }
-        > $20 </span>
-        <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '30' ? 'gold' : '' ) }
-          onClick={ () => handleOptionClick( 30 ) }
-        > $30 </span>
-        {/* <span className={ "ulineonhover clickable mx-2 " + ( clickedOption === '100' ? 'gold' : '' ) }
-          onClick={ () => handleOptionClick( 100 ) }
-        >$100</span> */}
 
-        {/* CUSTOM MONEY INPUT */ }
-        {/* <input type="text"
+      {/* CUSTOM MONEY INPUT */ }
+      {/* <input type="text"
           className="chashin-input mx-2"
           value={ stake }
           onChange={ ( e ) => handleStakeInputChange( e.target.value ) }
         /> */}
-      </div>
     </div>
       : <div className="col center p-1">
         { error && error.type === 'noBalance' &&

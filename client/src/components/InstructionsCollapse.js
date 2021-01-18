@@ -1,7 +1,7 @@
 import React from 'react'
 
 const InstructionsCollapse = () => {
-  return <div className="p-1 text-r curved" dir="rtl" style={ { background: '#00000070' } }>
+  return <div className="p-1 text-r curved bg-b" dir="rtl"  >
     <div className="p-2 clickable">
       <a className="gold bold"
         data-toggle="collapse"
@@ -24,6 +24,9 @@ const InstructionsCollapse = () => {
           کل ما علیک فعله هو ان تنقر علی شعار الفریق الذي تتوقع سیفوز، ثم تحدید فارق الاهداف باستخدام العداد
         </li>
         <li>بعد تسجیل التوقع لجمیع المباریات الظاهرة، انقر علی زر تسجیل التوقعات في اسفل الشاشة</li>
+        <li>
+          لکل توقع صحیح ستحصل علی 10 نقاط علی الاقل و 30 نقطه علی الاکثر
+     </li>
       </ul>
     </div>
   </div>

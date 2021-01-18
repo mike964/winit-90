@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { setClickedWeek, stClickedLig, hideFinishedMatches } from '../../redux/actions/global.actions';
 import { useSelector } from 'react-redux';
 import Switch from '../../components-common/Switch';
-import { setFilter } from '../../redux/actions/filter.actions';
 import { loadPredictions, resetPredictions } from '../../redux/actions/prediction.actions';
 import RefreshBtn from '../RefreshBtn';
 import { getMatches_DB, setMatchesLoading, setMatchesRedux } from '../../redux/actions/match.actions';
-import LigSelector from './LigSelector';
 import { Button } from 'react-bootstrap';
 
 const MatchBar = ( { matchesCount } ) => {
 
-  const { selectedWeek } = useSelector( state => state.global )
+
   // Hide finished matches switch 
   let { notFinished, hideFinished } = useSelector( state => state.global )
 
@@ -33,20 +31,20 @@ const MatchBar = ( { matchesCount } ) => {
     stClickedLig( 'All' )
   }
 
-  const handleWeekSelect = ( week ) => {  // [ thisWeek - nextWeek ]
-    resetPredictions()
-    setClickedWeek( week )
-  }
+
 
   ////////////////////////////////////////////////////////////////////////////////////
   // =================================================================================
-  return <div className="match-bar">
-
+  return <div className="match-bar mb-2">
 
     <div className="row row-1 py-2 py-sm-3 mb-2 white">
 
-      <div className="col-16 col-sm-4 center">
-        <span className="x">مجموع المباریات : { matchesCount }</span>
+      <div className="col">
+        <span className="clickable">Expand All</span>
+      </div>
+
+      <div className="col  col-sm-4 center">
+        <span className="x">المجموع : { matchesCount }</span>
         <span className="d-sm-none fr">
           <RefreshBtn onclick={ HandleRefreshClick } className='white' />
         </span>
@@ -68,18 +66,6 @@ const MatchBar = ( { matchesCount } ) => {
     </div>
 
 
-    <div className="week-selectorr text-center mb-2">
-      <div className={ selectedWeek === 'nextWeek' ? "item__selected" : "item" }
-        onClick={ () => handleWeekSelect( 'nextWeek' ) }
-      > الاسبوع القادم </div>
-      <div className={ selectedWeek === 'thisWeek' ? "item__selected" : "item" }
-        onClick={ () => handleWeekSelect( 'thisWeek' ) }
-      > هذا الاسبوع </div>
-    </div>
-
-    <LigSelector />
-
-    <div className="mb-3"></div>
   </div>
 }
 

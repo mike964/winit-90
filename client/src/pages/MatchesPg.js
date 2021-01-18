@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import MatchList from '../components/match/MatchList'
 import MatchBar from '../components/match/MatchBar';
+import LigSelector from '../components/match/LigSelector';
 import SubmitAllBtnBox from '../components/match/SubmitAllBtnBox';
 import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { getMatches_DB } from '../redux/actions/match.actions';
 import InstructionsCollapse from '../components/InstructionsCollapse';
+import WeekBox from '../components/match/WeekBox';
 //=================================================================================================
 const MatchesPg = () => {
 
@@ -16,6 +18,8 @@ const MatchesPg = () => {
   // const thisWeekId = useSelector( state => state.week.thisWeek._id )
   // const nextWeekId = useSelector( state => state.week.nextWeek._id )
   const { thisWeek, nextWeek } = useSelector( state => state.week )
+
+
 
   console.log( thisWeek )
 
@@ -50,17 +54,28 @@ const MatchesPg = () => {
 
   //===================================================================================
   //===================================================================================
-  return <div className="page">
-    <div className="container px-2 pb-2 bg-shadow-6">
+  return <div className="page" >
+    <div className="container bg-111 p-1 py-3" style={ { backgroundColor: '#181818' } }>
+
+      {/* <LigSelector /> */ }
 
 
+
+
+      <div className="mb-3 mx-auto" style={ { maxWidth: '640px' } }>
+        <InstructionsCollapse />
+      </div>
+
+      {/* <div className="p-2 m-2 center gold" dir="rtl">
+        <i class="fas fa-square"></i> { ' ' }
+        <span className="x">لکل توقع صحیح، تحصل 10 نقاط علی الاقل</span>
+      </div> */}
+
+      <WeekBox />
 
       <MatchBar matchesCount={ selectedWeek === 'thisWeek' ? thisWeekMatches.length : nextWeekMatches.length } />
 
 
-      <div className="mb-2 mx-auto" style={ { maxWidth: '640px' } }>
-        <InstructionsCollapse />
-      </div>
 
 
       { matchesLoading ? <div className="text-center p-5">
@@ -69,13 +84,13 @@ const MatchesPg = () => {
         : <>
           <MatchList matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches } />
         </> }
-    </div>
-    { !matchesLoading && <div className="container p-0 bg-shadow-8">
-      {/* Submit All Predictions Btn */ }
-      <div className="center bg-shadow-6">
+
+      { !matchesLoading && <div className="center bg-shadow-66">
+        {/* Submit All Predictions Btn */ }
         <SubmitAllBtnBox />
-      </div>
-    </div> }
+      </div> }
+    </div>
+
 
   </div>
 

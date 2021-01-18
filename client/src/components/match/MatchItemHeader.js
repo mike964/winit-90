@@ -51,7 +51,9 @@ const MatchItemHeader = ( { match, matchFinished, matchStarted, vip } ) => {
 
 
   }
-  const classname = getClassName()
+  // const classname = getClassName()
+  const classname = 'p-1 bg-aaa white'
+
   /////////////////////////////////////////////////////////////////////////////////////////
   // =================================================================================
   return <div className={ classname }>

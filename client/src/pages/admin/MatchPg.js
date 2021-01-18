@@ -8,7 +8,7 @@ import InputAppend from '../../components-common/InputGroupe'
 import RefreshBtn from '../../components/RefreshBtn'
 import { toggleAllRows } from '../../redux/actions/global.actions'
 import { useSelector } from 'react-redux'
-import { Button, FormControl, InputGroup } from 'react-bootstrap'
+import { Button, FormControl, InputGroup, Spinner } from 'react-bootstrap'
 import { getMatches_DB } from '../../redux/actions/match.actions'
 import AddMatchForm from '../../components-admin/match/AddMatchForm'
 import { filterMatches } from '../../redux/actions/filter.actions'
@@ -26,7 +26,8 @@ const MatchPg = () => {
 
   const { filters } = useSelector( state => state )
   const { matches } = useSelector( state => state.match )
-  const [ filteredMatches, setFilteredMatches ] = useState( [] )
+  const [ filteredMatches, setFilteredMatches ] = useState( '' )
+  const [ matchesLoading, setMatchesLoading ] = useState( true )
   // const filteredMatches = ( matches ? filterMatches( matches, filters ) : [] )
 
 
@@ -34,6 +35,7 @@ const MatchPg = () => {
     if ( matches ) {
       setFilteredMatches( filterMatches( matches, filters ) )
     }
+    // setMatchesLoading( false )
   }, [ matches, filters ] )
 
   const handleAddMatchBtn = () => {
@@ -88,7 +90,10 @@ const MatchPg = () => {
 
 
     <div className="pb-3">
-      <MatchTable matches={ filteredMatches } />
+
+      <MatchTable matches={ filteredMatches } loading={ filteredMatches.length ? false : true } />
+
+
 
       <div className="p-3">
         <span className="x">Left green border means match.finished = true</span>

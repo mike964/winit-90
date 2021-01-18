@@ -65,14 +65,15 @@ const Navbar = () => {
     { currentUser && <>
 
       <div className="col-auto pt-2 px-1">
-        <span className="mx-3">
+        <span className="mx-3" dir='rtl'>
+          <i className="fas fa-user-circle em-12" /> { ' ' }
           <span className="fw-400"> مرحباً </span> { ' ' }
           <span className="bold white">
             {/* { getFirstName( currentUser.name ) } */ }
             { currentUser.name }
           </span>
         </span>
-        <span className="mx-3">
+        <span className="mx-2">
           <NotificationBell />
         </span>
       </div>
@@ -99,7 +100,7 @@ const Navbar = () => {
       ? <div className="col text-r p-1">
         <AuthBtnsModal />
       </div>
-      : <div className='p-1' style={ { color: '#2b005c' } }>.</div>
+      : <div style={ { color: '#2b005c', height: '46px' } }>.</div>
       // Line above in order to prevent navbar collpase when no btns
     }
   </>
@@ -132,7 +133,7 @@ const Navbar = () => {
     {/* Second Row */ }
 
     <div className="scnd-row d-flex">
-      <div className="flex-grow-1 d-flex justify-content-center bg-white">
+      <div className="flex-grow-1 d-flex justify-content-center">
 
         <Link to="/"
           className={ navbar === 'home' ? 'navitem selected home' : 'navitem home' }
@@ -189,7 +190,7 @@ const Navbar = () => {
       </div>
 
       { isAdmin &&
-        <div className="admin bg-w p-1">
+        <div className="admin  pt-2">
           <Link to="/admin"
             className={ ( navbar === 'admin' ? 'navitem__selected' : 'navitem' ) }
             onClick={ () => setNavbar( 'admin' ) }

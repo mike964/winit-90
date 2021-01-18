@@ -1,0 +1,33 @@
+.match-collapse {
+  color: #ffffff;   
+  color: #15ff00;   
+  /* background-color: #333;   */
+  /* background: linear-gradient(270deg,#ff2882,#7b00c2 45%); */
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.15); 
+    margin-bottom: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.match-collapse > .header {
+  background-color: rgb(54, 54, 54);
+  color: white;
+  font-weight: 500;
+  padding: 6px 0;
+}
+.match-collapse > .body {
+  background-color: rgb(31, 31, 31);
+}
+#collapse-prlig {
+  color: #ffffff;   
+  background-color: #333; 
+  /* background: linear-gradient(270deg,#ff2882,#7b00c2 45%); */
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.15); 
+}
+
+#collapse-splig {
+  color: #ffffff;
+  color: #00167a;  
+  color: #ffffff;   
+  background-color: #333; 
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.15); 
+}

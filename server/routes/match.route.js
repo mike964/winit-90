@@ -3,14 +3,14 @@ const express = require( 'express' )
 const { protect } = require( '../middleware/auth.mdlwr' )
 const {
   getMatches, createMatch, getMatch, deleteMatch, updateMatch,
-  updateMatchResult, markPredictions, createMultipleMatches
+  updateMatchResult, markPredictions, createMultipleMatches, updateMultipleResults
 } = require( '../controllers/match.cont' )
 const {
   setWeek, setTeams, setMatch, setLeague
 } = require( '../middleware/mdlwrs' )
 const predictionRouter = require( './prediction.route' )
 
-// app.use( '/api/v1/matches' )
+// app.use( '/api/matches' )
 //====================================================================
 const router = express.Router( { mergeParams: true } )
 
@@ -34,21 +34,22 @@ router
   // .post( createMultipleMatches )  // using api-football : post does't include req.params
   .get( createMultipleMatches )  // using api-football
 
+// ** Update multiple match results using api-football
+router.route( '/update-multiple-result' )
+  .get( updateMultipleResults )
+
 router
   .route( '/:id' )
   .get( getMatch )
   .patch( updateMatch )
   // .patch( setResult, updateMatchPredictions, updateMatch )
-
   .delete( deleteMatch )
 
 router.route( '/update-result/:matchId' )
   // .post( updateMatchResult, updateTeamsLast5matches, markPredictions )
   .post( updateMatchResult, markPredictions )
 
-// ** Update multiple match results using api-football
-router.route( '/update-result-multiple' )
-  .get()
+
 
 //   .patch( protect, authorize( 'publisher', 'admin' ), updateStep )
 //   .delete( protect, authorize( 'publisher', 'admin' ), deleteStep )

@@ -23,7 +23,7 @@ const AdminPg = () => {
 
 
   //========================================================================
-  return <div className="admin-pg white bg-333">
+  return <div className="admin-pg white bg-222 pb-3">
 
     <div className="row p-2 my-2 bold ">
       <div className="col p-1 em-12 ">

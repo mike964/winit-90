@@ -9,7 +9,7 @@ import Checkbox from '../../components-common/Checkbox';
 import SpinrSuccsFail from '../../components-common/SpinrSuccsFail';
 
 
-// This component is used both for  Edit Match info & Update match result)
+// This component is used both for  Edit Match info & Update match result
 //===================================================================================
 const EditMatchForm = ( { handleModalShow } ) => {
   const match = useSelector( state => state.match.currentMatch )
@@ -42,14 +42,8 @@ const EditMatchForm = ( { handleModalShow } ) => {
   // const [ team1Goals, setTeam1Goals ] = useState( 0 )
   // const [ team2Goals, setTeam2Goals ] = useState( 0 )
   const [ odds, setOdds ] = useState( match ? match.odds : { team1: 0.0, team2: 0.0, draw: 0.0 } )
-
   const [ vip, setVip ] = useState( match ? match.vip : false )
-
-
   const [ reqStatus, setReqStatus ] = useState( '' )  // [spinner - success - fail]
-  // const [ req2Status, setreq2Status ] = useState( '' )  // [spinner - success - fail]
-
-  // const onChange = (e) => setState(...state)
 
 
   // Update  Match Info
@@ -84,8 +78,14 @@ const EditMatchForm = ( { handleModalShow } ) => {
     setReqStatus( 'spinner' )    // Show Spinner 
 
     let success = await updateMatchResult( match._id, {
-      goals,
-      endedInPenalties: penalties,
+      goals: {
+        "team1": goals.team1,
+        "team2": goals.team2
+      },
+      penalty: penalties ? {
+        "team1": goals.penalty1,
+        "team2": goals.penalty2
+      } : null
     } )
 
     console.log( success )
@@ -95,7 +95,10 @@ const EditMatchForm = ( { handleModalShow } ) => {
     // setTimeout( () => setReqStatus( '' ), 3000 )
   }
 
-
+  const handlePenaltyCheck = () => {
+    setPenalties( !penalties )
+    setGoals( { ...goals, penalty1: 0, penalty2: 0 } )
+  }
 
   //============================================================================
   return <form className='text-dark p-2'>
@@ -124,7 +127,8 @@ const EditMatchForm = ( { handleModalShow } ) => {
         <Checkbox
           label="Ended in Penalties"
           checked={ penalties }
-          onclick={ () => setPenalties( !penalties ) }
+          //onclick={ () => setPenalties( !penalties ) }
+          onclick={ handlePenaltyCheck }
         />
       </div>
     </div>

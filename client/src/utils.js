@@ -123,17 +123,18 @@ export const getPredictionTxt = ( gd, winner ) => {
     // return 'انقر علی شعار الفریق الذي تتقوع سیفوز'
     return ''
   } else if ( gd === 0 ) {
-    return 'المباراة ستنتهی بالتعادل'
+    // return 'المباراة ستنتهی بالتعادل'
+    return 'تعادل'
   } else if ( gd === 1 ) {
-    return ` ${ winner } سیفوز بفارق هدف`
+    return `فوز ${ winner } بفارق هدف`
   } else if ( gd === 2 ) {
-    return ` ${ winner } سیفوز بفارق هدفین`
+    return `فوز ${ winner } بفارق هدفین`
   } else if ( gd > 2 && gd < 4 ) {   // 3, 4,5
-    return ` ${ winner } سیفوز بفارق ${ gd } اهداف`
+    return `فوز ${ winner } بفارق ${ gd } اهداف`
   } else if ( gd === 4 ) {   // 5 , 6, ...
-    return `${ winner } سیفوز بفارق 4 اهداف او اکثر`
+    return `فوز ${ winner } بفارق 4 اهداف او اکثر`
   } else if ( gd === 5 ) {
-    return `${ winner } سیفوز برکلات الترجیح `
+    return `فوز ${ winner }  برکلات الترجیح`
   } else {
     return 'حدد فارق الاهداف باستخدام العداد'
   }

@@ -227,7 +227,6 @@ const MatchItemVip = ( { match } ) => {
       </div>
 
 
-
       {/* FOOOTER - SUBMIT ROW */ }
       { showFooter && !alreadyPredicted &&
         <MatchItemVipFooter

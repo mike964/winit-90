@@ -7,7 +7,8 @@ const Logo = ( {
   size,
   rounded,
   bg,
-  className
+  className,
+  style
 } ) => {
 
   // let logoUrl = ( country ? `http://localhost:3500/logos/${ country }/${ name }.png`
@@ -19,11 +20,12 @@ const Logo = ( {
 
   const logoStyle = {
 
-    height: ( size ? `${ size }px` : '' ),
-    // width: 'auto',
+    width: '100%',
+    maxWidth: size ? size : '',    // 25px
     // borderRadius: '50%',
     borderRadius: ( rounded ? '50%' : '' ),
-    backgroundColor: ( bg ? bg : '' )
+    backgroundColor: ( bg ? bg : '' ),
+    ...style
   }
 
   //====================================================================
@@ -35,7 +37,7 @@ const Logo = ( {
     style={ logoStyle }
     //onError={ () => { console.log( 'say hi' ) } } 
     onError={ () => stAltSrc( someclubpng ) }
-    alt="logo"
+  //alt="logo"
   />
 }
 export default Logo

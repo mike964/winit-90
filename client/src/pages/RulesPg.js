@@ -22,7 +22,7 @@ const RulesPg = () => {
     <div className="container">
       {/* <h4> التعلیمات </h4> */ }
 
-      <div dir='rtl' className="text-r c-eee bg-shadow p-3 curved-6 box">
+      <div dir='rtl' className="text-r bg-333 c-eee  p-3 curved-6">
         <Tabs defaultActiveKey="weeklycontest" id="uncontrolled-tab-example">
 
           <Tab eventKey="weeklycontest" title="المسابقة الاسبوعیة" className='p-1' tabClassName='goldd em-12 bold'>

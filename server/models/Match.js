@@ -34,6 +34,11 @@ const MatchSchema = new Schema( {
     type: Object,
     // ref: 'League',
     required: [ true, 'Match must belong to a league' ]
+    // "id_": 140, 
+    // "_id": "5ef47bb00ceeb33b10e104fb",
+    // "name": "La Liga",
+    // "shortName": "laliga",
+    // "country": "Spain",
   },
   title: {   // 'atmadrd x barca'  (for admin)
     type: String,
@@ -48,9 +53,6 @@ const MatchSchema = new Schema( {
   },
   timestamp: {
     type: Number
-  },
-  year: {   // '2020'
-    type: String
   },
   week: {  // 45
     type: Object,
@@ -70,11 +72,10 @@ const MatchSchema = new Schema( {
   },
   odds: {   // if user make vip prediction correct will win this much
     type: Object,
-    default: {
-      team1: 0.0,
-      team2: 0.0,
-      draw: 0.0
-    }
+    default: null
+    //   team1: 0.0,
+    //   team2: 0.0,
+    //   draw: 0.0 
   },
   //=======================================================
   // *  FIELS BELOW Will get Calculate Automatically  * ///
@@ -93,12 +94,11 @@ const MatchSchema = new Schema( {
   },
   result: {
     type: Object,
-    default: {
-      // goals: { team1: null, team2: null, team1pen: null, team2pen: null },
-      // gd: null,
-      // penalties  : false ,  // ( if match ended in penalties) 
-      score: null   //  '1-1 (4-3 p)'  //  (result string - In order to display in frontend) 
-    }
+    default: null
+    // goals: { team1: null, team2: null, team1pen: null, team2pen: null },
+    // gd: null,
+    // penalty : {team1, team2}  OR false ,  // ( if match ended in penalties) 
+    // score: null   //  '1-1 (4-3 p)'    //  (result string - In order to display in frontend) 
   },
   resultKey: { // ( 1 character string)
     // 1  => team 1 won,  2 => team 2 won,  3 => draw 
@@ -184,7 +184,7 @@ MatchSchema.post( 'save', function ( doc, next ) {
 
 MatchSchema.pre( 'findOneAndUpdate', function ( next ) {
   // MatchSchema.pre( /^find/, function ( next ) { 
-  console.log( '--- Match.pre( findOneAndUpdate ) ---' )
+  // console.log( '--- Match.pre( findOneAndUpdate ) ---' )
 
   // console.log( req.body )   // doesn't work here 
 
@@ -204,6 +204,7 @@ MatchSchema.post( 'findOneAndUpdate', function ( docs, next ) {
 // Prevent duplicate matches; Each team can play one match at time
 // id_ is api-football fixture.id
 // MatchSchema.index( { timestamp: 1, id_: 1 }, { unique: true } )
+MatchSchema.index( { id_: 1, _id: 1 }, { unique: true } )
 // Line above make issues 
 
 const Match = mongoose.model( 'Match', MatchSchema )

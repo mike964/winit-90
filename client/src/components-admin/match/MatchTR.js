@@ -7,7 +7,7 @@ import PrdsModal from '../prd/PrdsModal'
 import SpinrSuccsFail from '../../components-common/SpinrSuccsFail'
 
 const MatchTR = ( { match, index, expanded } ) => {
-  const { team1, team2, result, week } = match
+  const { team1, team2, team_home, team_away, result, week } = match
   // const team1ShortName = ( match.team1_shortName ? match.team1_shortName : match.team1.shortName )
   // const team2ShortName = ( match.team2_shortName ? match.team2_shortName : match.team2.shortName )
 
@@ -41,15 +41,17 @@ const MatchTR = ( { match, index, expanded } ) => {
 
   //////////////////////////////////////////////////////////////////////////////////////////
   return <>
-    <tr className={ `match-tr` }>
+    <tr >
 
       <td className="clickable p-0" onClick={ () => setshowScndRow( !showScndRow ) }>
-        <div className={ `row py-2 match-tr ${ match.finished ? 'border-left-green' : 'border-left-sky' }` }>
+        <div className={ `row p-1 ${ match.finished ? 'border-left-green' : 'border-left-sky' }` }>
           <div className="col-auto px-2">{ index + 1 }.</div>
-          <div className="col">{ match._id }</div>
-          <div className="col-2">
-            {/* <span className="bolldd"> { match.league.shortName }</span> */ }
-          </div>
+          <span className="col">{ match._id }</span>
+          { ' | ' }
+          <span className="col">{ match.id_ }</span>
+          {/* <div className="col-2">
+           <span className="bolldd"> { match.league.shortName }</span>  
+          </div> */}
         </div>
       </td>
 
@@ -60,17 +62,19 @@ const MatchTR = ( { match, index, expanded } ) => {
       <td className="text-l">
         <div className="row">
           <div className="col text-r">
-            <span>{ team1.shortName } </span>
+            <span>{ team1.shortName ? team1.shortName : team_home.name.toLowerCase().slice( 0, 6 ) } </span>
           </div>
-          <div className="col-auto px-2 center">{ result.score }</div>
-          <div className="col ">{ team2.shortName } </div>
+          <div className="col-auto px-2 center">{ result ? result.score : '' }</div>
+          <div className="col ">
+            <span>{ team2.shortName ? team2.shortName : team_away.name.toLowerCase().slice( 0, 6 ) } </span>
+          </div>
         </div>
       </td>
 
 
       <td className="center">
         { match.vip ? <span className="green fl">&#10004;</span> : '' }
-        { match.odds.team1 } | { match.odds.draw } | { match.odds.team2 }
+        { match.odds && <span> { match.odds.team1 } | { match.odds.draw } | { match.odds.team2 }</span> }
       </td>
 
       <td className="text-center">
@@ -78,7 +82,7 @@ const MatchTR = ( { match, index, expanded } ) => {
       </td>
 
       <td className="text-center">
-        { week.number }
+        { week && week.number }
       </td>
 
       {/* Actions td */ }
@@ -104,7 +108,8 @@ const MatchTR = ( { match, index, expanded } ) => {
 
         <span className="green clickable mx-2 ulineonhover"
           onClick={ handleUpdatePrds }
-        > up Prds </span>
+        > Upd Points </span>
+        {/* update points for prds of match */ }
 
         <PrdsModal
           show={ showPrdsModal }

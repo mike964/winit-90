@@ -14,11 +14,17 @@ import { useSelector } from 'react-redux'
 import {
   updatePrediction_byMatch, addPrediction, deletePrediction
 } from '../../redux/actions/prediction.actions'
+import { green } from 'colors'
 // import LastFive from './LastFive' 
 
 //================================================================================
 const MatchItem = ( { match } ) => {
   const { league, note, date, finished, penalties } = match
+
+  const matchIstoday = ( moment().format( 'YYYY-MM-DD' ) === moment( date ).format( 'YYYY-MM-DD' ) )
+  const match_date = matchIstoday ? moment( match.date ).calendar()
+    //: moment( date ).format( 'YYYY-MM-DD h:mm A' )
+    : moment( date ).format( 'MMM DD   h:mm A' )
 
   const team1 = match.team1.name === 'null' ? match.team_home : match.team1
   const team2 = match.team2.name === 'null' ? match.team_away : match.team2
@@ -38,6 +44,9 @@ const MatchItem = ( { match } ) => {
   const [ winnerName, setwinnerName ] = useState( '' )     // Aresenal or Chelsea
   const [ hidden, sethidden ] = useState( false )   // If true => hide this match Item 
   const [ showSpiner, setShowSpiner ] = useState( true )   // If true => hide this match Item 
+
+  // Scnd row is to display your prediction
+  const [ showScndRow, setShowScndRow ] = useState( false )   // If true => hide this match Item 
 
   const getShortName = ( x ) => x.slice( 0, 10 )
 
@@ -145,7 +154,8 @@ const MatchItem = ( { match } ) => {
   }
 
 
-  const handleTeamLogoClick = ( team ) => {   // team = ['team1','team2']   
+  const handleTeamLogoClick = ( team ) => {    // team = ['team1','team2']   
+    setShowScndRow( true )
     if ( firstClick ) setFirstClick( false )
 
     let ansKey
@@ -217,11 +227,11 @@ const MatchItem = ( { match } ) => {
     { match && <div className={ hidden ? "match-item hidden" : "match-item" }>
 
       {/* HEADER */ }
-      <MatchItemHeader
+      {/* <MatchItemHeader
         match={ match }
         matchStarted={ matchStarted }
         matchFinished={ matchFinished }
-      />
+      /> */}
 
       {/* BODY */ }
       <div className="row">
@@ -231,60 +241,49 @@ const MatchItem = ( { match } ) => {
          <LastFive last5matches={ team1.last5 } />  
         </div> */}
 
-        <div className="col-2 py-2 center" >
+        <div className="col-3 col-sm-2 pt-2 center" >
           <LogoBox
+            size='45px'
             team={ team1 }
-            size={ 50 }
             onclick={ () => handleTeamLogoClick( 'team1' ) }
             clickable={ matchStarted ? false : ( alreadyPredicted ? false : true ) }
             //clicked={ true }   // for test
             clicked={ clickedTeam === 'team1' ? true : false }
           />
           {/* DIV below will apper when page XS */ }
-          <div className="team_name_xs py-1">
+          <div className="team_name_xs center">
             <span onClick={ () => handleTeamLogoClick( 'team1' ) } >
-              { ( team1.name ).slice( 0, 10 ) }
+              { ( team1.name ).slice( 0, 12 ) }
             </span>
           </div>
         </div>
 
         {/* ** Middle Colmn ** */ }
-
-        <div className="col p-1 center" >
-
+        <div className="col center" >
           { showSpiner ? <Spinr />
             : <>
-
-              { !matchStarted &&
-                <div className="row pt-2 blue" dir="rtl">
-                  { !alreadyPredicted && <div className="col-auto p-1">
-                    { answerKey
-                      ? <i className="far fa-times-circle red clickable"
-                        onClick={ () => handleBtnX() } />
-                      : <i className="far fa-hand-point-left clickable"
-                        onClick={ () => handleBtnX() } /> }
-                    <span className="bold mx-2">توقعک :</span>
-                    <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
-                  </div> }
-
-                </div> }
+              <div className="c-888 py-1">
+                <span className={ matchIstoday ? "gold fw-400" : "" }>
+                  { match_date }
+                </span>
+              </div>
 
               { matchStarted && !alreadyPredicted && <div className="py-3">
-                <span className=" green">انتهی وقت تسجیل التوقع لهذه المباراة</span>
+                <span className="x" style={ { color: '#00ff00' } }>انتهی وقت تسجیل التوقع لهذه المباراة</span>
               </div> }
 
-              { alreadyPredicted && <div className="col py-3 center blue" dir="rtl"  >
+              { alreadyPredicted && <div className="col py-2 center" dir="rtl"  >
                 <span className="bold mx-2"> توقعک : </span>
                 <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
               </div> }
 
               { !alreadyPredicted && !matchStarted && <>
                 <div className="row">
-                  <div className="col pt-1 team_name_md">
+                  <div className="col team_name_md">
                     <span onClick={ () => handleTeamLogoClick( 'team1' ) }
                     > { team1.name }</span>
                   </div>
-                  <div className="col">
+                  <div className="col py-2 py-sm-1">
                     {/* GD Counter + Dice Btn */ }
                     <Counter
                       value={ goalDiff }
@@ -297,35 +296,47 @@ const MatchItem = ( { match } ) => {
                     <span onClick={ () => handleTeamLogoClick( 'team2' ) }
                     > { team2.name }</span>
                   </div>
-
                 </div>
               </> }
             </> }
-
-
-
         </div>
 
-        <div className="col-2 py-2 center" >
+        <div className="col-3 col-sm-2 pt-2 center" >
           <LogoBox
+            size='45px'
             team={ team2 }
-            size='50'
             onclick={ () => handleTeamLogoClick( 'team2' ) }
             clickable={ matchStarted ? false : ( alreadyPredicted ? false : true ) }
             //clicked={ true }   // for test
             clicked={ clickedTeam === 'team2' ? true : false }
           />
           {/* DIV below will apper when page XS */ }
-          <div className="team_name_xs py-1">
+          <div className="team_name_xs center">
             <span onClick={ () => handleTeamLogoClick( 'team2' ) } >
-              { ( team2.name ).slice( 0, 10 ) }
+              { ( team2.name ).slice( 0, 12 ) }
             </span>
           </div>
         </div>
 
       </div>
-    </div>
-    }
+
+      {/* ** Second Row ** */ }
+      { showScndRow && <>
+        { !matchStarted && !alreadyPredicted && <div className="row py-2 text-r" dir="rtl" style={ { borderTop: '1px solid gray' } } >
+          <div className="col-auto col-sm-4 px-2 center">
+            { answerKey
+              ? <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } />
+              : <i className="far fa-hand-point-left clickable" onClick={ () => handleBtnX() } /> }
+            <span className="bold mx-2">توقعک :</span>
+          </div>
+
+          <div className="col ">
+            <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
+          </div>
+        </div> }
+      </> }
+
+    </div> }
   </>
 }
 

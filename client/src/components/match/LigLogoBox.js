@@ -40,6 +40,7 @@ const LigLogoBox = ( {
     <Logo
       size={ size }
       src={ `/api/logos/_ligs/${ name }.png` }
+      style
     />
     {/* { label && <div className="center">
       { label }

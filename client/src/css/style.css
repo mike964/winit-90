@@ -3,8 +3,9 @@
 
 body {
   /* font-family: 'Lemonada', cursive; */
-  /* background-color: #000000; */
-  background-color: #061325;
+  background-color: #000000;
+  /* background-color: #061325; */
+  /* background-color: #141414;  */
   /* background-image: url("../img/ucl-wallpaper.jpg"); */  
   /* background-position: top, bottom; */ 
   /* background-repeat: repeat; */
@@ -14,12 +15,12 @@ body {
  
 
 .app {
-  background-image: url("../img/1348783.jpg");
-  background-size: auto; 
-    background-repeat: repeat;
+  /* background-image: url("../img/1348783.jpg"); */
+  /* background-size: auto;  */
+    /* background-repeat: repeat; */
   min-width: 340px;
   /* width: 100%;  */
-  min-height: 1100px; 
+  /* min-height: 1100px;  */
 
 }
 
@@ -114,22 +115,25 @@ background: linear-gradient(270deg,#ff2882,#963cff 45%);
 .match-item {  
   /* min-width: 460px; */
   /* width: 100%; */
-  max-width: 600px;
+  /* max-width: 600px; */
   /* margin-bottom: 10px !important; */
-  margin : 0 auto  10px;
+  /* margin :   4px 0; */
+  margin-bottom: 4px;
   background-color: #ffffff; 
+  background-color: rgb(68, 68, 68); 
+  /* border-bottom: 1px solid gray; */
   /* background-color: #e3f2ff;  */
   /* background-color: #111111;   */
   /* background-color: #0d0022;   */
   /* background-color: #00000093; */
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-  color: #020063;  
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */ 
+  color: #ffffff;  
   /* color: gold; */ 
   text-transform: capitalize;
   font-weight: 500;
   /* border: 1px solid #85c2ff;   */
   /* border-radius: 0px 15px 0px 10px; */
-  border-radius: 6px;
+  /* border-radius: 6px; */
   overflow: hidden;
   /* padding: 0px 0px 5px 0px;  */
   box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);

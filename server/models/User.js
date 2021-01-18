@@ -65,7 +65,11 @@ const UserSchema = new Schema( {
     default: 0
   },
   country: {   // optional 
-    type: String
+    type: Object
+    // name : 'saudi arabia'
+    // code : 'ksa'
+    // arabic : 'السعودیة'
+    // real : comes from :IP
   },
   paypalEmail: {   // optional 
     type: String

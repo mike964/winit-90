@@ -132,7 +132,6 @@ export const updateMatchResult = async ( matchId, _match ) => {
 
   console.log( _match )
 
-  // console.log( response.data )   
   try {
     const response = await axos.post( `/api/matches/update-result/${ matchId }`, _match )
 

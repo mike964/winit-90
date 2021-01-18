@@ -17,7 +17,6 @@ const PrdsofMatchTR = ( { prd } ) => {
     </> }
 
     <td>{ vip ? possibleWinning : points }</td>
-
     { vip && <>
       <td>{ prd.stake }</td>
       <td>{ prd.gotPaid ? 'T' : '-' }</td>
