@@ -3,7 +3,8 @@ import React from 'react'
 const RefreshBtn = ( {
   onclick,
   color,    // white - green
-  className    //  boolean 
+  className,   //  boolean 
+  style
 } ) => {
 
   const handleClick = () => {
@@ -18,12 +19,20 @@ const RefreshBtn = ( {
 
   }
 
+  const btnStyle = {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    ...style
+  }
 
-  const classname = className ? className : ''
   //==========================================================================
-  return <button className={ classname + ' bg-none border-none' } onClick={ handleClick } >
+  return <span className={ className ? className : '' }
+    onClick={ handleClick }
+    style={ btnStyle }
+  >
     <i className="fas fa-redo" /> Refresh
-    </button>
+    </span>
 
 }
 

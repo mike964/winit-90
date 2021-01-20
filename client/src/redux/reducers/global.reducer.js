@@ -7,7 +7,8 @@ const initState = {
   showAuthModal: false,     // If true show/launch sign up modal
   selectedLig: 'All',       // for ex. prlig or laliga, in order to filter matches
   hideFinished: false,      // hide finished match items
-  selected_week_prd: ''    // selected week id in user prds pg inside week selector
+  selected_week_prd: '',    // selected week id in user prds pg inside week selector
+  expandAllLigs: false    // expand all match collapses
 }
 
 
@@ -49,6 +50,11 @@ export default ( state = initState, action ) => {
       return {
         ...state,
         expandAll: !state.expandAll
+      }
+    case 'TOGGLE_ALL_LIGS':
+      return {
+        ...state,
+        expandAllLigs: !state.expandAllLigs
       }
     case 'DELETE_TODO':
       return {

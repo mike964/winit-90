@@ -20,15 +20,15 @@ import VipContestPg from './pages/VipContestPg'
 import { getMyVipredictions } from './redux/actions/vip.actions'
 import { getMyKarnames_DB } from './redux/actions/week-karname.actions'
 import ProtectedRoute from './components/auth/ProtectedRoute'
-// import ChargeBalancePg from './pages/payment/ChargeBalancePg'
+import ChargeBalancePg from './pages/payment/ChargeBalancePg'
 import CashoutPg from './pages/payment/CashoutPg'
-// import ScssfulPaymentPg from './pages/payment/ScssfulPaymentPg'
-import Sidebare from './components/Sidebare'
+// import ScssfulPaymentPg from './pages/payment/ScssfulPaymentPg' 
 import PredictionsPg from './pages/PredictionsPg'
 import MsgsPg from './pages/MsgsPg'
 import MyGoldPrdsPg from './pages/MyGoldPrdsPg'
 import SettingsPg from './pages/SettingsPg'
 import XsDropdown from './components/layout/XsDropdown'
+import Sidebar3 from './Sidebar3'
 
 
 
@@ -79,15 +79,11 @@ const App = () => {
       <Navbar />
       {/* <Clock /> */ }
 
-
-      <div className="d-none d-sm-block">
-        <Sidebare />
-      </div>
-
       {/* XS Drowdown (instead of sidebar) */ }
-      <div className="d-sm-none fl">
+      {/* <div className="d-sm-none fl">
         <XsDropdown />
-      </div>
+      </div> */}
+
 
 
 
@@ -105,13 +101,13 @@ const App = () => {
         <ProtectedRoute path="/admin" admin component={ AdminPg } />
         <Route path="/unauthorized" component={ Unauthorized } />
         <ProtectedRoute path="/cashout" component={ CashoutPg } />
-        {/* <ProtectedRoute path="/charge-balance" component={ ChargeBalancePg } /> */ }
+        <ProtectedRoute path="/charge-balance" component={ ChargeBalancePg } />
         {/* <Route path="/checkout?success=true" component={ ScssfulPaymentPg } /> */ }
 
         <ProtectedRoute path='/predictions' component={ PredictionsPg } />
         <ProtectedRoute path='/predictions-gold' component={ MyGoldPrdsPg } />
         <ProtectedRoute path='/messages' component={ MsgsPg } />
-        <ProtectedRoute path='/settings' component={ SettingsPg } />
+        {/* <ProtectedRoute path='/settings' component={ SettingsPg } /> */ }
 
         <Route path="*"  >
           <div className="center p-5 fs-20 boldd"> 404 Not Found </div>

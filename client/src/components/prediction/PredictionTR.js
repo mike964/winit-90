@@ -100,13 +100,13 @@ const PredictionTR = ( { prediction, vip } ) => {
             <span className="d-md-none">   { team1_acr_3 }</span>
             <span className="d-none d-md-inline-block"> { team1.name.substring( 0, 9 ) }</span>
             { ' ' }
-            <Logo src={ team1.shortName ? `/api/logos/${ team1.country }/${ team1.shortName }.png` : team1.logo } size='25' />
+            <Logo src={ team1.shortName ? `/api/logos/${ team1.country }/${ team1.shortName }.png` : team1.logo } size='25px' />
           </div>
           <div className="col-3 text-center">
             { resultt }
           </div>
           <div className="col text-left">
-            <Logo src={ team2.shortName ? `/api/logos/${ team2.country }/${ team2.shortName }.png` : team2.logo } size='25' /> { ' ' }
+            <Logo src={ team2.shortName ? `/api/logos/${ team2.country }/${ team2.shortName }.png` : team2.logo } size='25px' /> { ' ' }
             <span className="d-md-none">   { team2_acr_3 }</span>
             <span className="d-none d-md-inline-block"> { team2.name.substring( 0, 9 ) }</span>
           </div>

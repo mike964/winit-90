@@ -3,13 +3,14 @@
 
 body {
   /* font-family: 'Lemonada', cursive; */
-  background-color: #000000;
+  /* background-color: #000000; */
   /* background-color: #061325; */
   /* background-color: #141414;  */
-  /* background-image: url("../img/ucl-wallpaper.jpg"); */  
+  /* background-image: url("../img/ucl-wallpaper.jpg");   */
   /* background-position: top, bottom; */ 
   /* background-repeat: repeat; */
   /* background-size: 100% auto;  */  
+  background-image: url("../img/1348783.jpg");
 
 }
  
@@ -18,7 +19,7 @@ body {
   /* background-image: url("../img/1348783.jpg"); */
   /* background-size: auto;  */
     /* background-repeat: repeat; */
-  min-width: 340px;
+  min-width: 350px;
   /* width: 100%;  */
   /* min-height: 1100px;  */
 

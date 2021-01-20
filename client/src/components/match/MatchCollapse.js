@@ -1,54 +1,74 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Button, Collapse } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import Logo from '../../components-common/Logo'
 import MatchItem from './MatchItem'
 
 const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
 
 
-  const [ chevronUp, setchevronUp ] = useState( false )
+  const { expandAllLigs } = useSelector( state => state.global )
 
+  const [ open, setOpen ] = useState( false );
+
+
+
+  useEffect( () => {
+    if ( expandAllLigs ) {
+      setOpen( true )
+    } else {
+      setOpen( false )
+    }
+  }, [ expandAllLigs ] )
 
   const handleClick = () => {
-    setchevronUp( !chevronUp )
+    setOpen( !open )
+    // setchevronUp( !chevronUp )
   }
 
 
   //================================================================================================
-  return <div className="match-collapse">
-    {/*** Header ***/ }
-    <div className="row center header"
-      data-toggle="collapse"
-      href={ "#" + ligId } aria-expanded="false"
-      onClick={ handleClick }
+  return <>
+    <div className={ "match-collapse " + ligId }
     >
-      <div className="col  px-3 text-l">
-        <Logo
-          src={ `/api/logos/_ligs/${ ligId }.png` }
-          className="bg-w p-1 mx-2"
-          rounded
-          style={ { maxWidth: '30px' } }
-        />
-        <span className="align-middle">{ title }</span>
+      {/*** Header ***/ }
+      <div className="row center header"
+        data-toggle="collapse"
+        href={ "#" + ligId }
+        //aria-expanded="false"
+        aria-expanded={ open }
+        aria-controls={ ligId }
+        onClick={ handleClick }
+      >
+        <div className="col  px-3 text-l">
+          <Logo
+            src={ `/api/logos/_ligs/${ ligId }.png` }
+            className="bg-w p-1 mx-2"
+            rounded
+            style={ { maxWidth: '30px' } }
+          />
+          <span className="align-middle">{ title }</span>
+        </div>
+        <div className="col-2 pt-1">
+          <span className="x">
+            { matches.length }
+          </span>
+        </div>
+        <div className="col-auto px-2 pt-1">
+          <i className={ "fas " + ( open ? "fa-chevron-up" : "fa-chevron-down" ) } />
+        </div>
       </div>
-      <div className="col-2 pt-2">
-        <span className="x">
-          { matches.length }
-        </span>
-      </div>
-      <div className="col-auto px-2 pt-2">
-        <i className={ "fas " + ( chevronUp ? "fa-chevron-up" : "fa-chevron-down" ) } />
-      </div>
-    </div>
 
-    {/*** Body ***/ }
-    <div className="collapse body" id={ ligId }>
-      <div className="py-2 px-1">
-        { matches && matches.map( ( mch ) =>
-          <MatchItem match={ mch } key={ mch._id } /> ) }
-      </div>
+      {/*** Body ***/ }
+      <Collapse in={ open }>
+        <div className="py-2 px-1" style={ { background: '#303030' } }>
+          { matches && matches.map( ( mch ) =>
+            <MatchItem match={ mch } key={ mch._id } /> ) }
+        </div>
+      </Collapse>
     </div>
-  </div>
+  </>
 }
 
 export default MatchCollapse

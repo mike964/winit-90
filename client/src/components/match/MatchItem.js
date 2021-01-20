@@ -262,8 +262,8 @@ const MatchItem = ( { match } ) => {
         <div className="col center" >
           { showSpiner ? <Spinr />
             : <>
-              <div className="c-888 py-1">
-                <span className={ matchIstoday ? "gold fw-400" : "" }>
+              <div className="c-888 py-1 em-09">
+                <span className={ matchIstoday ? "goldenrod fw-400" : "" }>
                   { match_date }
                 </span>
               </div>
@@ -322,7 +322,7 @@ const MatchItem = ( { match } ) => {
 
       {/* ** Second Row ** */ }
       { showScndRow && <>
-        { !matchStarted && !alreadyPredicted && <div className="row py-2 text-r" dir="rtl" style={ { borderTop: '1px solid gray' } } >
+        { !matchStarted && !alreadyPredicted && <div className="row py-2 text-r" dir="rtl" style={ { borderTop: '1px solid #5a5a5a' } } >
           <div className="col-auto col-sm-4 px-2 center">
             { answerKey
               ? <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } />

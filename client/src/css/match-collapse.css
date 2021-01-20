@@ -14,9 +14,15 @@
   font-weight: 500;
   padding: 6px 0;
 }
-.match-collapse > .body {
-  background-color: rgb(31, 31, 31);
+.match-collapse.prlig> .header {
+  background-color: #5f1094;
 }
+.match-collapse.splig > .header {
+  background-color: #a16413;
+} 
+.match-collapse.itlig > .header {
+  background-color: #161b22;
+} 
 #collapse-prlig {
   color: #ffffff;   
   background-color: #333; 

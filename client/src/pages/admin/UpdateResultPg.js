@@ -10,23 +10,20 @@ import { axos } from '../../utils'
 // ** Update multiple result using api-football
 const UpdateResultPg = () => {
 
-
-
   const [ state, setState ] = useState( { from_: '', to_: '', ligcode: '' } )
-
-  const [ success, setSuccess ] = useState( false )
-
+  const [ success, setSuccess ] = useState( false )  // req status
 
   const onChange = ( e ) => setState( { ...state, [ e.target.name ]: e.target.value } )
+
 
   const updateMultipleResults = async () => {
     // ** Update multiple match result by admin
     // {{URL}}/api/matches/update-multiple-result?league=135&season=2020&from=2021-01-06&to=2021-01-12&updateResults=true
 
     const season_ = '2020'  // default season
+
     setReqHeaders()   // SET TOKEN 
     try {
-
       const response = await axos.get( `/api/matches/update-multiple-result?league=${ state.ligcode }&season=${ season_ }&from=${ state.from_ }&to=${ state.to_ }&updateResults=true` )
 
       console.log( response.data )
@@ -37,7 +34,6 @@ const UpdateResultPg = () => {
     } catch ( error ) {
       return false
     }
-
   }
 
   const handleSubmit = ( e ) => {

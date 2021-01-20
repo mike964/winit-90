@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { setClickedWeek, stClickedLig, hideFinishedMatches } from '../../redux/actions/global.actions';
+import { toggleAllLigs, stClickedLig, hideFinishedMatches } from '../../redux/actions/global.actions';
 import { useSelector } from 'react-redux';
 import Switch from '../../components-common/Switch';
 import { loadPredictions, resetPredictions } from '../../redux/actions/prediction.actions';
@@ -11,14 +11,7 @@ const MatchBar = ( { matchesCount } ) => {
 
 
   // Hide finished matches switch 
-  let { notFinished, hideFinished } = useSelector( state => state.global )
-
-
-  // Toggle (hide) finished matches switch in 2 seconds after page mounts automatically
-  useEffect( () => {
-    // setTimeout( () =>  setFilter( 'notFinished' ), 2000 )
-    // setTimeout( () => hideFinishedMatches( true ), 3000 )
-  }, [] )
+  let { expandAllLigs, hideFinished } = useSelector( state => state.global )
 
 
 
@@ -31,26 +24,27 @@ const MatchBar = ( { matchesCount } ) => {
     stClickedLig( 'All' )
   }
 
-
+  const pillBtn = {
+    borderRadius: '2rem',
+    border: ' 1px solid white',
+    color: 'white',
+    padding: '4px 10px',
+    background: 'none',
+    cursor: 'pointer'
+  }
 
   ////////////////////////////////////////////////////////////////////////////////////
   // =================================================================================
-  return <div className="match-bar mb-2">
+  return <div className="match-bar mb-2 mx-auto" style={ { maxWidth: '640px' } }>
 
     <div className="row row-1 py-2 py-sm-3 mb-2 white">
 
-      <div className="col">
-        <span className="clickable">Expand All</span>
-      </div>
-
-      <div className="col  col-sm-4 center">
+      {/* SM */ }
+      <div className="d-none d-sm-block col-auto p-3 py-sm-0">
         <span className="x">المجموع : { matchesCount }</span>
-        <span className="d-sm-none fr">
-          <RefreshBtn onclick={ HandleRefreshClick } className='white' />
-        </span>
       </div>
 
-      <div className="col-12 col-sm-4 text-center">
+      <div className="col-12 col-sm center p-3 py-sm-0">
         <Switch
           label='اخفي المباریات المنتهیة'
           //onClick={ () => setFilter( 'notFinished' ) }
@@ -59,8 +53,23 @@ const MatchBar = ( { matchesCount } ) => {
         />
       </div>
 
-      <div className="d-none d-sm-block col-sm-4 center">
-        <RefreshBtn onclick={ HandleRefreshClick } className='white' />
+      <div className="col-4 col-sm-auto px-2 center ">
+        <span style={ pillBtn }
+          onClick={ () => toggleAllLigs() }
+        >{ expandAllLigs ? 'Collapse All' : 'Expand All' }</span>
+      </div>
+
+
+
+      <div className="col-4 col-sm-auto px-2 center"  >
+        <RefreshBtn
+          onclick={ HandleRefreshClick } style={ pillBtn }
+        />
+      </div>
+
+      {/* XS */ }
+      <div className="col center d-sm-none  ">
+        <span className="x">المجموع : { matchesCount }</span>
       </div>
 
     </div>

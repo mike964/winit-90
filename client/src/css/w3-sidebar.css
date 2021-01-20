@@ -1,0 +1,95 @@
+ 
+
+.w3-sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #5e31c9;  
+  background-color: #2a282e;  
+  color: white;
+  position: fixed!important;
+  z-index: 1;
+  overflow: auto;
+}
+ 
+.w3-animate-left {
+  position: relative;
+  animation: animateleft 0.8s;
+}
+
+.w3-bar-block .w3-bar-item {
+  width: 100%;
+  display: block;
+  padding: 8px 16px;
+  text-align: left;
+  border: none;
+  white-space: normal;
+  float: none;
+  outline: 0;
+}
+.w3-large {
+  font-size: 18px!important;
+}
+
+.w3-white, .w3-hover-white:hover {
+  color: #000!important;
+  background-color: #fff!important;
+}
+ 
+.w3-btn, .w3-button {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.w3-btn, .w3-button {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.w3-sdiebar-close-btn{
+  font-size: 18px ; 
+  background:orange;
+  /* background: #1e3670 ;  */
+  color: rgb(223, 247, 255);
+  text-align: center!important;
+}
+.w3-sdiebar-open-btn{
+  /* font-size:  24px ;  */
+  /* font-weight: 500; */
+  background: #4a128a ; 
+  background: orange ; 
+  /* background: #1e3670 ;  */
+  color: white;
+  color: black;
+}
+
+.w3-animate-left{
+  position:relative;animation:animateleft 0.4s
+}
+@keyframes animateleft{
+  from{left:-300px;opacity:0} to{left:0;opacity:1}
+}
+
+button:focus {
+  /* outline: 1px dotted; */
+  /* outline: 5px auto -webkit-focus-ring-color; */
+  outline: none;
+}
+
+/* XS */
+@media only screen and (max-width: 576px) {
+  .w3-sidebar {   
+    /* background-color: #2d0966!important;  */
+  }
+}

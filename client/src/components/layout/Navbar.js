@@ -9,6 +9,7 @@ import WinitLogo from './WinitLogo'
 import NotificationBell from './NotificationBell'
 import { Spinner } from 'react-bootstrap'
 import SpinnersBox from '../../components-common/SpinnersBox'
+import Sidebar3 from '../../Sidebar3'
 // import Clock from './Clock'
 
 
@@ -79,11 +80,11 @@ const Navbar = () => {
       </div>
 
       <div className="col-auto py-1 px-2">
-        <div class="dropdown">
-          <button class="btn white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div className="dropdown">
+          <button className="btn white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i className="fas fa-ellipsis-v" />
           </button>
-          <div class="dropdown-menu dropdown-menu-right text-r" aria-labelledby="dropdownMenu1">
+          <div className="dropdown-menu dropdown-menu-right text-r" aria-labelledby="dropdownMenu1">
             <a className="dropdown-item" href="#!"> حسابي </a>
             <a className="dropdown-item" href="#!"
               onClick={ () => handleLogout() }
@@ -133,7 +134,12 @@ const Navbar = () => {
     {/* Second Row */ }
 
     <div className="scnd-row d-flex">
+
+      <Sidebar3 />
+
       <div className="flex-grow-1 d-flex justify-content-center">
+
+
 
         <Link to="/"
           className={ navbar === 'home' ? 'navitem selected home' : 'navitem home' }
@@ -149,7 +155,6 @@ const Navbar = () => {
           onClick={ () => setNavbar( 'goldencontest' ) }
         > <i className="fas fa-gem" /> <span> المسابقة الذهبیة </span>
         </Link> }
-
 
         <Link to="/matches"
           className={ ( navbar === 'matches' ? 'navitem__selected' : 'navitem' ) }

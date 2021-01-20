@@ -55,7 +55,7 @@ const MatchesPg = () => {
   //===================================================================================
   //===================================================================================
   return <div className="page" >
-    <div className="container bg-111 p-1 py-3" style={ { backgroundColor: '#181818' } }>
+    <div className="container bg-shadow-7 p-1 py-3 " >
 
       {/* <LigSelector /> */ }
 
@@ -92,7 +92,7 @@ const MatchesPg = () => {
     </div>
 
 
-  </div>
+  </div >
 
 }
 

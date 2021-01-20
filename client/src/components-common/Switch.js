@@ -19,7 +19,7 @@ const Switch = ( {
     st_isChecked( checked )
   }, [ checked ] )
 
-  return <div className="custom-control custom-switch" >
+  return <div className="custom-control custom-switch" style={ { zIndex: '0' } }>
     <input
       //name={ name }
       name={ label }
@@ -30,7 +30,7 @@ const Switch = ( {
       checked={ isChecked }
       onChange={ handleChange }
     />
-    <label className="custom-control-label" htmlFor="customSwitch1">
+    <label className="custom-control-label" htmlFor="customSwitch1" >
       { label }
     </label>
   </div>

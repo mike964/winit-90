@@ -91,3 +91,10 @@ export const toggleAllRows = () => {
     type: 'TOGGLE_ALL_TABLE_ROWS'
   } )
 }
+
+// Expand or Collapse all matche ligs for user
+export const toggleAllLigs = () => {
+  dispatch( {
+    type: 'TOGGLE_ALL_LIGS'
+  } )
+}

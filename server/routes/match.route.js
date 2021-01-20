@@ -9,6 +9,7 @@ const {
   setWeek, setTeams, setMatch, setLeague
 } = require( '../middleware/mdlwrs' )
 const predictionRouter = require( './prediction.route' )
+const { axios } = require( 'axios' )
 
 // app.use( '/api/matches' )
 //====================================================================
@@ -33,6 +34,34 @@ router
   // .get( getMatchesByDuration )
   // .post( createMultipleMatches )  // using api-football : post does't include req.params
   .get( createMultipleMatches )  // using api-football
+
+// router.route('/multiple-all-ligs').get(function (req,res,next) {
+// console.log('--- Add multiple match - all ligs ---')
+//   // ** Call the create multiple matches route few times
+
+//   let serverUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:5000' 
+//   : process.env.PROD_URL
+
+//   // {{URL}}/api/matches/multiple?season=2020&league=39&from=2021-01-24&to=2021-01-30&createMatches=true
+
+//   let from_
+//   let to_
+
+//   const ligCodes = [39, 140, 135,61,  2,3]  // ucl:2 , uel: 3
+
+//   ligCodes.forEach((item)=>{
+
+//   })
+
+//   try {
+
+//   } catch (error) {
+
+//   }
+//  axios.get()
+
+
+// })
 
 // ** Update multiple match results using api-football
 router.route( '/update-multiple-result' )
