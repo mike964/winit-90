@@ -9,7 +9,7 @@ const {
   setWeek, setTeams, setMatch, setLeague
 } = require( '../middleware/mdlwrs' )
 const predictionRouter = require( './prediction.route' )
-const { axios } = require( 'axios' )
+const axios = require( 'axios' )
 
 // app.use( '/api/matches' )
 //====================================================================
@@ -35,33 +35,61 @@ router
   // .post( createMultipleMatches )  // using api-football : post does't include req.params
   .get( createMultipleMatches )  // using api-football
 
-// router.route('/multiple-all-ligs').get(function (req,res,next) {
-// console.log('--- Add multiple match - all ligs ---')
-//   // ** Call the create multiple matches route few times
+router.route( '/multiple-all-ligs' ).post( async ( req, res, next ) => {
+  console.log( '--- Add multiple match - all ligs ---' )
+  // ** Call the create multiple matches route few times
 
-//   let serverUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:5000' 
-//   : process.env.PROD_URL
+  let serverUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:5000'
+    : process.env.PROD_URL
 
-//   // {{URL}}/api/matches/multiple?season=2020&league=39&from=2021-01-24&to=2021-01-30&createMatches=true
+  // {{URL}}/api/matches/multiple?season=2020&league=39&from=2021-01-24&to=2021-01-30&createMatches=true
 
-//   let from_
-//   let to_
+  let from_ = req.body.from
+  let to_ = req.body.to
 
-//   const ligCodes = [39, 140, 135,61,  2,3]  // ucl:2 , uel: 3
+  // const ligCodess = [ 39, 140, 135, 61, 2, 3 ]  // ucl:2 , uel: 3
+  // console.log( ligCodess )
 
-//   ligCodes.forEach((item)=>{
+  let ligCodes = req.body.ligs
 
-//   })
+  let ligsArr = ligCodes
+  console.log( ligCodes )
 
-//   try {
+  // forEach is not promise-aware. It deosnt support async and await. 
 
-//   } catch (error) {
-
-//   }
-//  axios.get()
+  console.log( ligsArr )
 
 
-// })
+  const forLoop = async ( ligCodesArr ) => {
+    console.log( 'Start' )
+
+    for ( let i = 0; i < ligCodesArr.length; i++ ) {
+      // Get num of each fruit - Call createMultipleMatches for each LigCode
+      try {
+        // console.log( ligCodes[ i ] )
+        const res = await axios.get( `${ serverUrl }/api/matches/multiple?season=2020&league=${ ligCodesArr[ i ] }&from=${ from_ }&to=${ to_ }&createMatches=true` )
+        console.log( res.data )  // Good Good
+
+      } catch ( error ) {
+        console.log( error )
+        return false
+      }
+    }
+
+    console.log( 'End.' )
+    return true
+  }
+
+  // Worked for 140 but no loop
+
+  let success_ = await forLoop( ligCodes )
+
+  res.json( {
+    success: success_,
+    end: true
+  } )
+
+} )
 
 // ** Update multiple match results using api-football
 router.route( '/update-multiple-result' )

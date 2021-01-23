@@ -456,8 +456,8 @@ exports.calculatePointsForMatchPrds = asyncHandler( async ( req, res, next ) => 
 exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
   console.log( '--- createMultipleMatches() ---'.yellow )
 
-  console.log( req.params )         // {}
-  console.log( req.query )          // { from: '2020-12-18', to: '2020-12-22', createMatches: 'false' }
+  // console.log( req.params )         // {}
+  // console.log( req.query )          // { from: '2020-12-18', to: '2020-12-22', createMatches: 'false' }
 
   // Save matches to DB  (default:false)
   let req_qr_save_matches = ( req.query.createMatches === 'true' ? true : false )
@@ -543,7 +543,7 @@ exports.createMultipleMatches = asyncHandler( async ( req, res, next ) => {
     nResults: fixtures_stg_1.length,
     docsInserted: ( docs.length > 0 ? docs.length : 'none' ),
     // response,
-    fixtures_stg_1,
+    // fixtures_stg_1,
     // fixtures_stg_2,
     fixtures_stg_3,
     // docs: docs.length

@@ -1,10 +1,11 @@
  /* I think I will fix this later using SASS */
+ /* NOT USED  */
 .sidebar {
   margin: 0;
   padding: 0; 
   min-width: 150px;  
   width: 15%;
-  background-color: #000d53; 
+  background-color: #0c1236; 
   /* position: fixed; */
   height: 100%;
   min-height: 900px;

@@ -9,15 +9,42 @@ const Sidebar3 = () => {
   // const { unreadMsgsCount } = useSelector( state => state.msg )
 
   function w3_open () {
-    document.getElementById( "mySidebar" ).style.display = "block";
+    document.getElementById( "sidebari" ).style.display = "block";
   }
   function w3_close () {
-    document.getElementById( "mySidebar" ).style.display = "none";
+    document.getElementById( "sidebari" ).style.display = "none";
   }
 
+  // ** Sticky Sidebar 
+  // <script>
+  window.onscroll = function () { myFunction() };
+
+
+
+  function myFunction () {
+    const sidebar = document.getElementById( "sidebari" );
+    const openbtn = document.getElementById( "sidebar-open-btn" )
+
+    const sticky = sidebar.offsetTop
+
+    // console.log( 'sidebar offset top:' )
+    // console.log( sticky )
+    // console.log( window.pageYOffset )
+
+    if ( window.pageYOffset > sticky ) {
+      sidebar.classList.add( "sticky" )
+      openbtn.classList.add( "sticky" )
+    } else {
+      sidebar.classList.remove( "sticky" );
+      openbtn.classList.remove( "sticky" );
+    }
+  }
+  //</script>
+
+  //============================================================================
   return <>
-    <div className="w3-sidebar sidebar w3-bar-block w3-dark-grey w3-animate-left" style={ { "display": "none" } } id="mySidebar">
-      <button className="w3-bar-item w3-button w3-sdiebar-close-btn"
+    <div className="w3-sidebar sidebar w3-bar-block w3-dark-grey w3-animate-left" id="sidebari" style={ { "display": "none" } }  >
+      <button className="w3-bar-item w3-button sidebar-close-btn" id="sidebar-close-btn"
         //onclick="w3_close()"
         onClick={ w3_close }
       > <i className="fas fa-reply" />
@@ -38,8 +65,8 @@ const Sidebar3 = () => {
 
     </div>
 
-    <div>
-      <button className="w3-button w3-sdiebar-open-btn"
+    <div id="sidebar-open-btn">
+      <button className="w3-button sidebar-open-btn"
         //onclick="w3_open()"
         onClick={ w3_open }
       > <span className="fs-18">&#9776;</span>    <span className=" d-none d-sm-inline-block">القائمة </span>

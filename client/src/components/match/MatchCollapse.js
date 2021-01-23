@@ -13,6 +13,9 @@ const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
   const [ open, setOpen ] = useState( false );
 
 
+  console.log( 'matches.length' )
+  console.log( matches.length )
+
 
   useEffect( () => {
     if ( expandAllLigs ) {
@@ -30,8 +33,7 @@ const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
 
   //================================================================================================
   return <>
-    <div className={ "match-collapse " + ligId }
-    >
+    {matches.length ? <div className={ "match-collapse " + ligId } >
       {/*** Header ***/ }
       <div className="row center header"
         data-toggle="collapse"
@@ -41,7 +43,7 @@ const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
         aria-controls={ ligId }
         onClick={ handleClick }
       >
-        <div className="col  px-3 text-l">
+        <div className="col px-3 text-l">
           <Logo
             src={ `/api/logos/_ligs/${ ligId }.png` }
             className="bg-w p-1 mx-2"
@@ -67,7 +69,10 @@ const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
             <MatchItem match={ mch } key={ mch._id } /> ) }
         </div>
       </Collapse>
-    </div>
+    </div> :
+      // If No matches  
+      <span className="x"></span>
+    }
   </>
 }
 

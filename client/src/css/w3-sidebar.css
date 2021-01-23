@@ -1,12 +1,17 @@
- 
+.sticky {
+   position: fixed;  
+  top: 0;
+  /* width: 100%; */
+}
 
 .w3-sidebar {
   height: 100%;
   width: 200px;
   background-color: #5e31c9;  
   background-color: #2a282e;  
+  background-color: #0c1236; 
   color: white;
-  position: fixed!important;
+  position: fixed!important; 
   z-index: 1;
   overflow: auto;
 }
@@ -57,21 +62,22 @@
   white-space: nowrap;
 }
 
-.w3-sdiebar-close-btn{
+.sidebar-close-btn{
   font-size: 18px ; 
   background:orange;
   /* background: #1e3670 ;  */
   color: rgb(223, 247, 255);
   text-align: center!important;
 }
-.w3-sdiebar-open-btn{
+.sidebar-open-btn{
   /* font-size:  24px ;  */
-  /* font-weight: 500; */
+  font-weight: 600;
   background: #4a128a ; 
   background: orange ; 
+  /* background: rgb(106, 213, 255) ;  */
   /* background: #1e3670 ;  */
   color: white;
-  color: black;
+  /* color: black; */ 
 }
 
 .w3-animate-left{

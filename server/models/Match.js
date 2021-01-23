@@ -116,6 +116,10 @@ const MatchSchema = new Schema( {
   },
 
   // predictions :[]   // get array of related predictions by reverse populate
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 }, {
   toJSON: { virtuals: true },
   toObject: { virtuals: true }

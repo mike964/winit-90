@@ -32,7 +32,7 @@
   /* color: #ffffff;    */
   /* color: #47008f;    */
   color: #000000;   
-  color: #00074b;   
+  color: #2b005c ;  
   /* background-color: white; */
   text-align: center;
   text-decoration: none;  
@@ -44,10 +44,10 @@
  /* background-color: #ffb700; */
  /* background-color: white; */
   text-decoration: none; 
-  color: #1046da;
+  color: #a90fcf;
   padding-top: 6px;
   padding-bottom: 8px;
-  border-bottom: solid 2px #1046da;
+  border-bottom: solid 2px #cc00ff;
   /* border: none!important; */
 }
 .navitem__selected { 
@@ -59,7 +59,7 @@
   color: #1046da!important;   
 /* background-color: #eeeeee;     */
 /* background-color: #ffb700;    */
-background-color:  #c7e9ff; 
+background-color:  #ffffff; 
 /* border-bottom: solid 2px #0051ff;     */
 }
 .navitem__selected:hover{
@@ -82,9 +82,8 @@ cursor: default;
 /* ************** */
 .navbar-main > .scnd-row {
   /* padding : 4px; */
-  /* background-color: #c2ebff; */
-  background-color: #d4eeff;  
-  /* background-color: #3c0077;    */ 
+  background-color: #ebf1ff; 
+  /* background-color: #3c0077;     */
   /* background-color: #000000;  */
   font-weight: 600;
   /* border: 1px solid orange; */

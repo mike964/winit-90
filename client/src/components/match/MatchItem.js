@@ -262,14 +262,14 @@ const MatchItem = ( { match } ) => {
         <div className="col center" >
           { showSpiner ? <Spinr />
             : <>
-              <div className="c-888 py-1 em-09">
-                <span className={ matchIstoday ? "goldenrod fw-400" : "" }>
+              <div className=" py-1 em-09">
+                <span className={ matchIstoday ? "orange" : "c-999" }>
                   { match_date }
                 </span>
               </div>
 
               { matchStarted && !alreadyPredicted && <div className="py-3">
-                <span className="x" style={ { color: '#00ff00' } }>انتهی وقت تسجیل التوقع لهذه المباراة</span>
+                <span className="x" style={ { color: '#44db4b' } }>انتهی وقت تسجیل التوقع لهذه المباراة</span>
               </div> }
 
               { alreadyPredicted && <div className="col py-2 center" dir="rtl"  >
@@ -320,21 +320,22 @@ const MatchItem = ( { match } ) => {
 
       </div>
 
-      {/* ** Second Row ** */ }
-      { showScndRow && <>
-        { !matchStarted && !alreadyPredicted && <div className="row py-2 text-r" dir="rtl" style={ { borderTop: '1px solid #5a5a5a' } } >
-          <div className="col-auto col-sm-4 px-2 center">
-            { answerKey
-              ? <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } />
-              : <i className="far fa-hand-point-left clickable" onClick={ () => handleBtnX() } /> }
-            <span className="bold mx-2">توقعک :</span>
-          </div>
+      {/* ** SECOND ROW - FOOTER ** */ }
+      { // showScndRow && <>
+        !alreadyPredicted && answerKey && <>
+          { !matchStarted && !alreadyPredicted && <div className="row py-2 text-r" dir="rtl" style={ { borderTop: '1px solid #5a5a5a' } } >
+            <div className="col-auto col-sm-4 px-2 center">
+              { answerKey
+                ? <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } />
+                : <i className="far fa-hand-point-left clickable" onClick={ () => handleBtnX() } /> }
+              <span className="bold mx-2">توقعک :</span>
+            </div>
 
-          <div className="col ">
-            <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
-          </div>
-        </div> }
-      </> }
+            <div className="col ">
+              <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
+            </div>
+          </div> }
+        </> }
 
     </div> }
   </>

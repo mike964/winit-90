@@ -12,6 +12,11 @@ const MatchList = ( { matches, league } ) => {
   const [ prligMatches, setPrligMatches ] = useState( [] )   // england - prlig
   const [ spligMatches, setSpligMatches ] = useState( [] )   // spain - la liga
   const [ itligMatches, setItligMatches ] = useState( [] )   // italy seri a
+  const [ frligMatches, setFrligMatches ] = useState( [] )   // italy seri a
+  const [ uclMatches, setUclMatches ] = useState( [] )   // italy seri a
+  const [ uelMatches, setUelMatches ] = useState( [] )   // italy seri a 
+
+  // ** coming soon : uefa nations lig
 
   // console.log( matches )
 
@@ -26,9 +31,12 @@ const MatchList = ( { matches, league } ) => {
   // if matches change
   useEffect( () => {
     if ( matches ) {
+      setUelMatches( filterMatchesByLig( matches, 2 ) )
+      setUclMatches( filterMatchesByLig( matches, 3 ) )
       setPrligMatches( filterMatchesByLig( matches, 39 ) )
       setSpligMatches( filterMatchesByLig( matches, 140 ) )
       setItligMatches( filterMatchesByLig( matches, 135 ) )
+      setFrligMatches( filterMatchesByLig( matches, 61 ) )
     }
   }, [ matches ] )
 
@@ -49,31 +57,65 @@ const MatchList = ( { matches, league } ) => {
 
   const leagueTitle = getLigTitle()
 
+  const leagues = [
+    {
+      title: 'UEFA Champions League',
+      matches: uclMatches,
+      ligId: 'ucl',
+      ligCode: '2'
+    },
+    {
+      title: 'England - Premier League',
+      matches: prligMatches,
+      ligId: 'prlig',
+      ligCode: '39'
+    },
+    {
+      title: 'Spain - La Liga',
+      matches: spligMatches,
+      ligId: 'splig',
+      ligCode: '140'
+    },
+    {
+      title: 'Italy - Serie A',
+      matches: itligMatches,
+      ligId: 'itlig',
+      ligCode: '39'
+    },
+    {
+      title: 'France - Ligue 1',
+      matches: frligMatches,
+      ligId: 'frlig',
+      ligCode: '61'
+    },
+    {
+      title: 'Europa League',
+      matches: uelMatches,
+      ligId: 'uel',
+      ligCode: '3'
+    },
+  ]
+
   ////////////////////////////////////////////////////////////////////////////////
   //=============================================================================
   return <div className="match-list p-0 p-sm-1" style={ { maxWidth: '640px' } }>
-
 
 
     {/* { matches && matches.map( ( mch ) => <MatchItem match={ mch } key={ mch._id } /> ) } */ }
 
     {/* <MatchCollapse lig='prlig' matches={ matches } collapseId='id-100' /> */ }
 
-    { prligMatches.length &&
-      <MatchCollapse
-        title='England - Premier League'
-        matches={ prligMatches }
-        ligId='prlig'
-      /> }
+    {/* <MatchCollapse
+      title='England - Premier League'
+      matches={ prligMatches }
+      ligId='prlig'
+    />  */}
 
-    { spligMatches.length &&
-      <MatchCollapse
-        title='Spain - La liga'
-        matches={ spligMatches }
-        ligId='splig'
-      /> }
-
-
+    { matches.length > 0 && leagues.map( item => <MatchCollapse
+      title={ item.title }
+      matches={ item.matches }
+      ligId={ item.ligId }
+    /> ) }
 
     { !matches.length && <div className="py-5 text-center bold">
       <span className="white">لا توجد مباریات لهذا الاسبوع</span>
