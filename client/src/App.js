@@ -8,7 +8,6 @@ import MatchesPg from './pages/MatchesPg'
 import WinrsPg from './pages/WinrsPg'
 import RulesPg from './pages/RulesPg'
 import Dashboard from './pages/Dashboard'
-import AdminPg from './pages/AdminPg'
 import Unauthorized from './pages/Unauthorized'
 // import Clock from './components/layout/Clock'
 import Cookies from 'js-cookie'
@@ -26,11 +25,7 @@ import CashoutPg from './pages/payment/CashoutPg'
 import PredictionsPg from './pages/PredictionsPg'
 import MsgsPg from './pages/MsgsPg'
 import MyGoldPrdsPg from './pages/MyGoldPrdsPg'
-import SettingsPg from './pages/SettingsPg'
-import XsDropdown from './components/layout/XsDropdown'
-import Sidebar3 from './Sidebar3'
-
-
+import AdminPg from './components-admin/AdminPg'
 
 //==================================================================================
 const App = () => {

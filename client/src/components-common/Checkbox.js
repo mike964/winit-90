@@ -1,50 +1,65 @@
 import React, { useState, useEffect } from 'react'
 
+
+// * this checkbox works fine. Build by @moslm
 const Checkbox = ( {
   label,
   name,
   checked,
+  onChange,
   onclick,
   disabled,
-  labelRight
+  labelRight,
+  className
 } ) => {
 
   // Default Props
-  const labelRightt = ( labelRight ? labelRight : true )
+  const labelRight_ = ( labelRight ? labelRight : false )
+  const name_ = ( name ? name : 'no-name' )
   const [ isChecked, stIsChecked ] = useState( checked ? checked : false )
 
-  const handleChange = ( e ) => {
+  const handleChange_ = ( e ) => {
     // console.log( e.target )  // <input ... >
     // console.log( e.target.value )   // on
     // console.log( e.target.cheked )   // undefined
     // const value = e.target.checked
     // const name = e.target.name;
 
-    stIsChecked( e.target.checked )
+    // setChecked(event.target.checked); 
+    // stIsChecked( e.target.checked )
 
-    // if ( !isChecked && onClick ) { onClick() }
-    if ( onclick ) { onclick() }
+    onChange( e )
+
+    // console.log( e.target.checked )   // FOR TEST
+
+    if ( e.target.checked && onclick ) {
+      onclick()
+    }
   }
 
-  useEffect( () => {
-    // console.log( 'checked changed' ) // Works fine
-    stIsChecked( checked )
-  }, [ checked ] )
+  // useEffect( () => {
+  //   // console.log( 'checked changed' ) // Works fine
+  //   stIsChecked( checked )
+  // }, [ checked ] )
 
-  return <label className='checkbox-w3'>
-    { !labelRightt && <> { label } </> } { ' ' }
+  return <span className={ className }>
+    { !labelRight_ && <span className='align-top'>{ label }</span> }
+    { ' ' }
+    <label className='checkbox-w3' >
+      <input
+        name={ name_ }
+        id={ `${ name }-id` }
+        type="checkbox"
+        // checked={ isChecked }
+        checked={ checked }
+        onChange={ handleChange_ }
+      // disabled={ disabled }
+      />
+      <span className="checkmark"></span>
+    </label>
 
-    <input
-      name={ name }
-      type="checkbox"
-      checked={ isChecked }
-      onChange={ handleChange }
-      disabled={ disabled }
-    />
-    <span className="checkmark"></span>
-
-    { labelRightt && <> { label }  </> }
-  </label>
+    { labelRight_ && <span className='align-top'>{ label }</span> }
+  </span>
 }
 
 export default Checkbox

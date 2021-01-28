@@ -158,7 +158,7 @@ font-size: 2em !important;
 
 /* Hide the browser's default checkbox */
 .checkbox-w3 input {
-  position: absolute;
+  /* position: absolute; */
   opacity: 0;
   cursor: pointer;
   height: 0;
@@ -174,7 +174,7 @@ font-size: 2em !important;
   width: 20px;
   background-color: #9fdaff;
   border: 1px solid #3ab0ff;
-  border-radius: 3px; 
+  border-radius: 3px;  
 }
 
 /* On mouse-over, add a grey background color */

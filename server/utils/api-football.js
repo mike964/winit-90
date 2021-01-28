@@ -325,6 +325,7 @@ exports.leagues = [
 const leagues = [
   {
     "id": 00,
+    code: 'prlig',
     "name": "Premier League",
     "shortName": "prlig",
     country: "England"
@@ -349,14 +350,12 @@ const leagues = [
     "id": 61,
     "name": "Ligue 1",
     shortName: "lig1",
-    "type": "League",
 
   },
   {
     "id": 66,
     "name": "Coupe de France",
     "shortname": "frcup",
-    "type": "Cup",
     country: "France"
   }
 ]

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch, useHistory, useRouteMatch } from 'react-router-dom'
-import AdminNavbar from '../components-admin/AdminNavbar'
-import InstructionsPg from './admin/InstructionsPg'
-import MatchPg from './admin/MatchPg'
-import KarnamesPg from './admin/KarnamesPg'
-import UsersPg from './admin/UsersPg'
-import { getMatches_DB } from '../redux/actions/match.actions'
-import ViPrdsPg from './admin/ViPrdsPg';
 import { useSelector } from 'react-redux'
-import UpdateResultPg from './admin/UpdateResultPg'
+import AdminNavbar from './AdminNavbar'
+import InstructionsPg from './pages/InstructionsPg'
+import KarnamesPg from './pages/KarnamesPg'
+import UsersPg from './pages/UsersPg'
+import ViprdsPg from './pages/ViprdsPg'
+import { getMatches_DB } from '../redux/actions/match.actions'
+
+import UpdateResultPg from './pages/UpdateResultPg'
+import MatchPg from './pages/MatchPg'
+import MultiplePg from './pages/MultiplePg'
 
 const AdminPg = () => {
   const history = useHistory()
@@ -23,7 +25,7 @@ const AdminPg = () => {
 
 
   //========================================================================
-  return <div className="admin-pg white bg-222 pb-3">
+  return <div className="admin-pg white bg-shadow-6 pb-3">
 
     <div className="row p-2 my-2 bold ">
       <div className="col p-1 em-12 ">
@@ -45,8 +47,9 @@ const AdminPg = () => {
         <Route path='/admin/users'> <UsersPg /> </Route>
         {/* <Route path='/admin/messages'>  </Route> */ }
         <Route path="/admin/matches" component={ MatchPg } />
+        <Route path="/admin/multiple" component={ MultiplePg } />
         <Route path="/admin/update-results" component={ UpdateResultPg } />
-        <Route path="/admin/vipredictions" component={ ViPrdsPg } />
+        <Route path="/admin/vipredictions" component={ ViprdsPg } />
         <Route path="/admin/karnames" component={ KarnamesPg } />
         <Route path="/admin/users" component={ UsersPg } />
         <Route path="/admin/instructions" component={ InstructionsPg } />

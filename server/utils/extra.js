@@ -6,6 +6,7 @@ const Karname = require( '../models/Karname' )
 const Prediction = require( '../models/Prediction' )
 const crud = require( '../utils/crudHandler' )
 const User = require( '../models/User' )
+const Match = require( '../models/Match' )
 const Team = require( '../models/Team' )
 const Viprediction = require( '../models/Viprediction' )
 const { insertMany } = require( '../models/Team' )
@@ -38,6 +39,13 @@ const updateManyViprds = async () => {
   console.log( response )   // { n: 23, nModified: 0, ok: 1 }
 }
 
+const deleteManyMatches = async () => {
+  try {
+    // await Match.deleteMany( { "createdAt": { $gte: new Date( '2021-01-28' ) } } );
+  } catch ( e ) {
+    print( e );
+  }
+}
 // updateManyTeams()
 
 // For ex updateMany teams by admin
@@ -48,12 +56,13 @@ exports.doExtra = asyncHandler( async ( req, res, next ) => {
 
   // response = await updateManyTeams()
   // updateManyViprds()
+  // deleteManyMatches()
 
   // await Week.insertMany( weekss )
 
   res.status( 200 ).json( {
     success: true,
-    response
+    // response
   } )
 
 } )

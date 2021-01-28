@@ -108,7 +108,7 @@ const MatchTR = ( { match, index, expanded } ) => {
 
         <span className="green clickable mx-2 ulineonhover"
           onClick={ handleUpdatePrds }
-        > Upd Points </span>
+        > Up Points </span>
         {/* update points for prds of match */ }
 
         <PrdsModal

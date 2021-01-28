@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import FormGroup from '../../components-common/FormGroup'
+import FormGrup from '../../components-common/FormGrup'
 import SpinrSuccsFail from '../../components-common/SpinrSuccsFail'
 import { payWeeklyWinners } from '../../redux/actions/admin.actions'
 
@@ -53,7 +53,7 @@ const PayWinrsForm = ( { weekId } ) => {
   const renderFormInput = ( label, name, value ) => (
     <div className="col p-1 d-flex">
       <span className="p-2"> { label } </span>
-      <FormGroup
+      <FormGrup
         value={ value }
         name={ name }
         onChange={ onChange }

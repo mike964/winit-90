@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import FormGroup from '../../components-common/FormGroup'
+import FormGrup from '../../components-common/FormGrup'
 import { createFakeKarname } from '../../redux/actions/week-karname.actions';
 
 
@@ -49,7 +49,7 @@ const FakeKarnameForm = ( { weekId } ) => {
     <div className="row black bold">
       <div className="col p-1">
         <span className="">Fake user display name</span>
-        <FormGroup
+        <FormGrup
           name='fake user name'
           placeholder='عبود خلیل'
           value={ fakeUserName }
@@ -71,7 +71,7 @@ const FakeKarnameForm = ( { weekId } ) => {
 
       <div className="col p-1">
         <span className="white">.</span>
-        <FormGroup
+        <FormGrup
           placeholder='nPredictions'
           value={ nPredictions }
           onChange={ e => setnPredictions( e.target.value ) }
@@ -79,7 +79,7 @@ const FakeKarnameForm = ( { weekId } ) => {
       </div>
       <div className="col p-1">
         <span className="white">.</span>
-        <FormGroup
+        <FormGrup
           placeholder='points'
           value={ points }
           onChange={ e => setpoints( e.target.value ) }

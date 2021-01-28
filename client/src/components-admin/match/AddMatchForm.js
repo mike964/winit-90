@@ -3,7 +3,7 @@ import cx from "classnames"
 import { addMatch_DB } from '../../redux/actions/match.actions'
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import FormGroup from '../../components-common/FormGroup';
+import FormGrup from '../../components-common/FormGrup';
 import Checkbox from '../../components-common/Checkbox';
 import { timeConversion } from '../../utils';
 import SpinrSuccsFail from '../../components-common/SpinrSuccsFail';
@@ -62,7 +62,7 @@ const AddMatchForm = () => {
 
     <div className="row pt-1">
       <div className="col px-2">
-        <FormGroup
+        <FormGrup
           name='team1'
           value={ team1 }
           onChange={ e => setTeam1( e.target.value ) }
@@ -70,7 +70,7 @@ const AddMatchForm = () => {
         />
       </div>
       <div className="col px-2">
-        <FormGroup
+        <FormGrup
           name='team2'
           value={ team2 }
           onChange={ e => setTeam2( e.target.value ) }
@@ -79,7 +79,7 @@ const AddMatchForm = () => {
       </div>
 
       <div className="col px-2">
-        <FormGroup
+        <FormGrup
           name='league'
           value={ league }
           onChange={ e => setLeague( e.target.value ) }
@@ -87,7 +87,7 @@ const AddMatchForm = () => {
         />
       </div>
       <div className="col px-2">
-        <FormGroup
+        <FormGrup
           name='season'
           value={ season }
           onChange={ e => setSeason( e.target.value ) }
@@ -98,14 +98,14 @@ const AddMatchForm = () => {
 
     <div className="row">
       <div className="col d-flex px-2">
-        <FormGroup
+        <FormGrup
           name='date'
           //className='ib w-125px'
           value={ date }
           onChange={ e => setDate( e.target.value ) }
           placeholder="2020-08-01T16:00:00Z"
         />
-        <FormGroup
+        <FormGrup
           name='time'
           className='ib w-80px'
           value={ time }
@@ -125,7 +125,7 @@ const AddMatchForm = () => {
       </div>
 
       <div className="col-6 px-2">
-        <FormGroup
+        <FormGrup
           name='note'
           value={ note }
           onChange={ e => setNote( e.target.value ) }

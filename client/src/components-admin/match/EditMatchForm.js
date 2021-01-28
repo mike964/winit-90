@@ -3,7 +3,7 @@ import cx from "classnames"
 import { updateMatch_DB, updateMatchResult, calculatePointsForPredictions } from '../../redux/actions/match.actions'
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import FormGroup from '../../components-common/FormGroup';
+import FormGrup from '../../components-common/FormGrup';
 import Checkbox from '../../components-common/Checkbox';
 // import { timeConversion } from '../../redux/functions';
 import SpinrSuccsFail from '../../components-common/SpinrSuccsFail';
@@ -110,13 +110,13 @@ const EditMatchForm = ( { handleModalShow } ) => {
     <div className="row">
       <div className="col-3 p-2 bold"> Result </div>
       <div className="col">
-        <FormGroup
+        <FormGrup
           name='team1'
           value={ goals.team1 }
           onChange={ onChange }
           className='ib w-80px'
         /> { ' ' }
-        <FormGroup
+        <FormGrup
           name='team2'
           value={ goals.team2 }
           onChange={ onChange }
@@ -136,14 +136,14 @@ const EditMatchForm = ( { handleModalShow } ) => {
     <div className="row">
       <div className="col-3 p-2 bold"> Penalties </div>
       <div className="col">
-        <FormGroup
+        <FormGrup
           name='penalty1'
           value={ goals.penalty1 }
           onChange={ onChange }
           disabled={ penalties ? false : true }
           className='ib w-80px'
         /> { ' ' }
-        <FormGroup
+        <FormGrup
           name='penalty2'
           value={ goals.penalty2 }
           onChange={ onChange }
@@ -156,7 +156,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
     <div className="row">
       <div className="col-3 p-2 bold"> Odss </div>
       <div className="col">
-        <FormGroup
+        <FormGrup
           //placeholder='1.1'
           name='team1odds'
           value={ odds.team1 }
@@ -164,7 +164,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
           disabled={ vip ? false : true }
           className='ib w-60px'
         /> { ' ' }
-        <FormGroup
+        <FormGrup
           //placeholder='1.2'
           name='drawodds'
           value={ odds.draw }
@@ -172,7 +172,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
           disabled={ vip ? false : true }
           className='ib w-60px'
         /> { ' ' }
-        <FormGroup
+        <FormGrup
           //placeholder='1.3'
           name='team2odds'
           value={ odds.team2 }
@@ -195,7 +195,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
     <div className="row">
       <div className="col-3 p-2 bold"> Date </div>
       <div className="col">
-        <FormGroup
+        <FormGrup
           name='fullDate'
           value={ fullDate }
           onChange={ e => setfullDate( e.target.value ) }
@@ -205,7 +205,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
 
       <div className="col-3 p-2 bold"> Season </div>
       <div className="col">
-        <FormGroup
+        <FormGrup
           name='season'
           value={ season }
           onChange={ e => setSeason( e.target.value ) }
@@ -217,7 +217,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
     <div className="row">
       <div className="col-3 p-2 bold"> Note </div>
       <div className="col">
-        <FormGroup
+        <FormGrup
           name='note'
           //label='Note'
           value={ note }

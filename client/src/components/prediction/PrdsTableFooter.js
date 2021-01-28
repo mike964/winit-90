@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux'
 const PrdsTableFooter = ( { karname } ) => {
   // const karname = useSelector( state => state.karname.current )   // not work - undefined  
 
-  const predictionsCount = karname ? karname.nPredictions : 0
-  const correctPredictionsCount = karname ? karname.nCorrectPredictions : 0
+  const totalPrds = karname ? karname.nPredictions : 0
+  const correctPrdsCount = karname ? karname.nCorrectPredictions : 0
+  const correctPrdsPercentage = Math.floor( ( correctPrdsCount / totalPrds ) * 100 )
   const totalPoints = karname ? karname.points : 0
 
   console.log( '--- table footer ---' )
@@ -14,19 +15,28 @@ const PrdsTableFooter = ( { karname } ) => {
 
   return <div className="prds-table-footer">
     <div className="w-50 ib textl">
-      <span>Total Predictions: { predictionsCount }</span>
+      <span>Total Predictions: { totalPrds }</span>
       <br />
-      <span>Correct Predictions: { correctPredictionsCount }</span>
+      <span>Correct Predictions: { correctPrdsCount }</span>
       <br />
       <span>Total Points: { totalPoints }</span>
     </div>
 
     <div className="w-50 ib textr">
-      <span>{ predictionsCount } : مجموع التوقعات</span>
-      <br />
-      <span> { correctPredictionsCount } : التوقعات الصحیحة</span>
-      <br />
-      <span>{ totalPoints } : مجموع النقاط</span>
+      <div className="x">
+        <span>{ totalPrds } : مجموع التوقعات</span>
+      </div>
+      <div className="x">
+        <span> { correctPrdsCount } : التوقعات الصحیحة</span>
+      </div>
+      <div className="x">
+        <span>{ totalPoints } : مجموع النقاط</span>
+      </div>
+      <div className="x">
+        { correctPrdsPercentage
+          ? <span>{ correctPrdsPercentage } % : نسبة الصحیحة </span>
+          : <span>  % : نسبة الصحیحة </span> }
+      </div>
     </div>
   </div>
 }

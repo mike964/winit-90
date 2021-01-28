@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 
 // Input + append Btn (custom)  - Works fine
-const InputGroupe = ( {
+// ** Fix needed - only use this when u have append
+const InputGrup = ( {
   placeholder,
-  //label,
+  label,
   // variant, // append-btn color
   onsubmit,
   append,
+  appendText,  // Submit
   //value,
   onChange,
   className
@@ -25,10 +27,14 @@ const InputGroupe = ( {
 
 
   //=======================================================================
-  return <div className={ "input-group " + className }>
-    <input type="text"
+  return <div className={ "input-group " + className } style={ { verticalAlign: 'top' } }>
+    { label && <span className="pt-2  mr-3" style={ { fontWeight: '500' } }>
+      { label }
+    </span> }
+    <input
+      type="text"
       className="form-control"
-      placeholder={ placeholder } aria-label="" aria-describedby="basic-addon1"
+      placeholder={ placeholder }
       value={ value }
       onChange={ e => setValue( e.target.value ) }
     //onChange={ e => onChange( e.target.value ) }   // Error
@@ -38,11 +44,11 @@ const InputGroupe = ( {
         className="btn btn-success"
         type="button"
         onClick={ handleSubmit }
-      > Go
+      > { appendText ? appendText : 'Submit' }
       </button>
     </div> }
   </div>
 
 }
 
-export default InputGroupe
+export default InputGrup

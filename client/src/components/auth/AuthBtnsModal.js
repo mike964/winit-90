@@ -61,24 +61,26 @@ const AuthBtnsModal = () => {
 
       <Modal.Body>
         <div className="p-3">
-
-          <div className="clickable blue boldd center "
-            onClick={ () => setShowSide1( !showSide1 ) }>
-            { showSide1 ? <>
-              {/* <span className=""> Already have an account? </span>  */ }
-              <span className="x"> قد سجلت سابقا؟ </span> { ' ' }
-              <span className="text-success ulineonhover">ادخل </span>
-            </>
-              : <>
-                <span className="x"> لیس لدیک حساب؟ </span> { ' ' }
-                <span className="text-success ulineonhover" >انشاء حساب جدید</span>
-              </> }
-          </div>
-
           { showSide1 &&
             <AuthForm signup={ true } handleModalShow={ handleShow } /> }
           { !showSide1 &&
             <AuthForm signup={ false } handleModalShow={ handleShow } /> }
+
+          <div className=" blue boldd center pt-3"
+            onClick={ () => setShowSide1( !showSide1 ) }>
+            { showSide1 ? <>
+              {/* <span className=""> Already have an account? </span>  */ }
+              <span className="x"> قد سجلت سابقا؟ </span> { ' ' }
+              <span className="text-success clickable ulineonhover">ادخل </span>
+            </>
+              : <>
+                <span className="x"> لیس لدیک حساب؟ </span> { ' ' }
+                <span className="text-success ulineonhover" >انشاء حساب جدید</span>
+                <div className="pt-2">
+                  <span className="c-888 clickable ulineonhover">نسیت کلمة المرور؟</span>
+                </div>
+              </> }
+          </div>
 
         </div>
       </Modal.Body>

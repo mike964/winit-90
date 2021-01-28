@@ -2,10 +2,12 @@ import React from 'react'
 import { useEffect } from 'react';
 import { getAllVipredictions } from '../../redux/actions/vip.actions';
 import { useSelector } from 'react-redux';
-import ViprdItem from '../../components-admin/prd/ViprdItem';
+import ViprdItem from '../prd/ViprdItem';
 import { Table } from 'react-bootstrap';
 
-const ViPrdsPg = () => {
+
+// ** Admin
+const ViprdsPg = () => {
 
   const prds = useSelector( state => state.vip.allVipredictions )
 
@@ -51,4 +53,4 @@ const ViPrdsPg = () => {
   </div>
 }
 
-export default ViPrdsPg
+export default ViprdsPg

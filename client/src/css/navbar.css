@@ -44,7 +44,7 @@
  /* background-color: #ffb700; */
  /* background-color: white; */
   text-decoration: none; 
-  color: #a90fcf;
+  color: #cc00ff;
   padding-top: 6px;
   padding-bottom: 8px;
   border-bottom: solid 2px #cc00ff;
@@ -56,7 +56,7 @@
   padding: 8px 12px;   
   font-size: 18px;
   font-weight: 600;  
-  color: #1046da!important;   
+  color: #cc00ff!important;   
 /* background-color: #eeeeee;     */
 /* background-color: #ffb700;    */
 background-color:  #ffffff; 
@@ -82,7 +82,8 @@ cursor: default;
 /* ************** */
 .navbar-main > .scnd-row {
   /* padding : 4px; */
-  background-color: #ebf1ff; 
+  /* background-color: #fffcf7;  */
+  background-color: #fff; 
   /* background-color: #3c0077;     */
   /* background-color: #000000;  */
   font-weight: 600;

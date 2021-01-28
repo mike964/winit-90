@@ -323,7 +323,7 @@ const MatchItem = ( { match } ) => {
       {/* ** SECOND ROW - FOOTER ** */ }
       { // showScndRow && <>
         !alreadyPredicted && answerKey && <>
-          { !matchStarted && !alreadyPredicted && <div className="row py-2 text-r" dir="rtl" style={ { borderTop: '1px solid #5a5a5a' } } >
+          { !matchStarted && !alreadyPredicted && <div className="row py-1 text-r" dir="rtl" style={ { borderTop: '1px solid #5a5a5a' } } >
             <div className="col-auto col-sm-4 px-2 center">
               { answerKey
                 ? <i className="far fa-times-circle red clickable" onClick={ () => handleBtnX() } />
@@ -331,7 +331,7 @@ const MatchItem = ( { match } ) => {
               <span className="bold mx-2">توقعک :</span>
             </div>
 
-            <div className="col ">
+            <div className="col fw-400">
               <span> { getPredictionTxt( goalDiff, winnerName ) }</span>
             </div>
           </div> }

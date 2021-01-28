@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import CheckBox from '../../components-common/Checkbox'
+import Checkbox from '../../components-common/Checkbox'
 // import Checkbox2 from '../components-common/Checkbox2'
 import { setFilter } from '../../redux/actions/filter.actions'
 
@@ -16,7 +16,7 @@ const MatchFilters = () => {
     {/* <div className="red mb-2">Match Filters </div> */ }
 
     <div className="col">
-      <CheckBox
+      <Checkbox
         label="Finished"
         name="finished"
         checked={ checked }
@@ -25,7 +25,7 @@ const MatchFilters = () => {
     </div>
 
     <div className="col">
-      <CheckBox
+      <Checkbox
         label="This Week"
         name="thisWeek"
         checked={ checked }
@@ -34,7 +34,7 @@ const MatchFilters = () => {
     </div>
 
     <div className="col">
-      <CheckBox
+      <Checkbox
         label="Yesterday"
         name="yesterday"
         checked={ checked }
@@ -43,7 +43,7 @@ const MatchFilters = () => {
     </div>
 
     <div className="col">
-      <CheckBox
+      <Checkbox
         label="Not finished"
         name="notFinished"
         checked={ checked }
@@ -52,7 +52,7 @@ const MatchFilters = () => {
     </div>
 
     <div className="col">
-      <CheckBox
+      <Checkbox
         label="Last Week"
         name="thisWeek"
         checked={ checked }
@@ -62,7 +62,7 @@ const MatchFilters = () => {
 
 
     <div className="col">
-      <CheckBox
+      <Checkbox
         label="VIP"
         name="vip"
         checked={ checked }

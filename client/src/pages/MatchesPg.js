@@ -55,15 +55,15 @@ const MatchesPg = () => {
   //===================================================================================
   //===================================================================================
   return <div className="page" >
-    <div className="container bg-shadow-7 p-1 py-3 " >
-
-      {/* <LigSelector /> */ }
-
-
-
+    <div className="container bg-shadow-6 p-1 py-3 " >
 
       <div className="mb-3 mx-auto" style={ { maxWidth: '640px' } }>
         <InstructionsCollapse />
+      </div>
+
+      <div className="d-none d-md-block mb-3">
+        {/* Only Desktop */ }
+        <LigSelector />
       </div>
 
       {/* <div className="p-2 m-2 center gold" dir="rtl">
@@ -81,9 +81,9 @@ const MatchesPg = () => {
       { matchesLoading ? <div className="text-center p-5">
         <Spinner animation="border" variant="warning" />
       </div>
-        : <>
-          <MatchList matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches } />
-        </> }
+        : <MatchList
+          matches={ selectedWeek === 'thisWeek' ? thisWeekMatches : nextWeekMatches }
+        /> }
 
       { !matchesLoading && <div className="center bg-shadow-66">
         {/* Submit All Predictions Btn */ }

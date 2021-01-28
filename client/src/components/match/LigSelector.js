@@ -9,16 +9,17 @@ const LigSelector = () => {
   return <div className="lig-selector-container ">
     <div className="row lig-selector bein">
 
-      <div className="col-2 px-1">
+      {/* <div className="col px-1">
         <LigLogoBox
           name='all-ligs'
           clicked={ selectedLig === 'All' ? true : false }
           label='ALL'
           onclick={ () => { stClickedLig( 'All' ) } }
+          size='55px'
         />
-      </div>
+      </div> */}
 
-      <div className="col-2 px-1">
+      <div className="col px-1">
         <LigLogoBox
           name='ucl-full'
           clicked={ selectedLig === 'UCL' ? true : false }
@@ -27,7 +28,7 @@ const LigSelector = () => {
         />
       </div>
 
-      <div className="col-2 px-1">
+      <div className="col px-1">
         <LigLogoBox
           name='prlig-full'
           clicked={ selectedLig === 'England' ? true : false }
@@ -36,7 +37,7 @@ const LigSelector = () => {
         />
       </div>
 
-      <div className="col-2 px-1">
+      <div className="col px-1">
         <LigLogoBox
           name='laliga-full'
           clicked={ selectedLig === 'Spain' ? true : false }
@@ -44,7 +45,7 @@ const LigSelector = () => {
           onclick={ () => { stClickedLig( 'Spain' ) } }
         />
       </div>
-      <div className="col-2 px-1">
+      <div className="col px-1">
         <LigLogoBox
           name='seria-full'
           clicked={ selectedLig === 'Italy' ? true : false }
@@ -53,7 +54,15 @@ const LigSelector = () => {
         />
       </div>
 
-      <div className="col-2 px-1">
+      <div className="col px-1">
+        <LigLogoBox
+          name='frlig-full'
+          clicked={ selectedLig === 'France' ? true : false }
+          onclick={ () => { stClickedLig( 'France' ) } }
+        />
+      </div>
+
+      <div className="col px-1">
         <LigLogoBox
           name='uel-full'
           clicked={ selectedLig === 'UEL' ? true : false }

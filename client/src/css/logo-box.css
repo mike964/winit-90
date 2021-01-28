@@ -52,7 +52,7 @@
   background-color: #49ffb9; 
   cursor: pointer;
   padding-top: 4px;
-  padding-bottom: 7px;
+  padding-bottom: 6px;
   /* border-bottom: 3px solid #0084ff;   */
   border-bottom: 3px solid #00a868;
 } 
@@ -71,7 +71,7 @@
   background: linear-gradient(270deg,#ff2882,#963cff 45%);
   padding: 5px;
   border-radius: 6px;
-  max-width: 560px;
+  max-width: 600px;
   margin: auto;
 }
 .lig-selector {

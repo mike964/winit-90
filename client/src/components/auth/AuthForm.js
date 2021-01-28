@@ -130,20 +130,20 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
     }
   }
 
-
+  const FormLabel = ( { text } ) => <div style={ { textAlign: 'right', padding: '2px', color: '#007bff' } }>{ text }</div>
 
   ///////////////////////////////////////////////////////////////////////////////////////
   return <form onSubmit={ signup ? handlesignup : handleLogin }
     className={ homepage ? 'auth-form ' + style1.textColor : 'auth-form' }
   >
 
-    { signup && <div className="form-group" dir="rtl">
-      <label htmlFor="exampleInputEmail1" className="fr">الاسم</label>
+    { signup && <div className="form-group">
+      <FormLabel text='الاسم' />
       <input
         className="form-control"
         type="text"
         name="name"
-        placeholder="محمد صلاح"
+        placeholder="Name"
         value={ state.name }
         onChange={ onChange }
         required
@@ -154,12 +154,12 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
     {/* user name should not contain with number */ }
     {/* name should at least has 6 characters */ }
 
-    <div className="form-group">
-      <label htmlFor="email" className="fr">الایمیل</label>
+    <div className={ `form-group ${ !signup ? "mb3" : "" }` } >
+      <FormLabel text='الایمیل' />
       <input
         type="email"
         className="form-control"
-        placeholder={ signup ? "mosalah11@mail.com" : "Email" }
+        placeholder={ signup ? "example@mail.com" : "Email" }
         name='email'
         value={ state.email }
         onChange={ onChange }
@@ -168,8 +168,8 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
       {/* <span id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</span> */ }
     </div>
 
-    <div className="form-group mb-3">
-      <label htmlFor="password" className="fr">کلمة المرور</label>
+    <div className="form-group">
+      <FormLabel text='کلمة المرور' />
       <input
         className="form-control"
         type="password"
@@ -183,7 +183,7 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
     </div>
 
     { signup && <div className="form-group">
-      <label className="fr">تأكيد كلمة المرور</label>
+      <FormLabel text='تأكيد كلمة المرور' />
       <input
         className="form-control"
         type="password"
@@ -193,7 +193,7 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
         onChange={ onChange }
         required
       />
-      <div className="small text-muted textr">ادخل کلمة المرور مرة ثانیة للتأكد</div>
+      <div className="small text-muted textr">ادخل کلمة المرور مرة ثانیة</div>
     </div> }
 
     <div className="my-3">

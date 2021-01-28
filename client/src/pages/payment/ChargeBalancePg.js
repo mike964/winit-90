@@ -3,7 +3,7 @@ import axios from 'axios'
 // import { PayPalButton } from 'react-paypal-button-v2'
 import SpinnersBox from '../../components-common/SpinnersBox'
 import { Button, InputGroup, Spinner } from 'react-bootstrap'
-import InputGroupe from '../../components-common/InputGroupe'
+import InputGrup from '../../components-common/InputGrup'
 import { chargeUserBalance_DB } from '../../redux/actions/payment.actions'
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from 'react-router-dom'
@@ -140,7 +140,7 @@ const ChargeBalancePg = () => {
           {/* Payment Success Box */ }
           <div className="p-2 ib">
             <div className="w-100px ib mx-2">
-              <InputGroupe value={ chargeAmount } onChange={ setChargeAmount } />
+              <InputGrup value={ chargeAmount } onChange={ setChargeAmount } />
             </div>
             <span className="bold">اختر الباقة المناسبة</span>
           </div>

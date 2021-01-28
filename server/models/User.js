@@ -72,7 +72,15 @@ const UserSchema = new Schema( {
     // real : comes from :IP
   },
   paypalEmail: {   // optional 
-    type: String
+    type: String,
+
+  },
+  settings: {
+    type: Object,
+    default: {
+      hideGuidBar: false,   // Hide guide bar in matches pg
+      // other user settings
+    }
   },
   createdAt: {
     type: Date,

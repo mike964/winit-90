@@ -11,9 +11,8 @@ font-weight: 500;
 } 
 
 .auth:hover {
-  /* background-color: #9500ff;  */
-  /* background-color: #0099ff; */
-  color: gold;
+  background-color: #a300e4;  
+  /* color: gold; */
   /* background-color: #3b3b3b;  */
 }
 

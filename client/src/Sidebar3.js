@@ -65,11 +65,12 @@ const Sidebar3 = () => {
 
     </div>
 
-    <div id="sidebar-open-btn">
-      <button className="w3-button sidebar-open-btn"
+    <div id="sidebar-open-btn" style={ { maxHeight: '43px', border: 'none', overflow: 'hidden', background: 'orange' } }>
+      <button className="w3-buttonn sidebar-open-btn py-1 px-3"
         //onclick="w3_open()"
         onClick={ w3_open }
-      > <span className="fs-18">&#9776;</span>    <span className=" d-none d-sm-inline-block">القائمة </span>
+        style={ { border: 'none' } }
+      > <span className="fs-22">&#9776;</span>
       </button>
     </div>
   </>

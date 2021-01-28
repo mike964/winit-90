@@ -21,7 +21,8 @@ body {
     /* background-repeat: repeat; */
   min-width: 350px;
   /* width: 100%;  */
-  /* min-height: 1100px;  */
+  min-height: 1100px;
+  padding-bottom: 20px; 
 
 }
 

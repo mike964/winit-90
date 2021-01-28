@@ -3,15 +3,43 @@ import { Link } from "react-router-dom"
 
 const AdminNavbar = () => {
 
-  return <div className="d-flex p-2 bold bg-black justify-content-around">
-    <Link to="/admin/matches" className="orange"> Matches </Link>
-    <Link to="/admin/update-results" className="orange"> Update Multiple Results </Link>
-    <Link to="/admin/karnames" className="orange"> Weeks / Karnames </Link>
-    <Link to="/admin/vipredictions" className="orange">VIP Prds</Link>
-    <Link to="/admin/users" className="orange"> Users </Link>
-    <Link to="/admin/users" className="orange"> Payments </Link>
-    <Link to="/admin/instructions" className="orange"> Instructions </Link>
-  </div>
+
+
+
+  const NavItem = ( { linkto, text } ) => <li className="nav-item">
+    <Link  //to="/admin/karnames" 
+      to={ linkto }
+      className="nav-link"
+    > { text }
+    </Link>
+  </li>
+
+  //==================================================================================
+  return <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div className="collapse navbar-collapse  pl-5" id="navbarSupportedContent">
+      <ul className="navbar-nav mrr-auto">
+        <NavItem linkto="/admin/matches" text="Matches" />
+
+        {/* Navbar DropDown */ }
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            api-football
+        </a>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <Link to="/admin/multiple" className="dropdown-item"> Add Multiple Matches </Link>
+            <Link to="/admin/update-results" className="dropdown-item"> Update Multiple Results </Link>
+            <a className="dropdown-item" href="#">Another action</a>
+          </div>
+        </li>
+
+        <NavItem linkto="/admin/karnames" text="Weeks / Karnames" />
+        <NavItem linkto="/admin/vipredictions" text="VIP Prds" />
+        <NavItem linkto="/admin/users" text="Users" />
+        <NavItem linkto="/admin/payments" text="Payments" />
+        <NavItem linkto="/admin/Instructions" text="Instructions" />
+      </ul>
+    </div>
+  </nav>
 }
 
 export default AdminNavbar

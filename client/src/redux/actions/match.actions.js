@@ -19,19 +19,22 @@ export const setMatchesRedux = ( matchArray ) => {  // x : boolean
 }
 
 // Load Matches for User & Admin  (
-export const getMatches_DB = async ( weekId ) => {
+export const getMatches_DB = async ( from_, to_, weekId ) => {
   console.log( '--- getMatches_DB() ---' )
   // Get matches of the,next,last week and set them in Redux when MatchesPg is Mounted
 
   // const startDate = '2020-09-26'   // FOR TEST
-  const startDate = moment().subtract( 10, 'days' )   // Get Last 20 days matches
+  const start_date = from_ ? from_ : moment().subtract( 10, 'days' )   // Get Last 20 days matches
+  const end_date = to_ ? `to=${ to_ }` : ''
 
   setMatchesLoading( true ) // set matches loading to true
 
   try {
-    let response
 
-    response = await axos.get( `/api/matches?from=${ startDate }` )    // Fukk Yess :)
+    let req_params = weekId ? `week.id=${ weekId }`
+      : `from=${ start_date }&${ end_date }`
+
+    let response = await axos.get( `/api/matches?${ req_params }` )    // Fukk Yess :) 
 
     console.log( response )   // for test 
 

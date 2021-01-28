@@ -107,7 +107,8 @@ exports.qrFunc = ( reqQuery, Model, populateOptions ) => {
     req_query.date = { gte: new Date( reqQuery.from ) }
   }
   if ( reqQuery.to ) {
-    req_query.date = { lt: new Date( endDate ) }
+    // req_query.date = { lt: new Date( endDate ) }
+    req_query.date = { ...req_query.date, lte: new Date( reqQuery.to ) }
   }
 
   // Create query string - JSON.stringify() :convert a JavaScript object into a string 
