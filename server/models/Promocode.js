@@ -1,5 +1,8 @@
-
+// Invite friends: affilaite : network growth
 
 // serial
 // user
-// expiredate
+// expire date
+// amount 
+// owner : admin/ some user id
+// receiver 
