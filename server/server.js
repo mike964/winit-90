@@ -7,13 +7,13 @@ const cors = require( 'cors' )
 const fileupload = require( 'express-fileupload' )
 const cookieParser = require( 'cookie-parser' )
 const compression = require( 'compression' )
-const connectDB = require( './server/config/db' )
-const logger = require( './server/middleware/logger.mdlwr' )
-const errorHandler = require( './server/utils/errorHandler' )
+const connectDB = require( './config/db' )
+const logger = require( './middleware/logger.mdlwr' )
+const errorHandler = require( './utils/errorHandler' )
 const stripe = require( 'stripe' )( 'sk_test_51HIswIHUvZEzaEJSZAoYSNE2wPa96IsgfQeQ9bk3n4t80IXFp7M5TgqczGu40mK1e2KyksktGtbFFQTtLyDYE1cV00UIO4qHfs' );
 const cookieSession = require( "cookie-session" )
 const passport = require( "passport" )
-require( "./server/config/passport-config" )   // *** REQUIRED! ***
+require( "./config/passport-config" )   // *** REQUIRED! ***
 
 //=====================================================================
 // connect mongodb
@@ -74,12 +74,12 @@ app.use( errorHandler )
 
 // *** Passport js routes ( Google / Facebook )
 app.get( '/test', ( req, res ) => res.send( "Testing server ..." ) )
-app.use( '/auth', require( './server/routes/auth.route' ) )
+app.use( '/auth', require( './routes/auth.route' ) )
 // *** Mount API Routers ***  ) ) 
-app.use( '/api', require( './server/routes' ) )
+app.use( '/api', require( './routes' ) )
 
 // *** Set public as static files folder  
-app.use( '/api', express.static( path.join( __dirname, 'server/public' ) ) )
+app.use( '/api', express.static( path.join( __dirname, 'public' ) ) )
 // http://localhost:3500/some-picture.jpg
 // http://localhost:3500/api/some-picture.jpg 
 
