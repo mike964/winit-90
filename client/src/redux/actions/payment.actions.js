@@ -18,17 +18,17 @@ export const updateUserBalanceRedux = ( x ) => {
 
 
 // charge user.balance in DB
-export const chargeUserBalance_DB = async ( paymentResponse, type ) => {
+export const chargeUserBalance_DB = async ( paymentResponse ) => {
   // type : ['paypal', 'stripe']
   // First Save Payment to DB. Then update user balance in backend , then update user balance in frontend
   // Then Show success msg. Then Redirect to matches pg
   // Also Add security
   // PaymentResponse could be Paypal Or Stripe Response after successfull payment
 
-  let req_body = { paymentResponse, type }
+  let req_body = { paymentResponse }
 
   try {
-    const { data } = await axos.post( `/api/payment/charge-my-balance/${ type }`, req_body )
+    const { data } = await axos.post( `/api/payment/charge-my-balance/stripe`, req_body )
     console.log( data )   // for test 
 
     // ** Update user balance in frontend => currentUser.balance - $1

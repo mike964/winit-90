@@ -80,7 +80,7 @@ const MatchList = ( { matches, league } ) => {
       title: 'Italy - Serie A',
       matches: itligMatches,
       ligId: 'itlig',
-      ligCode: '39'
+      ligCode: '135'
     },
     {
       title: 'France - Ligue 1',
@@ -111,11 +111,13 @@ const MatchList = ( { matches, league } ) => {
       ligId='prlig'
     />  */}
 
-    { matches.length > 0 && leagues.map( item => <MatchCollapse
-      title={ item.title }
-      matches={ item.matches }
-      ligId={ item.ligId }
-    /> ) }
+    { matches.length > 0 && leagues.map( item =>
+      <MatchCollapse
+        title={ item.title }
+        matches={ item.matches }
+        ligId={ item.ligId }
+        open_={ item.ligCode === '39' ? true : false }  // Set Pr lig collapse open by default
+      /> ) }
 
     { !matches.length && <div className="py-5 text-center bold">
       <span className="white">لا توجد مباریات لهذا الاسبوع</span>

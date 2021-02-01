@@ -42,14 +42,14 @@ const PaymentSchema = new Schema( {
 //   justOne: false
 // } ) 
 
-PaymentSchema.pre( /^find/, function ( next ) {
-  // this.populate( 'user'.populate( {
-  //   path: 'tour',
-  //   select: 'name'
-  // } ) )
+// PaymentSchema.pre( /^find/, function ( next ) {
+//   // this.populate( 'user'.populate( {
+//   //   path: 'tour',
+//   //   select: 'name'
+//   // } ) )
 
-  next()
-} )
+//   next()
+// } )
 
 // MatchSchema.pre( 'remove', async function ( next ) {
 //   // Cascade delete Predictions when a Match is deleted - from Brad 
@@ -73,8 +73,8 @@ PaymentSchema.pre( /^find/, function ( next ) {
 
 
 
-const Message = mongoose.model( 'Payment', PaymentSchema )
-module.exports = Message
+const Payment = mongoose.model( 'Payment', PaymentSchema )
+module.exports = Payment
 
 
 

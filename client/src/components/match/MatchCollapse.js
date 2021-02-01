@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import Logo from '../../components-common/Logo'
 import MatchItem from './MatchItem'
 
-const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
+const MatchCollapse = ( { title, matches, ligId } ) => {
 
 
   const { expandAllLigs } = useSelector( state => state.global )
@@ -13,8 +13,8 @@ const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
   const [ open, setOpen ] = useState( false );
 
 
-  console.log( 'matches.length' )
-  console.log( matches.length )
+  // console.log( 'matches.length' )
+  // console.log( matches.length )
 
 
   useEffect( () => {
@@ -25,9 +25,18 @@ const MatchCollapse = ( { title, matches, ligId, ligCode } ) => {
     }
   }, [ expandAllLigs ] )
 
+  useEffect( () => {
+    // * toggle prlig by default automatically
+    setTimeout( () => {
+      if ( ligId === 'prlig' ) {
+        setOpen( true )
+      }
+    }, 2000 )
+    // Ha haaa .. bitch :)
+  }, [] )
+
   const handleClick = () => {
     setOpen( !open )
-    // setchevronUp( !chevronUp )
   }
 
 

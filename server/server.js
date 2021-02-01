@@ -1,4 +1,3 @@
-
 // require( 'dotenv' ).config( { path: './config/config.env' } )
 require( 'dotenv' ).config()
 const path = require( 'path' )
@@ -14,7 +13,8 @@ const stripe = require( 'stripe' )( 'sk_test_51HIswIHUvZEzaEJSZAoYSNE2wPa96IsgfQ
 const cookieSession = require( "cookie-session" )
 const passport = require( "passport" )
 require( "./config/passport-config" )   // *** REQUIRED! ***
-
+// import { getClientUrl } from './utils/get-client-url';
+const getClientUrl = require( './utils/get-client-url' );
 //=====================================================================
 // connect mongodb
 connectDB()
@@ -86,11 +86,12 @@ app.use( '/api', express.static( path.join( __dirname, 'public' ) ) )
 
 if ( process.env.NODE_ENV === 'production' ) {
   // *** When we deploy to the server - Run React js client as static folder
-  app.use( express.static( path.join( __dirname, '/client/build' ) ) )
+  // app.use( express.static( path.join( __dirname, '/client/build' ) ) )
+  app.use( express.static( path.join( __dirname, '../client/build' ) ) )
   app.get( '*', ( req, res ) => res.sendFile( path.resolve( __dirname, 'client', 'build', 'index.html' ) ) )
 
 } else {      //  if NODE_ENV == development
-  app.get( '/', ( req, res ) => res.send( "Hello from '/'" ) )
+  app.get( '/', ( req, res ) => res.send( "Hello from '/'. NODE_ENV == development" ) )
 }
 
 // Fetch PayPal Client ID (for frontend)
@@ -103,4 +104,6 @@ const port = process.env.PORT || 5000
 app.listen( port, () => {
   console.log( `Server running on port: ${ port }` )
   console.log( "process.env.NODE_ENV: " + process.env.NODE_ENV )
+  let clientUrl = getClientUrl()
+  console.log( "CLIENT URL: " + clientUrl )
 } )

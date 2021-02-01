@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-// import Logo from '../components-common/Logo'
-// import PredictionArea from '../prediction/PredictionArea'
 import LogoBox from '../vip/LogoBox'
-// import Checkbox from '../components-common/Checkbox'
 // import DiceBtn from '../vip/DiceBtn'
 import Counter from '../prediction/Counter'
 import MatchItemHeader from './MatchItemHeader'
@@ -14,7 +11,6 @@ import { useSelector } from 'react-redux'
 import {
   updatePrediction_byMatch, addPrediction, deletePrediction
 } from '../../redux/actions/prediction.actions'
-import { green } from 'colors'
 // import LastFive from './LastFive' 
 
 //================================================================================
@@ -341,20 +337,4 @@ const MatchItem = ( { match } ) => {
   </>
 }
 
-export default MatchItem
-
-
-
-/* <div className="col-3 text-center green pt-3">
-        <span>المرکز في الدوري</span> <br />
-        <span>12th</span>
-
-        <span className="green">آخر 5 مباراة</span>
-        { ' ' } <br /> { ' ' }
-        <i className="fas fa-times-circle red"></i>{ ' ' }
-        <i className="fas fa-minus-circle gray-l"></i>{ ' ' }
-        <i className="fas fa-check-circle green"></i>{ ' ' }
-        <i className="fas fa-check-circle green"></i>{ ' ' }
-        <i className="fas fa-check-circle green"></i>{ ' ' }
-
-      </div>  */
+export default MatchItem 

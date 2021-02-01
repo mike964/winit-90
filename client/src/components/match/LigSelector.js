@@ -6,6 +6,10 @@ import { useSelector } from 'react-redux'
 const LigSelector = () => {
   const { selectedLig } = useSelector( state => state.global )
 
+  const handleClick = ( x ) => {
+    stClickedLig( x )
+  }
+
   return <div className="lig-selector-container ">
     <div className="row lig-selector bein">
 
@@ -23,8 +27,8 @@ const LigSelector = () => {
         <LigLogoBox
           name='ucl-full'
           clicked={ selectedLig === 'UCL' ? true : false }
-          //label='UCL'
-          onclick={ () => { stClickedLig( 'UCL' ) } }
+        //label='UCL'
+        // onclick={ () => { stClickedLig( 'UCL' ) } }
         />
       </div>
 
@@ -32,8 +36,8 @@ const LigSelector = () => {
         <LigLogoBox
           name='prlig-full'
           clicked={ selectedLig === 'England' ? true : false }
-          //label='ENGLAND'
-          onclick={ () => { stClickedLig( 'England' ) } }
+        //label='ENGLAND'
+        //onclick={ () => { stClickedLig( 'England' ) } }
         />
       </div>
 
@@ -41,16 +45,16 @@ const LigSelector = () => {
         <LigLogoBox
           name='laliga-full'
           clicked={ selectedLig === 'Spain' ? true : false }
-          //label='SPAIN'
-          onclick={ () => { stClickedLig( 'Spain' ) } }
+        //label='SPAIN'
+        //  onclick={ () => { stClickedLig( 'Spain' ) } }
         />
       </div>
       <div className="col px-1">
         <LigLogoBox
           name='seria-full'
           clicked={ selectedLig === 'Italy' ? true : false }
-          //label='ITALY'
-          onclick={ () => { stClickedLig( 'Italy' ) } }
+        //label='ITALY'
+        // onclick={ () => { stClickedLig( 'Italy' ) } }
         />
       </div>
 
@@ -58,7 +62,7 @@ const LigSelector = () => {
         <LigLogoBox
           name='frlig-full'
           clicked={ selectedLig === 'France' ? true : false }
-          onclick={ () => { stClickedLig( 'France' ) } }
+        //   onclick={ () => { stClickedLig( 'France' ) } }
         />
       </div>
 
@@ -66,7 +70,7 @@ const LigSelector = () => {
         <LigLogoBox
           name='uel-full'
           clicked={ selectedLig === 'UEL' ? true : false }
-          onclick={ () => { stClickedLig( 'UEL' ) } }
+        //   onclick={ () => { stClickedLig( 'UEL' ) } }
         />
       </div>
     </div>

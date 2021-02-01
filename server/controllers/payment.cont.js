@@ -3,10 +3,84 @@ const Payment = require( '../models/Payment' )
 const crud = require( '../utils/crudHandler' )
 const asyncHandler = require( '../utils/asyncHandler' )
 const { updateUserBalance } = require( './user.cont' )
-const stripe = require( 'stripe' )( process.env.STRIPE_SECRET_KEY );
+const stripe = require( 'stripe' )( process.env.STRIPE_SECRET_KEY )
+const getClientUrl = require( '../utils/get-client-url' )
 
 //==========================================================
-// @route     GET /api/v1/teames
+// @route     GET /api/ ...
+
+// *** STRIPE *** // 
+//=================================================================================
+// * Create Stripe checkout session  
+exports.createCheckoutSession = asyncHandler( async ( req, res, next ) => {
+  console.log( '--- createCheckoutSession()---'.yellow )
+  // 1) Get the currently booked tour
+  // const tour = await Tour.findById(req.params.tourId);
+  // console.log(tour);
+
+  console.log( req.body )   // { chargeAmount: 10 }
+  const { product } = req.body
+
+  // const product = {
+  //   name: 'Mike Tour',
+  //   price: 20   // USD
+  // }
+
+  // const YOUR_DOMAIN = 'http://localhost:3000/checkout'
+  // const clientURL = 'http://localhost:3000/charge-balance'
+  const clientURL = getClientUrl()
+  console.log( 'client URL: ' + clientURL )   // FOR TEST
+  console.log( 'req.user: ' + req.user )   // FOR TEST
+
+  // 2) Create checkout session
+  const session = await stripe.checkout.sessions.create( {
+    payment_method_types: [ 'card' ],
+    // success_url: `${req.protocol}://${req.get('host')}/my-tours/?tour=${
+    //   req.params.tourId
+    // }&user=${req.user.id}&price=${tour.price}`, 
+    // customer_email: req.user.email,
+    // client_reference_id: req.params.tourId,
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: product.name,
+            images: [ 'https://i.imgur.com/EHyR2nP.png' ],
+          },
+          unit_amount: product.price * 100   // Convert cent to dollar
+        },
+        quantity: 1
+      }
+    ],
+    mode: 'payment',
+    // success_url: `${ clientURL }?success=true`,
+    // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+    success_url: `${ clientURL }?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${ clientURL }?canceled=true`,
+    customer_email: req.user.email   // works fine. user comes from protect() mdlwr
+  } );
+
+  // console.log( 'session_id before payment: ' )
+  // console.log( session.id )   // Good
+
+  // 3) Send the session as response back to the client
+  res.status( 200 ).json( {
+    success: true,
+    session
+    // id: session.id
+  } )
+  // * If success: It will add incomplete payment in: https://dashboard.stripe.com/test/payments
+} );
+
+
+exports.fetchCheckoutSession = asyncHandler( async ( req, res, next ) => {
+  console.log( '--- fetch checkout session () ---'.yellow )
+  const { sessionId } = req.query;
+  console.log( sessionId )
+  const session = await stripe.checkout.sessions.retrieve( sessionId )
+  res.send( session )
+} )
 
 // FOR ADMIN
 exports.getAllPayments = crud.getAll( Payment )
@@ -80,19 +154,19 @@ exports.chargeMyBalance_stripe = asyncHandler( async ( req, res, next ) => {
 
 
   const sessionId = req.body.paymentResponse
-  let amountt = 0    // payment amount from stripe session
+  let amount_ = 0    // payment amount from stripe session
 
   const session = await stripe.checkout.sessions.retrieve( sessionId )
   // console.log( session )
 
   if ( session.payment_status === 'paid' ) {
 
-    amountt = session.amount_total / 100  // Convert cent to dollar
-    console.log( 'amountt: ' + amountt )
+    amount_ = session.amount_total / 100  // Convert cent to dollar
+    console.log( 'amount_: ' + amount_ )
 
     const newPayment = {
       user: req.user._id,
-      amount: amountt,
+      amount: amount_,
       type: 'stripe',
       sessionId: sessionId,
       paymentResponse: session  // Could be PayPal or Stripe Response 
@@ -119,77 +193,9 @@ exports.chargeMyBalance_stripe = asyncHandler( async ( req, res, next ) => {
 
   res.status( 200 ).json( {
     success: true,
-    amount: amountt
+    amount: amount_
     // nResults: docs.length,
     // data: docs
   } )
 } )
 
-//////////////////////
-// *** STRIPE *** //
-/////////////////// =====================================================================
-// Create Ceckout Session for Stripe Payment 
-exports.createCheckoutSession = asyncHandler( async ( req, res, next ) => {
-  console.log( '--- createCheckoutSession()---'.yellow )
-  // 1) Get the currently booked tour
-  // const tour = await Tour.findById(req.params.tourId);
-  // console.log(tour);
-
-  console.log( req.body )   // { chargeAmount: 10 }
-  const product = req.body
-
-  // const product = {
-  //   name: 'Mike Tour',
-  //   price: 20   // USD
-  // }
-
-  // const YOUR_DOMAIN = 'http://localhost:3000/checkout'
-  const domainURL = 'http://localhost:3000/charge-balance'
-
-  // 2) Create checkout session
-  const session = await stripe.checkout.sessions.create( {
-    payment_method_types: [ 'card' ],
-    // success_url: `${req.protocol}://${req.get('host')}/my-tours/?tour=${
-    //   req.params.tourId
-    // }&user=${req.user.id}&price=${tour.price}`, 
-    // customer_email: req.user.email,
-    // client_reference_id: req.params.tourId,
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: product.name,
-            images: [ 'https://i.imgur.com/EHyR2nP.png' ],
-          },
-          unit_amount: product.price * 100   // Convert cent to dollar
-        },
-        quantity: 1
-      }
-    ],
-    mode: 'payment',
-    // success_url: `${ domainURL }?success=true`,
-    // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-    success_url: `${ domainURL }?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${ domainURL }?canceled=true`
-  } );
-
-  // console.log( 'session_id before payment: ' )
-  // console.log( session.id )   // Good
-
-  // 3) Create session as response & send it back to the client
-  res.status( 200 ).json( {
-    success: true,
-    session
-    // id: session.id
-  } );
-} );
-
-
-exports.fetchCheckoutSession = asyncHandler( async ( req, res, next ) => {
-  console.log( '--- fetch checkout session () ---'.yellow )
-  const { sessionId } = req.query;
-  console.log( sessionId )
-  const session = await stripe.checkout.sessions.retrieve( sessionId )
-  res.send( session )
-} )

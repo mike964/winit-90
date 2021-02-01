@@ -8,10 +8,14 @@ const token = Cookies.get( 'wntkn' )
 // console.log( 'token: ' + token )   // Undefined
 // console.log( document.cookies )  // This shit doesn't work at all
 
+// let node_env = process.env.NODE_ENV
+// let base_url_dev = process.env.REACT_APP_SERVER
+// let base_url_prod = '/'
+
 export const axos = axios.create( {
   withCredentials: true,   // Send Cookie to server to retrieve user when login with Passport js
   // *** 'https://some-domain.com/api/',
-  // baseURL: ( process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER : '' ),   // http://localhost:5000
+  // baseURL: ( node_env === 'development' ? process.env.REACT_APP_SERVER : '' ),   // http://localhost:5000
   // baseURL: '/'    // FOR PRODUCTION
   // headers: {'X-Custom-Header': 'foobar'}
 

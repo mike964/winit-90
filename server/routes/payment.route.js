@@ -5,25 +5,24 @@ const {
 } = require( '../controllers/payment.cont' )
 const { protect } = require( '../middleware/auth.mdlwr' )
 
-// app.use( '/api/v1/payment' )
+// app.use( '/api/payment' )
 //====================================================================
 const router = express.Router()
 
 
 // router.use( protect )
 // All routes below will use the two middlewares above
-
+// * According to: https://stripe.com/docs/checkout/integration-builder
 
 router
   .route( '/' )
   .get()
 
-router.route( '/charge-my-balance/paypal' ).post( protect, chargeMyBalance_paypal )
+// router.route( '/charge-my-balance/paypal' ).post( protect, chargeMyBalance_paypal )
 router.route( '/charge-my-balance/stripe' ).post( protect, chargeMyBalance_stripe )
 
-// Create a checkout session (Stripe js)
-router.post( '/create-checkout-session', createCheckoutSession )
-
+// Create a checkout session (stripe)
+router.post( '/create-checkout-session', protect, createCheckoutSession )
 // Fetch the Checkout Session to display the JSON result on the success page
 router.get( '/checkout-session', fetchCheckoutSession )
 
