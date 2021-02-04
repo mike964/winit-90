@@ -47,8 +47,8 @@ const FakeKarnameForm = ( { weekId } ) => {
 
   return <form onSubmit={ handleSubmit }>
     <div className="row black bold">
-      <div className="col p-1">
-        <span className="">Fake user display name</span>
+      <div className="col-2 px-1">
+        <p className="">Fake display name</p>
         <FormGrup
           name='fake user name'
           placeholder='عبود خلیل'
@@ -57,8 +57,18 @@ const FakeKarnameForm = ( { weekId } ) => {
         />
       </div>
 
-      <div className="col p-1">
-        <span className="x">Fake user Id</span>
+      <div className="col-2 px-1">
+        <p className="">Fake display email</p>
+        <FormGrup
+          name='fake user name'
+          placeholder='hasan****@****.com'
+          value={ fakeUserName }
+          onChange={ e => setFakeUserName( e.target.value ) }
+        />
+      </div>
+
+      <div className="col-auto px-1">
+        <p className="x">Fake user Id</p>
         <select className="custom-select"
           value={ fakeUserId }
           onChange={ ( e ) => setfakeUserId( e.target.value ) }
@@ -69,25 +79,27 @@ const FakeKarnameForm = ( { weekId } ) => {
         </select>
       </div>
 
-      <div className="col p-1">
-        <span className="white">.</span>
-        <FormGrup
-          placeholder='nPredictions'
-          value={ nPredictions }
-          onChange={ e => setnPredictions( e.target.value ) }
-        />
+      <div className="col-auto px-1">
+        <div className="ib w-120px">
+          <p className="white">.</p>
+          <FormGrup
+            placeholder='nPredictions'
+            value={ nPredictions }
+            onChange={ e => setnPredictions( e.target.value ) }
+          />
+        </div>
       </div>
-      <div className="col p-1">
-        <span className="white">.</span>
+      <div className="col-1 px-1">
+        <p className="white">.</p>
         <FormGrup
           placeholder='points'
           value={ points }
           onChange={ e => setpoints( e.target.value ) }
         />
       </div>
-      <div className="col p-1 px-3">
-        <span className="white">.</span>
-        <Button block type='submit'>
+      <div className="col-auto px-3">
+        <p className="white">.</p>
+        <Button type='submit' className="pill">
           Submit
           </Button>
       </div>

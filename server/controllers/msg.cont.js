@@ -34,13 +34,20 @@ exports.createMsg = () => asyncHandler( async ( req, res, next ) => {
 exports.sendMsgToUser = async ( userId, txt ) => {
 
   // مبروک لقد ربحت 200$ لفوزک بالمرکز الثالث لدوري الاسبوع 45 
+  // مبروک لقد ربحت 200$ لفوزک بالمرکز الثالث       
 
-  const msg = await Msg.create( {
-    user: userId,
-    txt,
-    lang: 'arabic',
-    title: 'msg'
-  } )
+  try {
+    const msg = await Msg.create( {
+      user: userId,
+      txt,
+      lang: 'arabic',
+      title: 'msg'
+    } )
+    return true // success 
+  } catch ( error ) {
+    console.log( error )
+    return false
+  }
 }
 
 // exports.checkMsgAdRead =

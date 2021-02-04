@@ -114,16 +114,18 @@ const EditMatchForm = ( { handleModalShow } ) => {
           name='team1'
           value={ goals.team1 }
           onChange={ onChange }
-          className='ib w-80px'
-        /> { ' ' }
+        ////className='ib w-80px'
+        />
+      </div>
+      <div className="col">
         <FormGrup
           name='team2'
           value={ goals.team2 }
           onChange={ onChange }
-          className='ib w-80px'
+        ////className='ib w-80px'
         />
       </div>
-      <div className="col-auto p-2">
+      <div className="col-auto pt-2">
         <Checkbox
           label="Ended in Penalties"
           checked={ penalties }
@@ -141,14 +143,16 @@ const EditMatchForm = ( { handleModalShow } ) => {
           value={ goals.penalty1 }
           onChange={ onChange }
           disabled={ penalties ? false : true }
-          className='ib w-80px'
-        /> { ' ' }
+        // className='ib w-80px'
+        />
+      </div>
+      <div className="col">
         <FormGrup
           name='penalty2'
           value={ goals.penalty2 }
           onChange={ onChange }
           disabled={ penalties ? false : true }
-          className='ib w-80px'
+        //// className='ib w-80px'
         />
       </div>
     </div>
@@ -159,29 +163,31 @@ const EditMatchForm = ( { handleModalShow } ) => {
         <FormGrup
           //placeholder='1.1'
           name='team1odds'
-          value={ odds.team1 }
+          value={ odds ? odds.team1 : '' }
           onChange={ e => setOdds( { ...odds, team1: e.target.value } ) }
           disabled={ vip ? false : true }
-          className='ib w-60px'
-        /> { ' ' }
+        />
+      </div>
+      <div className="col px-1">
         <FormGrup
           //placeholder='1.2'
           name='drawodds'
-          value={ odds.draw }
+          value={ odds ? odds.draw : '' }
           onChange={ e => setOdds( { ...odds, draw: e.target.value } ) }
           disabled={ vip ? false : true }
-          className='ib w-60px'
-        /> { ' ' }
+        />
+      </div>
+      <div className="col px-1">
         <FormGrup
           //placeholder='1.3'
           name='team2odds'
-          value={ odds.team2 }
+          value={ odds ? odds.team : '' }
           onChange={ e => setOdds( { ...odds, team2: e.target.value } ) }
           disabled={ vip ? false : true }
-          className='ib w-60px'
         />
       </div>
-      <div className="col-3 center pt-2">
+      <div className="col px-1 pt-2">
+        {/* fix checkbox */ }
         <Checkbox
           label="VIP"
           checked={ vip }
@@ -238,11 +244,8 @@ const EditMatchForm = ( { handleModalShow } ) => {
       <div className="col px-1">
         <button className="btn btn-block btn-blue"
           onClick={ handleUpdateResult }
-        > Update Result
+        > Update Result  <SpinrSuccsFail status={ reqStatus } />
         </button>
-      </div>
-      <div className="col-auto">
-        <SpinrSuccsFail status={ reqStatus } />
       </div>
     </div>
   </form>

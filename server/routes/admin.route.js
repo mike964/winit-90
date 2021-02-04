@@ -14,11 +14,11 @@ const {
   calculatePointsForMatchPrds
 } = require( '../controllers/match.cont' )
 const {
-  giveWinnersPrize
+  payWinrByKarnameId
 } = require( '../controllers/admin.cont' )
 const { doExtra } = require( '../utils/extra' )
 
-// router.use( '/ad', require( './routes/admin.route' ) )
+// router.use( '/adm', require( './routes/admin.route' ) )
 //=============================================================
 const router = express.Router()
 
@@ -55,9 +55,13 @@ router.route( '/pay-weekly-winners/:weekId' )
 // router.route( '/pay-vip-winners/:weekId' )
 //   .post( createKarname )
 
-// Give trophy + msg to winners of week
-router.route( '/give-prize/:weekId' )
-  .get( giveWinnersPrize )
+// Give trophy + msg to winners of week (not used anymore)
+// router.route( '/give-prize/:weekId' )
+//   .get( giveWinnersPrize )
+
+// * Pay a winner by karname Id
+router.route( '/pay-winner-by-karname-id' )
+  .post( payWinrByKarnameId )
 
 router.route( '/do-extra' ).get( doExtra )
 

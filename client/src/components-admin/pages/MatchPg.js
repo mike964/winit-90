@@ -29,15 +29,16 @@ const MatchPg = () => {
   const [ showMatchForm, stShowMatchForm ] = useState( false )
 
   const { filters } = useSelector( state => state )
-  const { matches } = useSelector( state => state.match )
+  const { matches, loading: matchesLoading } = useSelector( state => state.match )
   const [ filteredMatches, setFilteredMatches ] = useState( '' )
-  const [ matchesLoading, setMatchesLoading ] = useState( true )
+  // const [ matchesLoading, setMatchesLoading ] = useState( true )
   // const filteredMatches = ( matches ? filterMatches( matches, filters ) : [] )
 
   // ** Initial FORM Value
   const [ state, setState ] = useState( {
     matchesFrom: moment().subtract( 10, 'days' ).format( 'YYYY-MM-DD' ),  // Get matches from date
-    matchesTo: moment().format( 'YYYY-MM-DD' ),    // To date
+    // matchesTo: moment().format( 'YYYY-MM-DD' ),    // To date
+    matchesTo: moment.utc().endOf( "week" ).format( 'YYYY-MM-DD' ),    // To date
     weekId: '2021-3'
   } )
 
@@ -100,23 +101,23 @@ const MatchPg = () => {
         </div>
       </form>
 
-
       <Row className="mb-3">
         <div className="col">
-          <div className="ib">
-            <FormGrup
-              label='GET matches of weekId'
-              //placeholder="(2020-35)"
-              name='weekId'
-              value={ state.weekId }
-              onChange={ onChange }
-              onsubmit={ handleGetMatchesFromDB }
-            />
-          </div>
-          <button className="btn btn-primary va-top mx-2"
-            onClick={ handleGetMatchesFromDB }
-          > Submit
+          <form onSubmit={ handleGetMatchesFromDB }>
+            <div className="ib">
+              <FormGrup
+                label='GET matches of weekId'
+                //placeholder="(2020-35)"
+                name='weekId'
+                value={ state.weekId }
+                onChange={ onChange }
+                onsubmit={ handleGetMatchesFromDB }
+              />
+            </div>
+            <button className="btn btn-primary va-top mx-2" type="submit"
+            > Submit
           </button>
+          </form>
         </div>
       </Row>
 
@@ -143,7 +144,7 @@ const MatchPg = () => {
 
     <div className="pb-3">
 
-      <MatchTable matches={ filteredMatches } loading={ filteredMatches.length ? false : true } />
+      <MatchTable matches={ filteredMatches } loading={ matchesLoading } />
 
       <div className="p-3">
         <span className="x">Left green border means match.finished = true</span>

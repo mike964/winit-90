@@ -60,8 +60,8 @@ exports.signup = asyncHandler( async ( req, res, next ) => {
   // Create user - Add to DB
   let newUser = await User.create( {
     name,
-    // balance: 2,   // For new user $2 gift - Give user $2 gift when he validate email
-    balance: 0,
+    balance: 2,   // For new user $2 initail balance - Give user extra $2 when validate email
+    // balance: 0,
     email,
     password
   } )

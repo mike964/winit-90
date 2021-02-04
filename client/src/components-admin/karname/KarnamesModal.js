@@ -17,9 +17,8 @@ import { axos } from '../../utils'
 const KarnamesModal = ( { week, show, handleShow } ) => {
 
   const [ karnames, setkarnames ] = useState( [] )
-  const [ showFakeKarnameForm, setShowFakeKarnameForm ] = useState( true )
-  const [ showPayWinrsForm, setShowPayWinrsForm ] = useState( true )
   const [ reqStatus, setReqStatus ] = useState( '' )  // [spinner - success - fail]
+  const [ showForms, setShowForms ] = useState( false )
 
 
   useEffect( () => {
@@ -66,7 +65,7 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
   //===============================================================================================
   return <Modal show={ show } onHide={ handleShow } size='lg' dialogClassName="modal-90w"  >
     <Modal.Header>
-      <div className='row p-2 bg-blue'>
+      <div className='row p-2' style={ { background: '#6dd16d' } }>
         <div className="col p-1 black bold">
           <span className="px-1"> Karnames of week :</span>
           <span className="px-1 white">{ week._id }</span>
@@ -80,9 +79,19 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
       </div>
     </Modal.Header>
 
-    <Modal.Body>
-      <div className="row px-2 pt-3 black center">
+    <Modal.Body className="bg-f5">
+      <div className="hint">
+        <p className="">
+          <span className="boldd">Hint: </span>
+          <span className="x"> 1st. up karname stats</span>
+          <span className="x"> 2. Add fake karname to take first positions</span>
+          <span className="x"> 3.Click update positions</span>
+          <span className="x"></span>
 
+        </p>
+      </div>
+
+      <div className="row p-3 mb- black center">
         <div className="col">
           <Button variant="primary"
             //title="Update karnames stats (points,..)"
@@ -90,21 +99,9 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
           > Up karname stats
           </Button>  { ' ' }
 
-          <Button variant="secondary"
-            onClick={ () => setShowFakeKarnameForm( !showFakeKarnameForm ) }
-          //title="Add fake karname to take first positions"
-          > + Fake karname
-          </Button>  { ' ' }
-
           {/* update karname positions after adding fake karnames */ }
           <Button variant="primary" onClick={ handleUpdatePostions }
           >  <Tooltipp text='Up positions' hoverText='Update karnames position' />
-          </Button> { ' ' }
-
-          <Button variant="success"
-            onClick={ () => setShowPayWinrsForm( !showPayWinrsForm ) }
-          //title="Update winners balance"
-          > Pay winners
           </Button> { ' ' }
 
           <Button variant="primary"
@@ -113,7 +110,7 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
           > Up week.topUsers
           </Button> { ' ' }
 
-
+          <Button variant="outline-success" onClick={ () => setShowForms( !showForms ) }>Show forms</Button>
 
           {/* <Button variant="danger" onClick={ handleShow }> close </Button> */ }
         </div>
@@ -128,14 +125,22 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
         </div>
       </div>
 
-      <div className="p-1">
-        { showFakeKarnameForm && <div className="border-aaa bg-eee p-2 m-2 curved">
+      { showForms && <div className="p-3">
+        <div className="bg-w border-ccc p-3 mb-3">
+          <p className="bold"> Add Fake karname</p>
           <FakeKarnameForm weekId={ week._id } />
-        </div> }
-        { showPayWinrsForm && <div className="border-aaa bg-eee p-2 m-2 curved">
+        </div>
+
+        <div className="bg-w border-ccc p-3 mb-3">
+          <p className="bold">Pay winner by _id or karname._id</p>
+        </div>
+
+        <div className="bg-w border-ccc p-3">
+          <p className="bold">Pay multiple winners</p>
           <PayWinrsForm weekId={ week._id } />
-        </div> }
-      </div>
+        </div>
+      </div> }
+
 
       <div className="bg-white black px-2">
         <KarnamesTable karnames={ karnames } />

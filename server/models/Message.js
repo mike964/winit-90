@@ -10,7 +10,7 @@ const MessageSchema = new Schema( {
     ref: 'User',
     required: [ true, 'Message must belong to a user' ]
   },
-  title: { //  [congratulations - hint - warning - note]
+  title: { //  [congrats - hint - warning - note]
     type: String,
     required: true
   },
@@ -18,7 +18,7 @@ const MessageSchema = new Schema( {
     type: String,
     required: true
   },
-  txt: { // eg. Congratulations! U won a new trophy
+  txt: { // eg. Congratulations! You've won a new trophy
     type: String,
     required: true
   },
@@ -37,6 +37,16 @@ const MessageSchema = new Schema( {
   year: {
     type: String, // 2020 - this will be calculated automatically  
     default: d.getFullYear()
+  },
+  toAdmin: {   // from user, to admin (msgs for admin)
+    type: Boolean,
+    default: false
+  },
+  type: { // ['cashout', 'suggestion' , 'other']
+    type: Object,
+    //{
+    // amount
+    // }
   }
 } )
 

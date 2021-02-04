@@ -36,7 +36,12 @@ const MatchTable = ( { matches, loading } ) => {
           expanded={ expandAll }
         />
       ) }
-      { loading ? <TableSpiner /> : <></> }
+      { loading
+        ? <TableSpiner />
+        : <>{ !matches.length && <tr className="x">
+          <td className="center">No matches </td>
+        </tr> }</> }
+
     </tbody>
 
   </table>

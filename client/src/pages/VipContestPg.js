@@ -15,6 +15,7 @@ const VipContestPg = () => {
 
   const { currentTimeUnix } = useSelector( state => state.clock )
   const { matches } = useSelector( state => state.match )
+  const { balance } = useSelector( state => state.auth.currentUser )
 
   const [ vip_matches, setvip_matches ] = useState( [] )
 
@@ -40,9 +41,8 @@ const VipContestPg = () => {
 
   //============================================================================
   return <div className="page">
-
-    <div className="container bg-shadow-5">
-
+    {/* Show only if user has at least $10 balance */ }
+    { balance >= 10 && <div className="container bg-shadow-5">
       <div className="row center py-3">
         <div className="col"></div>
         <div className="col">
@@ -59,7 +59,8 @@ const VipContestPg = () => {
           <MatchItemVip match={ mch } key={ mch._id } /> ) }
       </div>
 
-    </div>
+    </div> }
+
   </div>
 }
 

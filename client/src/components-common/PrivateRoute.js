@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
-const ProtectedRoute = ( { component: Component, admin, ...rest } ) => {
+const PrivateRoute = ( { component: Component, admin, ...rest } ) => {
 
   const { isAuthenticated, currentUser } = useSelector( state => state.auth )
   const isAdmin = ( currentUser ? ( currentUser.isAdmin ? true : false ) : false )
   const token = Cookies.get( 'wntkn' )
   // console.log( token )  // output: token string
 
-  console.log( '--- ProtectedRoute ---' )
+  console.log( '--- PrivateRoute ---' )
   console.log( 'props.admin: ' + admin )
   console.log( 'isAuthenticated: ' + isAuthenticated )
 
@@ -49,4 +49,4 @@ const ProtectedRoute = ( { component: Component, admin, ...rest } ) => {
   />
 }
 
-export default ProtectedRoute 
+export default PrivateRoute 

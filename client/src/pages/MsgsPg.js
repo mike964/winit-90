@@ -22,7 +22,7 @@ const MsgsPg = () => {
 
 
   return <div className="page pt-2">
-    <div className="py-3 center">
+    <div className="py-3 center white">
       {/* <h4>Messages</h4> */ }
       <h5>الرسائل</h5>
     </div>

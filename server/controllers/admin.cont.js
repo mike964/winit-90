@@ -4,7 +4,6 @@ const asyncHandler = require( '../utils/asyncHandler' )
 const Karname = require( '../models/Karname' )
 const Week = require( '../models/Week' )
 const Ulist = require( '../models/Ulist' )
-const crud = require( '../utils/crudHandler' )
 const { qrFunc } = require( '../utils/queryFunction.js' )
 const { sendMsgToUser } = require( './msg.cont.js' )
 const { updateUserBalance } = require( './user.cont' )
@@ -14,7 +13,7 @@ const { updateUserBalance } = require( './user.cont' )
 
 
 // (Build / See) Top Users List (Ulist) of weekId [] by Admin
-exports.getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
+const getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
   console.log( '----- getTopUsersOfWeek() -----'.yellow )
   // 1.First get all karnames of this week
   // 2. Then Sort them by points  
@@ -176,7 +175,7 @@ exports.getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
 
 
 // Update winners of week id balance
-exports.payWeeklyWinners = asyncHandler( async ( req, res, next ) => {
+const payWeeklyWinners = asyncHandler( async ( req, res, next ) => {
   console.log( '----- getTopUsersOfWeek() -----'.yellow )
   // 1.First get all karnames of weekId
   // 2. Then loop and update asociated user.balance for each karname
@@ -232,41 +231,6 @@ exports.payWeeklyWinners = asyncHandler( async ( req, res, next ) => {
 } )
 
 
-// NOT USED ANYMORE
-exports.giveWinnersPrize = asyncHandler( async ( req, res, next ) => {
-  console.log( '---- giveWinnersPrize() ----'.yellow )
-  // Give winner price
-  // Update winner balane + create trophy + congratulation msg
-
-  console.log( req.params )   //  {  weekId}
-  const { weekId } = req.params
-
-
-  // First convert weekNumber to weekId
-  // week = await Week.findOne( { number: req.params.weekNumber, year: req.params.year } )
-
-
-  // Then find The relevant Ulist (top users lig)
-  let ulist = await Ulist.find( { week: weekId } )
-
-  // Send Msg to Winners
-  ulist[ 0 ].topUsers.map( user => {
-    // console.log( item.id )   // Good
-
-    if ( user.position <= 5 ) {
-      sendMsgToUser( user.id, 'Congratulations' )   // First send congratulaion msg
-      sendTrophyToUser( { ...user, weekId } )       // send Trophy to winner
-    }
-
-  } )
-
-  res.status( 200 ).json( {
-    success: true,
-    ulist: ulist[ 0 ]
-  } )
-} )
-
-
 const sendTrophyToUser = async ( user ) => {
   // position is winner position  
   console.log( '--- sendTrophyToUser() ---' )
@@ -307,7 +271,73 @@ const sendTrophyToUser = async ( user ) => {
 }
 
 
-const getMsgTxt = ( prize, position, weekNumber, year ) => {
+const getMsgTxt = ( prize, position ) => {
+  // return `مبروک! لفد ربحت ${ prize } دولار لفوزک بالمرکز ${ position } لمسابقة الاسبوع ${ weekNumber } من سنة ${ year } `
+  return `مبروک! لفد ربحت ${ prize } دولار لفوزک بالمرکز ${ position }`
+}
 
-  return `مبروک! لفد ربحت ${ prize } دولار لفوزک بالمرکز ${ position } لمسابقة الاسبوع ${ weekNumber } من سنة ${ year } `
+
+// POST : /api/adm/pay-winner-by-karname-id
+const payWinrByKarnameId = asyncHandler( async ( req, res, next ) => {
+  console.log( '--- payWinnerByKarnameId' )
+  // First. Get karname object by id 
+  // Then. update karname.user._id  balance 
+  // update karname.gotPaid , karname.reward
+  // send congrats msg to user
+  // 3. Return new user.balance
+
+  // console.log( req.body )                // { karnameId: 'x', amount: '50' } 
+  const { karnameId, amount } = req.body
+
+
+  // ** STEP 1 - Get karname object
+  let karname = await Karname.findById( karnameId )
+  let user_id = karname ? karname.user : ''
+
+  console.log( karname )
+
+  // if ( !karname )
+  // return Error
+
+  // ** STEP 2
+  let balance_updated = await updateUserBalance( user_id, amount )
+
+  // if ( !balance_updated )
+  // return Error
+
+  // ** STEP 
+  let updated_karname = await Karname.findByIdAndUpdate( karname._id,
+    {
+      gotPaid:
+        true, reward: amount,
+    },
+    {
+      new: true,
+      runValidators: true
+    } )
+
+  // ** STEP
+  let msg_txt = getMsgTxt( amount, karname.position )
+
+  let msgSent = await sendMsgToUser( user_id, msg_txt )
+
+
+  console.log( '--- updated_karname' )
+  console.log( updated_karname )
+
+
+  res.status( 200 ).json( {
+    success: true,
+    balance_updated: balance_updated,
+    msg_sent: msgSent,
+    updated_karname: updated_karname
+  } )
+} )
+
+
+
+
+
+module.exports = {
+  getTopUsersOfWeek, payWeeklyWinners, payWinrByKarnameId
 }

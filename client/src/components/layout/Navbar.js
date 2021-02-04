@@ -24,8 +24,10 @@ const Navbar = () => {
   // console.log( location.pathname )   //  output: /   /weeklycontest   
 
   const { isAuthenticated, currentUser, loading: userLoading } = useSelector( state => state.auth )
+  const { balance: userBalance } = useSelector( state => state.auth.currentUser )
   // Check if Current Loggedin User is Admin or not
   const isAdmin = ( currentUser ? ( currentUser.isAdmin ? true : false ) : false )
+  // const [userBalance, setUserBalance] = useState(currentUser ? currentUser.balance: 0)
   const { navbar } = useSelector( state => state.global )
 
   // console.log( navbar )
@@ -39,6 +41,7 @@ const Navbar = () => {
       setShowAuthBtns( true )
     }
   }, [ userLoading, isAuthenticated ] )
+
 
   const handleLogout = () => {
     logout()
@@ -64,22 +67,7 @@ const Navbar = () => {
 
   const authLinks = <>
     { currentUser && <>
-
-      <div className="col-auto pt-2 px-1">
-        <span className="mx-3" dir='rtl'>
-          <i className="fas fa-user-circle em-12" /> { ' ' }
-          <span className="fw-400"> مرحباً </span> { ' ' }
-          <span className="bold white">
-            {/* { getFirstName( currentUser.name ) } */ }
-            { currentUser.name }
-          </span>
-        </span>
-        <span className="mx-2">
-          <NotificationBell />
-        </span>
-      </div>
-
-      <div className="col-auto py-1 px-2">
+      <div className="ib">
         <div className="dropdown">
           <button className="btn white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i className="fas fa-ellipsis-v" />
@@ -116,25 +104,44 @@ const Navbar = () => {
 
     <div className="first-row row">
 
-      <div className="col"></div>
+      <div className="col-auto col-xl"></div>
+      <div className="col-lg d-none d-lg-block center pt-2">
+        {/* <span className="red"> <span className="boldd em-11 gold">$$$</span> جوائز نقدیه کل اسبوع 🤩</span> */ }
+      </div>
 
-      { isAuthenticated && <div className="col-auto pt-2 px-2 gold">
-        <i className="fas fa-coins mr-1" />
-        <span className="credit"> رصیدک : </span> { ' ' }
 
-        { currentUser.balance || currentUser.balance === 0
-          ? <span> ${ currentUser.balance }</span>
-          : <span>$33</span> }
-
+      { isAuthenticated && <div className="col py-2 text-right" dir='rtl'>
+        <span className="mx-2">
+          <NotificationBell />
+        </span>
+        <div className="ib mx-3" >
+          <i className="fas fa-user-circle em-12" /> { ' ' }
+          <span className="fw-400"> مرحباً </span> { ' ' }
+          <span className="bold white">
+            {/* { getFirstName( currentUser.name ) } */ }
+            { currentUser.name }
+          </span>
+        </div>
+        <div className="ib gold mx-3">
+          <i className="fas fa-coins mr-1" />
+          <span className="credit"> رصیدک : </span> { ' ' }
+          { currentUser.balance || currentUser.balance === 0
+            ? <span> ${ currentUser.balance }</span>
+            : <span>$33</span> }
+        </div>
       </div> }
 
-      { isAuthenticated ? authLinks : guestLinks }
+      <div className="col-auto">
+        { isAuthenticated ? authLinks : guestLinks }
+      </div>
+
     </div>
 
     {/* Second Row */ }
 
     <div className="scnd-row d-flex">
 
+      {/* W3 Sidebar */ }
       <Sidebar3 />
 
       <div className="flex-grow-1 d-flex justify-content-center">
@@ -150,7 +157,8 @@ const Navbar = () => {
 
 
         {/* Will Be Added Very Soon  */ }
-        { isAuthenticated && <Link to="/goldencontest"
+        {/* Show golden contest only when at least user has $10 balance */ }
+        { isAuthenticated && userBalance >= 10 && <Link to="/goldencontest"
           className={ ( navbar === 'goldencontest' ? 'navitem__selected' : 'navitem' ) }
           onClick={ () => setNavbar( 'goldencontest' ) }
         > <i className="fas fa-gem" /> <span> المسابقة الذهبیة </span>
@@ -217,3 +225,5 @@ export default Navbar
   //  <div className="float-right mr-2">
   //    <Clock />
  //   </div>    
+
+ // ⚽⚽🥇🥈🥉🏆💲🤩😍😎😱🤑

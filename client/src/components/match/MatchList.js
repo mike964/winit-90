@@ -116,7 +116,7 @@ const MatchList = ( { matches, league } ) => {
         title={ item.title }
         matches={ item.matches }
         ligId={ item.ligId }
-        open_={ item.ligCode === '39' ? true : false }  // Set Pr lig collapse open by default
+        key={ item.ligCode }
       /> ) }
 
     { !matches.length && <div className="py-5 text-center bold">

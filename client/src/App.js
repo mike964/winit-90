@@ -18,7 +18,7 @@ import { getAllWeeks } from './redux/actions/week-karname.actions'
 import VipContestPg from './pages/VipContestPg'
 import { getMyVipredictions } from './redux/actions/vip.actions'
 import { getMyKarnames_DB } from './redux/actions/week-karname.actions'
-import ProtectedRoute from './components/auth/ProtectedRoute'
+import PrivateRoute from './components-common/PrivateRoute'
 import ChargeBalancePg from './pages/payment/ChargeBalancePg'
 import CashoutPg from './pages/payment/CashoutPg'
 // import ScssfulPaymentPg from './pages/payment/ScssfulPaymentPg' 
@@ -87,22 +87,22 @@ const App = () => {
         {/* <Route exact path="/news" component={ NewsPg } /> */ }
         <Route exact path="/" component={ MatchesPg } />
         <Route path="/matches" component={ MatchesPg } />
-        <Route path="/goldencontest" component={ VipContestPg } />
+        <PrivateRoute path="/goldencontest" component={ VipContestPg } />
         <Route path="/winners" component={ WinrsPg } />
         <Route path="/rules" component={ RulesPg } />
         {/* <Route exact path="/dashboard" component={ Dashboard } /> */ }
         {/* <Route path="/dashboard" > <Dashboard />  </Route> */ }
-        {/* <ProtectedRoute path="/dashboard" component={ Dashboard } /> */ }
-        <ProtectedRoute path="/admin" admin component={ AdminPg } />
+        {/* <PrivateRoute path="/dashboard" component={ Dashboard } /> */ }
+        <PrivateRoute path="/admin" admin component={ AdminPg } />
         <Route path="/unauthorized" component={ Unauthorized } />
-        <ProtectedRoute path="/cashout" component={ CashoutPg } />
-        <ProtectedRoute path="/charge-balance" component={ ChargeBalancePg } />
+        <PrivateRoute path="/cashout" component={ CashoutPg } />
+        <PrivateRoute path="/charge-balance" component={ ChargeBalancePg } />
         {/* <Route path="/checkout?success=true" component={ ScssfulPaymentPg } /> */ }
 
-        <ProtectedRoute path='/predictions' component={ PredictionsPg } />
-        <ProtectedRoute path='/predictions-gold' component={ MyGoldPrdsPg } />
-        <ProtectedRoute path='/messages' component={ MsgsPg } />
-        {/* <ProtectedRoute path='/settings' component={ SettingsPg } /> */ }
+        <PrivateRoute path='/predictions' component={ PredictionsPg } />
+        <PrivateRoute path='/predictions-gold' component={ MyGoldPrdsPg } />
+        <PrivateRoute path='/messages' component={ MsgsPg } />
+        {/* <PrivateRoute path='/settings' component={ SettingsPg } /> */ }
 
         <Route path="*"  >
           <div className="center p-5 fs-20 boldd"> 404 Not Found </div>

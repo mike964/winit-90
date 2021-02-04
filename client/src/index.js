@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './css/bootstrap.css' 
 import 'bootstrap/dist/js/bootstrap.bundle'   // include popperjs
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-free/css/all.css'

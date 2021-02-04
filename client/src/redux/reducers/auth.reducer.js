@@ -2,7 +2,9 @@ const initialState = {
   loading: true,    // User loading  true by default
   isAuthenticated: false,   // tells us we are logged in or not 
   // isAuthenticated: true,   // tells us we are logged in or not
-  currentUser: null,   // current logged in user
+  currentUser: {
+    balance: 0
+  },   // current logged in user
   // currentUser: 'Moslm',   // current logged in user
   error: null,
 }

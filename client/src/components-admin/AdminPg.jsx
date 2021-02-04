@@ -7,8 +7,6 @@ import KarnamesPg from './pages/KarnamesPg'
 import UsersPg from './pages/UsersPg'
 import ViprdsPg from './pages/ViprdsPg'
 import { getMatches_DB } from '../redux/actions/match.actions'
-
-import UpdateResultPg from './pages/UpdateResultPg'
 import MatchPg from './pages/MatchPg'
 import MultiplePg from './pages/MultiplePg'
 
@@ -27,7 +25,7 @@ const AdminPg = () => {
   //========================================================================
   return <div className="admin-pg white bg-shadow-6 pb-3">
 
-    <div className="row p-2 my-2 bold ">
+    <div className="row p-3 bold ">
       <div className="col p-1 em-12 ">
         <i className="fas fa-user-lock" /> Admin Panel
         </div>
@@ -36,7 +34,7 @@ const AdminPg = () => {
       </div>
     </div>
 
-    <div className="mb-2">
+    <div className="mb-22">
       <AdminNavbar />
     </div>
 
@@ -47,8 +45,7 @@ const AdminPg = () => {
         <Route path='/admin/users'> <UsersPg /> </Route>
         {/* <Route path='/admin/messages'>  </Route> */ }
         <Route path="/admin/matches" component={ MatchPg } />
-        <Route path="/admin/multiple" component={ MultiplePg } />
-        <Route path="/admin/update-results" component={ UpdateResultPg } />
+        <Route path="/admin/multiple" component={ MultiplePg } />   {/* api-football */ }
         <Route path="/admin/vipredictions" component={ ViprdsPg } />
         <Route path="/admin/karnames" component={ KarnamesPg } />
         <Route path="/admin/users" component={ UsersPg } />

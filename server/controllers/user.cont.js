@@ -16,19 +16,19 @@ exports.deleteUser = crud.deleteOne( User )
 
 
 // Make payment or Get paid
-exports.updateUserBalance = async ( userId, _amount ) => {
+exports.updateUserBalance = async ( userId, amount_ ) => {
   // If amount  Negative amount means make payment - positive means get paid
   console.log( '--- updateUserBalance() ---'.yellow )
   // update user balance , make payment by user to admin  
 
 
-  if ( !_amount ) {
-    console.log( '_amount is null' )
+  if ( !amount_ ) {
+    console.log( 'amount_ is null' )
     return false
   }
 
   // ** CONVERT NUMBERS TO INT
-  let amount = parseInt( _amount )
+  let amount = parseInt( amount_ )
   let user = await User.findById( userId )
   // let user_balance = req.user.balance
   let user_balance = parseInt( user.balance )

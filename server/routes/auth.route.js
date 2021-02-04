@@ -79,7 +79,7 @@ router.get( "/login/failed", ( req, res ) => {
 // otherwise, send a 401 response that the user is not authenticated
 // @route   /auth
 router.get( "/", protect, ( req, res ) => {
-  console.log( "--- 'host.com/auth/'  auth check - get me ---".yellow )
+  console.log( "--- 'domain/auth :auth check - get me ---".yellow )
   // This function is acturlly similar to '/auth/login/success'
 
   // @toFix: this function should be use both for Jwt & Google

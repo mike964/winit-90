@@ -7,7 +7,6 @@ const FormGrup = ( {
   type,
   placeholder,
   label,
-  labelTop, // place label top
   name,
   value,
   onChange,
@@ -19,11 +18,10 @@ const FormGrup = ( {
   // if ( !placeholder ) { placeholder = 'x' }
 
   return <div className={ className ? "form-group row" + className : " form-group row" }>
-    { label && <label htmlFor={ name } className={ !labelTop ? "col-auto col-form-label label" : "label" }>
+    { label && <label htmlFor={ name } className="col-auto col-form-label label">
       { label }
     </label> }
-    { labelTop && <div class="w-100"></div> }
-    <div className={ !labelTop ? "col" : "x" }>
+    <div className="col">
       <input
         className="form-control"
         type={ type ? type : 'text' }

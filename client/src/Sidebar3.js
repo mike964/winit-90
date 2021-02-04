@@ -25,7 +25,7 @@ const Sidebar3 = () => {
     const sidebar = document.getElementById( "sidebari" );
     const openbtn = document.getElementById( "sidebar-open-btn" )
 
-    const sticky = sidebar.offsetTop
+    const sticky = sidebar.offsetTop ? sidebar.offsetTop : 0
 
     // console.log( 'sidebar offset top:' )
     // console.log( sticky )

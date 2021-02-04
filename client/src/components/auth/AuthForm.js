@@ -110,6 +110,7 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
     } else {   // If frontend error doesn't exist - check for server error
       setShowSpinner( true )
       setTimeout( async () => {
+        //x
 
         let success = await signupUser( newUser )
 
@@ -124,9 +125,10 @@ const AuthForm = ( { signup, submitBtnTitle, handleModalShow, homepage } ) => {
           // console.log( handleModalShow )   // () => setShow(!show)
           if ( handleModalShow )
             handleModalShow()
-          history.push( '/matches' )         // Redirect to matchesPg if successfull signup 
+          // * Redirect to matchesPg if successfull signup 
+          history.push( '/matches' )
         }
-      }, 900 )
+      }, 500 )
     }
   }
 

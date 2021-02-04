@@ -40,7 +40,7 @@ export const signupUser = async user => {
     // }
   } catch ( error ) {
     console.log( 'Sign up faill.' )
-    setUserLoading( false )
+    // setUserLoading( false )
 
     // if ( response.data.err_code === 11000 ) {
     //   if ( response.data.err_keyvalue.email ) {

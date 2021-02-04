@@ -10,12 +10,10 @@ const PrdsofMatchTR = ( { prd } ) => {
     <td>{ user } </td>        {/* user._id  */ }
     <td>{ answerKey }</td>
     <td>{ correct === null ? 'null' : ( correct ? <Checkmark /> : 'F' ) }</td>
-
     { !vip && <>
       <td>{ answerKey2 }</td>
       <td>{ correctGD === null ? 'null' : ( correctGD ? <Checkmark /> : 'F' ) }</td>
     </> }
-
     <td>{ vip ? possibleWinning : points }</td>
     { vip && <>
       <td>{ prd.stake }</td>

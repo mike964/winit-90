@@ -11,7 +11,10 @@ const KarnameSchema = new Schema( {
     ref: 'User',
     required: [ true, 'Karname must belong to a user' ]
   },
-  name: {  // user full name
+  name: {  // user full name :could be real or fake - in order to display in winrs pg
+    type: String,
+  },
+  name: {  // user email :could be real or fake 
     type: String,
   },
   week: {   // ucl
@@ -50,8 +53,9 @@ const KarnameSchema = new Schema( {
     type: Boolean,
     default: false
   },
-  prize: {  // How much money user received  ex. 100
+  reward: {  // Prize - How much money user received  ex. 100 
     type: Number,
+    default: 0,
   }
 }, {
   toJSON: { virtuals: true },

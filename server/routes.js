@@ -6,7 +6,7 @@ const router = express.Router()
 // app.use( '/api', require( './server/routes' ) )
 //==============================================================
 // router.use( '/auth', require( './routes/auth.route' ) )
-router.use( '/ad', require( './routes/admin.route' ) )
+router.use( '/adm', require( './routes/admin.route' ) )
 router.use( '/teams', require( './routes/team.route' ) )
 router.use( '/leagues', require( './routes/league.route' ) )
 router.use( '/matches', require( './routes/match.route' ) )

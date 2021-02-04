@@ -11,7 +11,7 @@ const initState = {
   // isEditing: null, 
   loading: false,
   messages: [], // All my messages
-  unreadMsgsCount: null      // Unread Messages Count  
+  unreadMsgsCount: null      // Unread Messages Count - notifications number
 }
 
 
