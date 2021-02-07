@@ -18,7 +18,7 @@ const InstructionsPg = () => {
 
       <div className="p-3 bg-w mb-3">
         <h5> How the API works? (Steps)</h5>
-        <p className="c-444"> Free / Weekly </p>
+        <p className="c-444"> Weekly contest ($1 per week) </p>
 
         <Table borderless>
           <thead className='bg-eee'>
@@ -30,7 +30,7 @@ const InstructionsPg = () => {
             </tr>
           </thead>
           {/* ======== Table Body ======== */ }
-          <tbody>
+          <tbody className="fw-500">
             <tr>
               <td>1</td>
               <td> Admin add matches of week (one by one) </td>
@@ -63,37 +63,43 @@ const InstructionsPg = () => {
             </tr>
             <tr>
               <td>3</td>
-              <td> Admin click 'U Prds' of a match to update all prds of that match (calculate points)  </td>
+              <td> Admin click 'U Prds' of a match to calculate points & update all prds of match</td>
               <td> route </td>
               <td> <Checkmark /> </td>
             </tr>
             <tr>
-              <td>3</td>
-              <td> Admin click 'Up karname stats' of weekId to update points for karnames of that week </td>
+              <td>-</td>
+              <td> Admin click 'Up karname stats' of weekId to update points for karnames of week </td>
               <td> route </td>
               <td> <Checkmark /> </td>
             </tr>
             <tr>
-              <td>3</td>
+              <td>-</td>
               <td> Admin add fake karnames to take first positions </td>
               <td> route </td>
               <td> <Checkmark /> </td>
             </tr>
             <tr>
-              <td>3</td>
+              <td>-</td>
               <td> Admin click 'up postions' to update karnames position </td>
               <td> route </td>
               <td> <Checkmark /> </td>
             </tr>
             <tr>
-              <td>3</td>
+              <td>-</td>
               <td> Admin click 'pay winners' to update top users balance </td>
               <td> route </td>
               <td> <Checkmark /> </td>
             </tr>
             <tr>
-              <td>3</td>
+              <td>-</td>
               <td> Admin click 'update week.topUsers' in order to see winners in frontend table </td>
+              <td> route </td>
+              <td> <Checkmark /> </td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td> Admin can update user balance by Karname ID </td>
               <td> route </td>
               <td> <Checkmark /> </td>
             </tr>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import FormGrup from '../../components-common/FormGrup'
-import SpinrSuccsFail from '../../components-common/SpinrSuccsFail'
+import ScssFailSpinr from '../../components-common/ScssFailSpinr'
 import { payWeeklyWinners } from '../../redux/actions/admin.actions'
 
 const PayWinrsForm = ( { weekId } ) => {
@@ -85,7 +85,7 @@ const PayWinrsForm = ( { weekId } ) => {
 
       <div className="col-auto pt-2 px-3">
         <Button type='submit' className='pill w-120px'>
-          Pay  <SpinrSuccsFail status={ reqStatus } />
+          Pay  <ScssFailSpinr status={ reqStatus } />
         </Button>
       </div>
     </div>

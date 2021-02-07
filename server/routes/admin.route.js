@@ -22,10 +22,10 @@ const { doExtra } = require( '../utils/extra' )
 //=============================================================
 const router = express.Router()
 
-// Only user.role = admin can crud users
-// router.use( protect )
-// router.use( restrictedTo( 'admin' ) )
-// All routes below will use the two middlewares above
+// * only user.role = admin can crud users
+router.use( protect )
+router.use( restrictedTo( 'admin' ) )   // Jonas
+// ** All routes below will use the two middlewares above
 
 // router
 //   .route( '/update-karname-stats/:karnameId' )

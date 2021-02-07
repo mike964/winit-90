@@ -35,6 +35,7 @@ const initialState = {}
 const store = createStore(
   rootReducer,
   initialState,
+  // if node env = production , don't user redux tools
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

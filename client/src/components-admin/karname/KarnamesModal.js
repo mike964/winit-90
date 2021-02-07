@@ -8,11 +8,11 @@ import {
   updateKarnamesOfWeek_stats,
   updateKarnamesOfWeek_position
 } from '../../redux/actions/week-karname.actions';
-import SpinrSuccsFail from '../../components-common/SpinrSuccsFail'
+import ScssFailSpinr from '../../components-common/ScssFailSpinr'
 import Tooltipp from '../../components-common/Tooltipp'
 import Checkmark from '../../components-common/Checkmark'
-import { updateWeekTopUsers } from '../../redux/actions/admin.actions'
 import { axos } from '../../utils'
+import PayWinrByKarnameForm from './PayWinrByKarnameForm'
 
 const KarnamesModal = ( { week, show, handleShow } ) => {
 
@@ -47,19 +47,50 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
     setTimeout( () => setReqStatus( '' ), 2000 )     // Disappear after 3 seconds
   }
 
+
   const handleUpdatePostions = async () => {
+    // ** Update [karname.position] for all karnames of week ID
     // {{URL}}/api/v1/ad/update-all-karnames-postion/5f4b77a4d8ee3563f442ac1d
+
     setReqStatus( 'spinner' )
-    let success = await updateKarnamesOfWeek_position( week._id )
-    success ? setReqStatus( 'success' ) : setReqStatus( 'fail' )
-    setTimeout( () => setReqStatus( '' ), 2000 )     // Disappear after 3 seconds
+    // {{URL}}/api/v1/ad/update-all-karnames-postion/5f4b77a4d8ee3563f442ac1d
+    // console.log( weekId ) 
+    try {
+      const response = await axios.get( `/api/adm/update-all-karnames-postion/${ week._id }` )
+      console.log( response.data )
+
+      response.data.success ? setReqStatus( 'success' ) : setReqStatus( 'fail' )
+
+    } catch ( error ) {
+      console.log( error )
+      setReqStatus( 'fail' )
+    }
+
+    setTimeout( () => setReqStatus( '' ), 2000 )     // Disappear after 2 scnds
   }
+
+
   const handleUpdateWeekTopUsers = async () => {
     // {{URL}}/api/v1/ad/make-top-users-of-week/5f4b77a4d8ee3563f442ac1d?updateWeek=true
     setReqStatus( 'spinner' )
     let success = await updateWeekTopUsers( week._id )
     success ? setReqStatus( 'success' ) : setReqStatus( 'fail' )
-    setTimeout( () => setReqStatus( '' ), 2000 )     // Disappear after 3 seconds
+    setTimeout( () => setReqStatus( '' ), 3000 )     // Disappear after 3 seconds
+  }
+
+  // ** Make Top Users - update week.topUsers by Admin
+  const updateWeekTopUsers = async ( weekId ) => {
+    // {{URL}}/api/v1/ad/make-top-users-of-week/5f4b77a4d8ee3563f442ac1d?updateWeek=true
+
+    // ** NOT COMPLETED YET **  
+
+    try {
+      const response = await axos.get( `/api/adm/make-top-users-of-week/${ weekId }?updateWeek=true` )
+      console.log( response )  // Good 
+      return true
+    } catch ( error ) {
+      return false
+    }
   }
 
   //===============================================================================================
@@ -79,7 +110,7 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
       </div>
     </Modal.Header>
 
-    <Modal.Body className="bg-f5">
+    <Modal.Body className="bg-w">
       <div className="hint">
         <p className="">
           <span className="boldd">Hint: </span>
@@ -101,7 +132,7 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
 
           {/* update karname positions after adding fake karnames */ }
           <Button variant="primary" onClick={ handleUpdatePostions }
-          >  <Tooltipp text='Up positions' hoverText='Update karnames position' />
+          >  <Tooltipp text='Up positions' hoverText='Update karname.position for all' />
           </Button> { ' ' }
 
           <Button variant="primary"
@@ -110,12 +141,14 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
           > Up week.topUsers
           </Button> { ' ' }
 
-          <Button variant="outline-success" onClick={ () => setShowForms( !showForms ) }>Show forms</Button>
+          <Button variant="outline-success" onClick={ () => setShowForms( !showForms ) }>
+            Show forms { ' ' } <i className="fas fa-chevron-down" />
+          </Button>
 
           {/* <Button variant="danger" onClick={ handleShow }> close </Button> */ }
         </div>
         <div className="col-1">
-          <SpinrSuccsFail status={ reqStatus } />
+          <ScssFailSpinr status={ reqStatus } />
         </div>
 
         <div className="col-auto px-2">
@@ -127,16 +160,17 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
 
       { showForms && <div className="p-3">
         <div className="bg-w border-ccc p-3 mb-3">
-          <p className="bold"> Add Fake karname</p>
+          <p className="labl"> Add Fake karname</p>
           <FakeKarnameForm weekId={ week._id } />
         </div>
 
         <div className="bg-w border-ccc p-3 mb-3">
-          <p className="bold">Pay winner by _id or karname._id</p>
+          <p className="labl">Pay winner by karname ID</p>
+          <PayWinrByKarnameForm />
         </div>
 
         <div className="bg-w border-ccc p-3">
-          <p className="bold">Pay multiple winners</p>
+          <p className="labl">Pay multiple winners - not tested 100%</p>
           <PayWinrsForm weekId={ week._id } />
         </div>
       </div> }

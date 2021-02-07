@@ -26,9 +26,11 @@ const KarnamesTable = ( { karnames } ) => {
           <span className="fl px-2">Tot: { karnames.length }</span>
           Karname ID
           </th>
+
+        <th> karname.email </th>
+        <th> karname.user.email </th>
+        <th> Balance </th>
         <th> Pos </th>
-        <th> User <span className="fr px-2">balance</span>
-        </th>
         <th> T Prds </th>
         {/* total prds */ }
         <th> C Prds </th>
@@ -47,23 +49,34 @@ const KarnamesTable = ( { karnames } ) => {
               { karname.fake && <span className="boldd red px-2 fr">fake</span> }
             </div>
           </td>
-          <td>{ karname.position }</td>
-          <td>
-            { karname.user && <div className='row px-2'>
-              <div className="col left"> { karname.user.email } </div>
-              <div className="col left">
-                { karname.fake
-                  ? <span className="x">{ karname.name }</span>
-                  : <span className="x"> { karname.user.name }</span> }
-              </div>
-              <div className="col-2"> ${ karname.user.balance } </div>
-            </div> }
+
+          <td className="left">
+            { karname.email }
           </td>
+
+          <td className="left">
+            { karname.user.email }
+          </td>
+
+          {/* <td>
+            { karname.user && <div className='row px-2'>
+              <div className="col txt-l">
+                { karname.fake ? karname.email : karname.user.email }
+              </div>
+            </div> }
+          </td> */}
+
+          <td> ${ karname.user.balance } </td>
+
+          <td>{ karname.position }</td>
+
           <td>{ karname.nPredictions }</td>
+
           <td>{ karname.fake ? 'fake' : karname.nCorrectPredictions }</td>
+
           <td>{ karname.points }</td>
           {/* <td>{ karname.gotPaid && 'T' }</td> */ }
-          <td>{ karname.gotPaid ? <Checkmark /> : '-' }</td>
+          <td>{ karname.gotPaid ? <> ${ karname.reward } { '' }  <Checkmark /></> : '-' }</td>
         </tr> ) }
     </tbody>
   </Table>

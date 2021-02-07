@@ -6,7 +6,7 @@ import moment from 'moment';
 import FormGrup from '../../components-common/FormGrup';
 import Checkbox from '../../components-common/Checkbox';
 // import { timeConversion } from '../../redux/functions';
-import SpinrSuccsFail from '../../components-common/SpinrSuccsFail';
+import ScssFailSpinr from '../../components-common/ScssFailSpinr';
 
 
 // This component is used both for  Edit Match info & Update match result
@@ -244,7 +244,7 @@ const EditMatchForm = ( { handleModalShow } ) => {
       <div className="col px-1">
         <button className="btn btn-block btn-blue"
           onClick={ handleUpdateResult }
-        > Update Result  <SpinrSuccsFail status={ reqStatus } />
+        > Update Result  <ScssFailSpinr status={ reqStatus } />
         </button>
       </div>
     </div>

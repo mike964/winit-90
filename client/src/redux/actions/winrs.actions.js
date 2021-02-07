@@ -3,7 +3,7 @@ import axios from 'axios'
 const { dispatch, getState } = store
 
 
-
+// Function in this file, not used anymore
 export const getWeekWinners = async ( weekId ) => {
   console.log( '---- getWeekWinners() ----' )
 
@@ -11,7 +11,6 @@ export const getWeekWinners = async ( weekId ) => {
 
 
   try {
-    // const response = await axios.get( `/api/weeks/2020/${ weekNumb }` ) 
     const response = await axios.get( `/api/weeks/${ weekId }` )
     console.log( response.data )
 

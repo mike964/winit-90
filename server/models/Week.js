@@ -33,6 +33,10 @@ const WeekSchema = new Schema( {
   endUnix: {
     type: Number
   },
+  sequence: {   // sequence : similar to id, helps frontend find week easier
+    type: Number,
+    default: 100000
+  },
   // matches: []   // matches of this week
   // predictions: []
   // TopUsers : []    // users with highest points this week
@@ -75,6 +79,10 @@ WeekSchema.virtual( 'karnames', {
 WeekSchema.pre( 'save', async function ( next ) {
   // req.body.startUnix should be in UTC (GMT)
 
+  let prevWeek = await get_prev_week( this.startUnix )
+  // console.log( '--- prev week' )
+  // console.log( x )   // Good
+
 
   this.number = moment.utc( this.startUnix * 1000 ).week()
 
@@ -87,6 +95,7 @@ WeekSchema.pre( 'save', async function ( next ) {
   this.end = moment( this.endUnix * 1000 ).format()   // doesn't work - now it works :)
 
   this.id_ = `${ this.year }-${ this.number }`
+  this.sequence = prevWeek.sequence + 1
 
   // this.end = moment( this.startUnix ).add( 7, 'days' ) 
 
@@ -101,3 +110,10 @@ module.exports = Week
 
 // Week is the number of week of the year
 // each year contains almost 54 weeks
+
+const get_prev_week = async ( start_unix ) => {
+  // Get prev week before saving week to db,
+  // in order to calculate sequence
+  let prev_week = await Week.find( { endUnix: start_unix - 1 } )
+  return prev_week[ 0 ]
+}

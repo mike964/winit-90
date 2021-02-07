@@ -37,27 +37,20 @@ const getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
   // Specify Positions for users
   const filteredKarnames = karnames.map( ( karname ) => {
     // If user[1] and user[2] have same points, prevent increasing position in newKarname
-    // position++ 
-
-    let _name
-    if ( karname.name ) {
-      _name = karname.name
-    } else {
-      _name = karname.user.name
-    }
+    // position++  
 
     if ( karname.user ) {
       newKarname = {
-        name: _name,
+        name: karname.fake ? karname.user._id : karname.user.name,
+        email: karname.fake ? karname.email : karname.user.email,
         // userId: karname.user._id,  // for security
         ide: karname.user.ide,
         karnameId: karname._id,
         nCorrectPredictions: karname.nCorrectPredictions,
         nPredictions: karname.nPredictions,
         points: karname.points,
-        // position: pos
         position: karname.position,
-        prize: karname.prize
+        prize: karname.reward
       }
     }
 
@@ -66,85 +59,7 @@ const getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
     return newKarname
   } )
 
-  // Update week.topUsers[] after sorting top users 
-
-
-
-  // if ( req.query.splitInto ) {
-  // splitInto : number of ligs u wanna split participants into
-  // req.query is string 
-  // updatedWeek = await Week.findByIdAndUpdate(   weekId, { topUsers: filteredKarnames }, { new: true } )
-  // } 
-
-  if ( req.query.splitInto ) {
-
-    groups = [ [], [], [], [], [] ]   // Array of objects (users)
-    // participatedUsers of lig (group) - array of user 'ide's
-    users = [ [], [], [], [], [] ]  // Array of Strings of users 'ide's
-
-    let splitInto = parseInt( req.query.splitInto )
-    // splitInto Should at least be two 
-    // - How many ligs u wanna have per week - How many groups u wanna divide participants 
-
-    let j = 0    // group counter
-
-    // const _filteredKarnames = [ ...filteredKarnames ]   // Error: Keeps the refrence - bcuz shallow copy
-    // const _filteredKarnames = filteredKarnames.slice(0)   // Error: Keeps the refrence - bcuz shallow copy
-
-
-    filteredKarnames.map( ( item, index ) => {
-      // if ( j > 3 ) j = 1   // return j to 1 - for test
-      if ( j >= splitInto ) j = 0   // return j to 0
-
-      groups[ j ].push( item )
-
-      console.log( 'j: ' + j )
-      console.log( 'indx: ' + index )
-
-      j++
-    } )
-
-    // // If group exist
-    // Specify winners positions
-    let k = 0   // group counter
-
-    for ( k = 0; k < splitInto; k++ ) {
-      if ( groups[ k ].length > 0 ) {
-
-        let pos = 0
-        let prevKarname_points = null
-
-        groups[ k ].forEach( ( item, index ) => {
-
-          if ( item.points !== prevKarname_points ) {
-            pos++
-          }
-          // item.position = index + 1
-          item.position = pos
-          prevKarname_points = item.points
-
-          // Add users to users Array of strings (ide's)
-          users[ k ][ index ] = item.ide
-        } )
-      }
-    }
-
-  } else {   // IF (!splitInto)
-    // Create Array of strings of users ide's
-    filteredKarnames.map( ( karname ) => {
-      if ( karname.ide )  // If user not fake
-        users.push( karname.ide )
-    } )
-
-    // Then 
-    // if ( req.query.createUlist === 'true' ) {
-    //   const ulist1 = await Ulist.create( {
-    //     week: weekId,
-    //     topUsers: filteredKarnames,
-    //     users
-    //   } )
-    // }
-  }
+  // Update week.topUsers[] after sorting top users  
 
   // console.log( filteredKarnames )
   let g1 = {   // Group1
@@ -156,15 +71,15 @@ const getTopUsersOfWeek = asyncHandler( async ( req, res, next ) => {
 
   if ( req.query.updateWeek === 'true' ) {    // req.query is string 
     const updatedWeek = await Week.findByIdAndUpdate( weekId, {
-      topUsers: { g1 },
+      topUsers: { ...g1 },
       topUsersUpdated: true
     }, { new: true } )
-    console.log( updatedWeek )
+    // console.log( updatedWeek )
     weekUpdated = true
   }
 
   res.status( 200 ).json( {
-    status: 'success',
+    success: true,
     nUsers: filteredKarnames.length,
     weekUpdated,
     // groups, 

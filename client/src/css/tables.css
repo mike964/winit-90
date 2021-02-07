@@ -133,11 +133,13 @@
   text-align: center; 
   font-weight: 600;
   /* background-color:  #4285F4; */
-  background-color:  #afe4ff;
+  /* background-color:  #d2f0ff; */
   /* background-color:  #c1e1ff; */
-  color: #00065f;
+  background-color:  #75d1ff;
+  color: #00aaff;
+  color: #ffffff; 
   /* color: #ffffff;  */
-  /* border-bottom: 1px #003764 solid; */
+  /* border-bottom: 1px #89caff solid; */
 }
 
 .winners-table-container {
@@ -148,9 +150,8 @@
   overflow: hidden;
 }
 .winners-table-box{
-  background-color: #6ecfff;   
-  min-width: 500px;
-  max-width: 800px;
+  background-color: #5fcaff; 
+  background-color: #35a4ff; 
  padding: .4rem;
   text-align: center; 
   margin: 5px auto;
@@ -159,7 +160,7 @@
 
 .prds-table-container {
   background-color: #00000070; 
-  background-color: #6ecfff;  
+  background-color: #5fcaff;  
   padding: .4rem!important;
   /* padding-bottom: 100px!important; */
   border-radius: 6px;

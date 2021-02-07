@@ -258,7 +258,7 @@ exports.updateKarnamesPostion = asyncHandler( async ( req, res, next ) => {
   } )
 
   res.status( 200 ).json( {
-    status: 'success',
+    success: true,
     msg: `${ karnames.length } Karnames updated!`
   } )
 } )

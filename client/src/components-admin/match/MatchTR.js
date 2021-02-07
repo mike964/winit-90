@@ -4,7 +4,7 @@ import { calculatePointsForPredictions, deleteMatch_DB, setCurrentMatch, } from 
 import EditMatchModal from './EditMatchModal'
 import { useEffect } from 'react'
 import PrdsModal from '../prd/PrdsModal'
-import SpinrSuccsFail from '../../components-common/SpinrSuccsFail'
+import ScssFailSpinr from '../../components-common/ScssFailSpinr'
 
 const MatchTR = ( { match, index, expanded } ) => {
   const { team1, team2, team_home, team_away, result, week } = match
@@ -121,7 +121,7 @@ const MatchTR = ( { match, index, expanded } ) => {
           onClick={ () => { if ( window.confirm( 'Are You Sure?' ) ) { deleteMatch_DB( match._id ) } } }
         />
 
-        <SpinrSuccsFail status={ req1Status } />
+        <ScssFailSpinr status={ req1Status } />
 
       </td>
     </tr>

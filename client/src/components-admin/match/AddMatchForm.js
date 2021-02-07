@@ -6,7 +6,7 @@ import moment from 'moment';
 import FormGrup from '../../components-common/FormGrup';
 import Checkbox from '../../components-common/Checkbox';
 import { timeConversion } from '../../utils';
-import SpinrSuccsFail from '../../components-common/SpinrSuccsFail';
+import ScssFailSpinr from '../../components-common/ScssFailSpinr';
 
 const AddMatchForm = () => {
 
@@ -137,7 +137,7 @@ const AddMatchForm = () => {
     <div className="px-2">
       <button className="btnn btn-block btn-blue"
         type="submit"
-      > Submit  <SpinrSuccsFail status={ req1Status } />
+      > Submit  <ScssFailSpinr status={ req1Status } />
       </button>
     </div>
   </form>

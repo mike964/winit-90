@@ -64,7 +64,7 @@ export const getKarnames = async ( weekId ) => {
   } )
 }
 
-// Update karname points of week ID
+// ** Update karname points of week ID
 export const updateKarnamesOfWeek_stats = async ( weekId ) => {
   console.log( '---- updateKarnamesOfWeek_stats() ----' )
   // console.log( weekId )  
@@ -80,37 +80,3 @@ export const updateKarnamesOfWeek_stats = async ( weekId ) => {
 }
 
 
-// Update karname points of week ID
-export const updateKarnamesOfWeek_position = async ( weekId ) => {
-  console.log( '---- updateKarnamesOfWeek_position() ----' )
-  // {{URL}}/api/v1/ad/update-all-karnames-postion/5f4b77a4d8ee3563f442ac1d
-  // console.log( weekId ) 
-  try {
-    const response = await axios.get( `/api/ad/update-all-karnames-postion/${ weekId }` )
-    console.log( response )
-
-    return true
-  } catch ( error ) {
-    console.log( error )
-    return false
-  }
-}
-
-
-// api/v1/ad/add-fake-karname
-export const createFakeKarname = async ( karname ) => {
-  console.log( '---- updateKarnamesOfWeek_stats() ----' )
-  // console.log( weekId )
-
-
-  try {
-    const response = await axios.post( `/api/ad/add-fake-karname`, karname )
-    console.log( response )
-
-    return true
-
-  } catch ( error ) {
-    console.log( error )
-    return false
-  }
-}

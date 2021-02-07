@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap'
 
-const SpinrSuccsFail = ( { status } ) => {
+const ScssFailSpinr = ( { status } ) => {
   // status is req status //   ['sp', 'sccs' , 'fail']
   // If req.start => Show spinner
   // If req success => Show Done
@@ -41,4 +41,4 @@ const SpinrSuccsFail = ( { status } ) => {
   </span>
 }
 
-export default SpinrSuccsFail
+export default ScssFailSpinr

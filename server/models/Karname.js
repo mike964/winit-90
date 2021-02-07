@@ -14,7 +14,7 @@ const KarnameSchema = new Schema( {
   name: {  // user full name :could be real or fake - in order to display in winrs pg
     type: String,
   },
-  name: {  // user email :could be real or fake 
+  email: {  // user email :could be real or fake 
     type: String,
   },
   week: {   // ucl

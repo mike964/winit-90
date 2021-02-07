@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import FormGrup from '../../components-common/FormGrup'
-import { createFakeKarname } from '../../redux/actions/week-karname.actions';
+import { axos } from '../../utils'
 
 
 // Add Fake Karname Form (By Admin)
@@ -16,12 +16,39 @@ const FakeKarnameForm = ( { weekId } ) => {
     { username: 'fake6', id: '5f5cdfcc801a70483c5d311f' }
   ]
 
-  const [ fakeUserName, setFakeUserName ] = useState( '' )
-  const [ fakeUserId, setfakeUserId ] = useState( fake_users[ 0 ].id )   // Default selected
-  const [ nPredictions, setnPredictions ] = useState( '' )
-  const [ points, setpoints ] = useState( '' )
+  // const [ fakeUserName, setFakeUserName ] = useState( '' )
+  // const [ fakeUserId, setfakeUserId ] = useState( fake_users[ 0 ].id )   // Default selected
+  // const [ nPredictions, setnPredictions ] = useState( '' )
+  // const [ points, setpoints ] = useState( '' )
+
+  // * Handle form inputs change
+  const onChange = e => setState( { ...state, [ e.target.name ]: e.target.value } )
 
 
+  const [ state, setState ] = useState( {
+    week: weekId,       // weekId
+    user: fake_users[ 0 ].id,       // fake user id  - default: first user
+    name: '',       // fake user name to display
+    email: '',      // fake user email to display
+    nPredictions: 0,
+    points: 0,
+    domain: 'gmail',    // fake email domain  gmail/yahoo/outlook
+  } )
+
+
+  const createFakeKarname = async ( karname ) => {
+    // ** POST : api/adm/add-fake-karname
+    try {
+      const response = await axos.post( `/api/adm/add-fake-karname`, karname )
+      console.log( response )
+
+      return true
+
+    } catch ( error ) {
+      console.log( error )
+      return false
+    }
+  }
 
 
   // Handle Add Karname
@@ -30,48 +57,64 @@ const FakeKarnameForm = ( { weekId } ) => {
 
 
     let newFakeKarname = {
-      week: weekId,
-      user: fakeUserId,
-      name: fakeUserName,
-      // year: '2020'
-      nPredictions,
-      points,
+      // week: weekId,
+      // user: fakeUserId,
+      // name: fakeUserName,
+      // // year: '2020'
+      // nPredictions,
+      // points,
+      ...state,
+      email: `${ state.email }@${ state.domain }.com`,
       fake: true
     }
 
-    let success = await createFakeKarname( newFakeKarname )
-
-    console.log( newFakeKarname )
+    if ( state.email && state.domain ) {
+      let success = await createFakeKarname( newFakeKarname )
+    }
+    // console.log( newFakeKarname )
   }
 
 
+  //===========================================================
   return <form onSubmit={ handleSubmit }>
     <div className="row black bold">
-      <div className="col-2 px-1">
+      {/* <div className="col-2 px-2">
         <p className="">Fake display name</p>
         <FormGrup
-          name='fake user name'
-          placeholder='عبود خلیل'
-          value={ fakeUserName }
-          onChange={ e => setFakeUserName( e.target.value ) }
+          name='name'   // fake user name
+          placeholder='خلیل'
+          value={ state.name }
+          onChange={ onChange }
         />
+      </div> */}
+
+      <div className="col-3 px-2">
+        <p className="">Fake display email gmail/yahoo</p>
+        <div className="ib w-100px">
+          <FormGrup
+            name='email'   // fake user email
+            placeholder='hasan***'
+            value={ state.email }
+            onChange={ onChange }
+          />
+        </div>
+        <div className="ib px-1"> @ </div>
+        <div className="ib w-80px">
+          <FormGrup
+            name='domain'
+            value={ state.domain }
+            onChange={ onChange }
+          />
+        </div>
+        <div className="ib px-1"> .com </div>
       </div>
 
-      <div className="col-2 px-1">
-        <p className="">Fake display email</p>
-        <FormGrup
-          name='fake user name'
-          placeholder='hasan****@****.com'
-          value={ fakeUserName }
-          onChange={ e => setFakeUserName( e.target.value ) }
-        />
-      </div>
-
-      <div className="col-auto px-1">
+      <div className="col-2 px-2">
         <p className="x">Fake user Id</p>
         <select className="custom-select"
-          value={ fakeUserId }
-          onChange={ ( e ) => setfakeUserId( e.target.value ) }
+          name='user'   // fake user id
+          value={ state.user }
+          onChange={ onChange }
         > { fake_users.map( user =>
           <option value={ user.id } key={ user.username }>
             { user.username }
@@ -79,27 +122,27 @@ const FakeKarnameForm = ( { weekId } ) => {
         </select>
       </div>
 
-      <div className="col-auto px-1">
-        <div className="ib w-120px">
-          <p className="white">.</p>
+      <div className="col-2 px-2">
+        <div className="ib">
+          <p> nPredictions </p>
           <FormGrup
-            placeholder='nPredictions'
-            value={ nPredictions }
-            onChange={ e => setnPredictions( e.target.value ) }
+            name='nPredictions'
+            value={ state.nPredictions }
+            onChange={ onChange }
           />
         </div>
       </div>
-      <div className="col-1 px-1">
-        <p className="white">.</p>
+      <div className="col-1 px-2">
+        <p> points </p>
         <FormGrup
-          placeholder='points'
-          value={ points }
-          onChange={ e => setpoints( e.target.value ) }
+          name='points'
+          value={ state.points }
+          onChange={ onChange }
         />
       </div>
-      <div className="col-auto px-3">
+      <div className="col px-2">
         <p className="white">.</p>
-        <Button type='submit' className="pill">
+        <Button type='submit' className="pill w-120px py-2">
           Submit
           </Button>
       </div>

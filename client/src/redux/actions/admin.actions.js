@@ -26,25 +26,7 @@ export const payWeeklyWinners = async ( weekId, rewards ) => {
   // } )
 }
 
-// Make Top Users - update week.topUsers by Admin
-export const updateWeekTopUsers = async ( weekId ) => {
-  // {{URL}}/api/v1/ad/make-top-users-of-week/5f4b77a4d8ee3563f442ac1d?updateWeek=true
 
-  // ** NOT COMPLETED YET **  
-
-  try {
-    const response = await axos.get( `/api/ad/make-top-users-of-week/${ weekId }?updateWeek=true` )
-    console.log( response )  // Good 
-    return true
-  } catch ( error ) {
-    return false
-  }
-
-  // dispatch( {
-  //   type: 'SET_WEEKS',
-  //   payload: response.data.weeks
-  // } )
-}
 
 // ad : means=> admin
 // Action Only Admin Cand DO 

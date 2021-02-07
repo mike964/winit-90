@@ -373,6 +373,12 @@ font-size: 2em !important;
 .text-l {
   text-align: left!important;
 } 
+.txt-r {
+  text-align: right!important;
+}
+.txt-l {
+  text-align: left!important;
+} 
 .txtr {
   text-align: right!important;
 }
@@ -542,4 +548,9 @@ color: fff;
 }
 .border-btm {
   border-bottom: 1px solid #979797;
+}
+
+.labl {
+  font-weight: 500!important;
+  color:#707070!important;
 }
