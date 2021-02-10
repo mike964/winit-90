@@ -30,12 +30,10 @@ const PrdsTableFooter = ( { karname } ) => {
         <span> { correctPrdsCount } : التوقعات الصحیحة</span>
       </div>
       <div className="x">
-        <span>{ totalPoints } : مجموع النقاط</span>
+        <span>{ correctPrdsPercentage ? correctPrdsPercentage : '' } % : النسبة الصحيحة </span>
       </div>
       <div className="x">
-        { correctPrdsPercentage
-          ? <span>{ correctPrdsPercentage } % : نسبة الصحیحة </span>
-          : <span>  % : نسبة الصحیحة </span> }
+        <span>{ totalPoints } : مجموع النقاط</span>
       </div>
     </div>
   </div>

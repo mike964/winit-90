@@ -133,9 +133,8 @@
   text-align: center; 
   font-weight: 600;
   /* background-color:  #4285F4; */
-  /* background-color:  #d2f0ff; */
-  /* background-color:  #c1e1ff; */
-  background-color:  #75d1ff;
+  background-color:  #d2f0ff;
+  background-color:  #0099ff;  
   color: #00aaff;
   color: #ffffff; 
   /* color: #ffffff;  */
@@ -150,8 +149,9 @@
   overflow: hidden;
 }
 .winners-table-box{
-  background-color: #5fcaff; 
-  background-color: #35a4ff; 
+  background-color: #60caff; 
+  /* background-color: #1654ff;   */
+  color: blue;
  padding: .4rem;
   text-align: center; 
   margin: 5px auto;

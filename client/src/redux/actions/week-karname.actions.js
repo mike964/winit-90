@@ -64,19 +64,6 @@ export const getKarnames = async ( weekId ) => {
   } )
 }
 
-// ** Update karname points of week ID
-export const updateKarnamesOfWeek_stats = async ( weekId ) => {
-  console.log( '---- updateKarnamesOfWeek_stats() ----' )
-  // console.log( weekId )  
-  try {
-    const response = await axios.get( `/api/ad/update-all-karnames/${ weekId }` )
-    console.log( response )
 
-    return true
-  } catch ( error ) {
-    console.log( error )
-    return false
-  }
-}
 
 

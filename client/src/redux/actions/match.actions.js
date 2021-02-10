@@ -164,11 +164,6 @@ export const setCurrentMatch = ( match ) => {
   } )
 }
 
-export const completematch = ( matchId ) =>
-  dispatch( {
-    type: 'COMPLETE_match',
-    payload: matchId
-  } )
 
 export const deleteMatch_DB = async ( matchId ) => {
   // First delete from DB, Then delete from redux 
@@ -184,18 +179,3 @@ export const deleteMatch_DB = async ( matchId ) => {
 }
 
 
-// Calculate Points for Predictions of matchId
-export const calculatePointsForPredictions = async ( matchId ) => {
-  // `{{URL}}/api/v1/ad/calculate-points/5f25976be6b0da6448a5ee5d`
-
-  try {
-    const response = await axos.get( `/api/ad/calculate-points/${ matchId }` )
-    // console.log( response )
-    console.log( response.data )
-
-    return true
-  } catch ( error ) {
-    return false
-  }
-
-}

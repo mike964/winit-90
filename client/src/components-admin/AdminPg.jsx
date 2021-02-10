@@ -25,12 +25,13 @@ const AdminPg = () => {
   //========================================================================
   return <div className="admin-pg white bg-shadow-6 pb-3">
 
-    <div className="row p-3 bold ">
-      <div className="col p-1 em-12 ">
+    <div className="row p-3">
+      <div className="col em-11 bold">
         <i className="fas fa-user-lock" /> Admin Panel
         </div>
-      <div className="col p-1">
-        Current week :  { thisWeek.number } / { thisWeek._id }
+      <div className="col">
+        <span className="bold">Current week : { thisWeek.id_ } </span>
+        / { thisWeek._id } / { thisWeek.sequence }
       </div>
     </div>
 

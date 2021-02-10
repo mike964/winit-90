@@ -4,16 +4,14 @@ import axios from 'axios'
 import KarnamesTable from './KarnamesTable'
 import FakeKarnameForm from './FakeKarnameForm'
 import PayWinrsForm from './PayWinrsForm'
-import {
-  updateKarnamesOfWeek_stats,
-  updateKarnamesOfWeek_position
-} from '../../redux/actions/week-karname.actions';
 import ScssFailSpinr from '../../components-common/ScssFailSpinr'
 import Tooltipp from '../../components-common/Tooltipp'
 import Checkmark from '../../components-common/Checkmark'
 import { axos } from '../../utils'
 import PayWinrByKarnameForm from './PayWinrByKarnameForm'
 
+
+// ** Admin ===============================================================
 const KarnamesModal = ( { week, show, handleShow } ) => {
 
   const [ karnames, setkarnames ] = useState( [] )
@@ -37,6 +35,20 @@ const KarnamesModal = ( { week, show, handleShow } ) => {
 
     } catch ( error ) {
       console.log( error )
+    }
+  }
+
+  // ** Update karname points of week ID
+  const updateKarnamesOfWeek_stats = async ( weekId ) => {
+    console.log( '---- updateKarnamesOfWeek_stats() ----' )
+    // console.log( weekId )  
+    try {
+      const response = await axios.get( `/api/adm/update-all-karnames/${ weekId }` )
+      // console.log( response.data ) 
+      return true
+    } catch ( error ) {
+      console.log( error )
+      return false
     }
   }
 

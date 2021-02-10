@@ -265,4 +265,9 @@ color:gold;
 }
 
 
+.winr-badge {
+  /* width : 30px; */
+  /* height: auto; */ 
+  max-width: 35px;
+}
 

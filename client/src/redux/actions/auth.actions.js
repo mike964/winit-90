@@ -25,7 +25,6 @@ export const signupUser = async user => {
   try {
     // const response = await axios.post( /auth/signup`, user )
     const res = await axos.post( `/auth/signup`, user )
-    console.log( res )
 
     Cookies.set( 'wntkn', res.data.token, { expires: 7 } )
 
@@ -182,7 +181,7 @@ export const setReqHeaders = () => {
   // console.log( Cookies.get() )
 
   let cookies = Cookies.get()
-  console.log( cookies )
+  // console.log( cookies ) // output: {wntkn: "eyJhbGciOiJ...."}
 
   let token = cookies.wntkn
 

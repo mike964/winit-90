@@ -1,15 +1,29 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { calculatePointsForPredictions, deleteMatch_DB, setCurrentMatch, } from '../../redux/actions/match.actions'
+import { deleteMatch_DB, setCurrentMatch, } from '../../redux/actions/match.actions'
 import EditMatchModal from './EditMatchModal'
 import { useEffect } from 'react'
 import PrdsModal from '../prd/PrdsModal'
 import ScssFailSpinr from '../../components-common/ScssFailSpinr'
+import { axos } from '../../utils'
+import { topTeams } from '../../data'
 
+// *** FOR Admin Table
 const MatchTR = ( { match, index, expanded } ) => {
-  const { team1, team2, team_home, team_away, result, week } = match
+  // const { team1, team2, team_home, team_away, result, week } = match
+  const { result, week } = match
   // const team1ShortName = ( match.team1_shortName ? match.team1_shortName : match.team1.shortName )
   // const team2ShortName = ( match.team2_shortName ? match.team2_shortName : match.team2.shortName )
+
+  const team1 = { ...match.team1, ...match.team_home }
+  const team2 = { ...match.team2, ...match.team_away }
+  // console.log( topTeams )
+  console.log( team1 )
+
+  // const [includeTopTeams, setIncludeTopTeams] = useState(false)
+  const top_teams_a = topTeams.includes( team1.id )
+  const top_teams_b = topTeams.includes( team2.id )
+  const includeTopTeams = top_teams_a || top_teams_b
 
 
   // const result = match.finished ?
@@ -39,10 +53,23 @@ const MatchTR = ( { match, index, expanded } ) => {
     success ? setreq1Status( 'success' ) : setreq1Status( 'fail' )
   }
 
+  // ** Calculate Points for Predictions of matchId
+  const calculatePointsForPredictions = async ( matchId ) => {
+    // `{{URL}}/api/v1/ad/calculate-points/5f25976be6b0da6448a5ee5d` 
+    try {
+      const response = await axos.get( `/api/adm/calculate-points/${ matchId }` )
+      // console.log( response )
+      console.log( response.data )
+
+      return true
+    } catch ( error ) {
+      return false
+    }
+  }
+
   //////////////////////////////////////////////////////////////////////////////////////////
   return <>
-    <tr >
-
+    <tr style={ { background: includeTopTeams ? '#eeffff' : '#fff' } }>
       <td className="clickable p-0" onClick={ () => setshowScndRow( !showScndRow ) }>
         <div className={ `row p-1 ${ match.finished ? 'border-left-green' : 'border-left-sky' }` }>
           <div className="col-auto px-2">{ index + 1 }.</div>
@@ -62,32 +89,26 @@ const MatchTR = ( { match, index, expanded } ) => {
       <td className="text-l">
         <div className="row">
           <div className="col text-r">
-            <span>{ team1.shortName ? team1.shortName : team_home.name.toLowerCase().slice( 0, 6 ) } </span>
+            <span>{ team1.shortName ? team1.shortName : team1.name.toLowerCase().slice( 0, 6 ) } </span>
           </div>
           <div className="col-auto px-2 center">{ result ? result.score : '' }</div>
           <div className="col ">
-            <span>{ team2.shortName ? team2.shortName : team_away.name.toLowerCase().slice( 0, 6 ) } </span>
+            <span>{ team2.shortName ? team2.shortName : team2.name.toLowerCase().slice( 0, 6 ) } </span>
           </div>
         </div>
       </td>
-
-
       <td className="center">
         { match.vip ? <span className="green fl">&#10004;</span> : '' }
         { match.odds && <span> { match.odds.team1 } | { match.odds.draw } | { match.odds.team2 }</span> }
       </td>
-
       <td className="text-center">
         { moment( match.date ).format( 'YYYY-MM-DD, HH:mm' ) }
       </td>
-
       <td className="text-center">
         { week && week.number }
       </td>
-
       {/* Actions td */ }
       <td className="center">
-
         <i className="fas fa-pen-square em-14 clickable mx-2"
           onClick={ () => { setCurrentMatch( match ); setShowEditMatchModal( !showEditMatchModal ) } }
           data-toggle="tooltip"

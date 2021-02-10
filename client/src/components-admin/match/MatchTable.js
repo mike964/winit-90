@@ -9,6 +9,7 @@ const MatchTable = ( { matches, loading } ) => {
   const { expandAll } = useSelector( state => state.global )
   // const [ expandedRows, setexpandedRows ] = useState( expandAll ? expandAll : false )
 
+
   return <table id="matches">
     {/* Header */ }
     <thead className="x">
@@ -16,8 +17,6 @@ const MatchTable = ( { matches, loading } ) => {
         <th className="text-ll" >
           <span className="px-2 fl">  { matches && matches.length } </span> Match ID
         </th>
-        {/* <th width="40"> Lig </th> */ }
-
         <th width=""> League </th>
         <th width=""> Result </th>
         <th width="150"> VIP - Odds </th>
@@ -26,7 +25,6 @@ const MatchTable = ( { matches, loading } ) => {
         <th> Actions </th>
       </tr>
     </thead>
-
     <tbody>
       { !loading && matches && matches.map( ( mch, index ) =>
         <MatchTR
@@ -41,7 +39,6 @@ const MatchTable = ( { matches, loading } ) => {
         : <>{ !matches.length && <tr className="x">
           <td className="center">No matches </td>
         </tr> }</> }
-
     </tbody>
 
   </table>

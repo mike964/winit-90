@@ -5,7 +5,7 @@ const teams = [
     _id: '5fdfa83b58b9e05070daed4f',
     name: 'null'
   },
-  // ENGLAND Teams
+  // *** ENGLAND ** ====
   {
     id: 40,
     _id: '5eeb67b4a91acb1a0c29d095',
@@ -126,9 +126,7 @@ const teams = [
     "name": "Sheffield Utd",
     shortName: "xxx"
   },
-  //==================
-  // *** SPAIN *** //
-  //================
+  //  *** SPAIN *** // ====
   {
     "id": 531,
     "_id": "5ef7ce6510ec0e0ee4d68d52",
@@ -266,54 +264,171 @@ const teams = [
     "_id": "5ef5fcf9beb99a0844ee1081",
     "name": "Villarreal",
     shortName: 'villa'
-  }
+  },
+  // *** ITALY ***
+  {
+    "id": 489,
+    "name": "AC Milan",
+  },
+  {
+    "id": 505,
+    "name": "Inter"
+  },
+  {
+    "id": 496,
+    "name": "Juventus"
+  },
+  {
+    "id": 497,
+    "name": "AS Roma"
+  },
+  {
+    "id": 487,
+    "name": "Lazio"
+  },
+  {
+    "id": 492,
+    "name": "Napoli"
+  },
+  {
+    "id": 499,
+    "name": "Atalanta"
+  },
+  {
+    "id": 488,
+    "name": "Sassuolo"
+  },
+  {
+    "id": 504,
+    "name": "Verona"
+  },
+  {
+    "id": 498,
+    "name": "Sampdoria"
+  },
+  {
+    "id": 494,
+    "name": "Udinese"
+  },
+  {
+    "id": 495,
+    "name": "Genoa"
+  },
+  {
+    "id": 500,
+    "name": "Bologna"
+  },
+  {
+    "id": 506,
+    "name": "Benevento"
+  },
+  {
+    "id": 502,
+    "name": "Fiorentina"
+  },
+  {
+    "id": 515,
+    "name": "Spezia"
+  },
+  {
+    "id": 503,
+    "name": "Torino"
+  },
+  {
+    "id": 490,
+    "name": "Cagliari"
+  },
+  {
+    "id": 523,
+    "name": "Parma"
+  },
+  {
+    "id": 501,
+    "name": "Crotone"
+  },
+  // *** FRANCE ***
+  {
+    "id": 79,
+    "name": "Lille",
+  },
+  {
+    "id": 80,
+    "name": "Lyon",
+  },
+  {
+    "id": 85,
+    "name": "Paris Saint Germain",
+  },
+  {
+    "id": 91,
+    "name": "Monaco"
+  },
+  {
+    "id": 94,
+    "name": "Rennes",
+  },
+  {
+    "id": 116,
+    "name": "Lens"
+  },
+  {
+    "id": 112,
+    "name": "Metz",
+  },
+  {
+    "id": 77,
+    "name": "Angers",
+  },
+  {
+    "id": 81,
+    "name": "Marseille",
+  },
+  {
+    "id": 78,
+    "name": "Bordeaux",
+  },
+  {
+    "id": 82,
+    "name": "Montpellier",
+  },
+  {
+    "id": 106,
+    "name": "Stade Brestois 29",
+  },
+  {
+    "id": 84,
+    "name": "Nice",
+  },
+  {
+    "id": 93,
+    "name": "Reims",
+  },
+  {
+    "id": 1063,
+    "name": "Saint Etienne",
+  },
+  {
+    "id": 95,
+    "name": "Strasbourg",
+  },
+  {
+    "id": 97,
+    "name": "Lorient",
+  },
+  {
+    "id": 83,
+    "name": "Nantes",
+  },
+  {
+    "id": 89,
+    "name": "Dijon",
+  },
+  {
+    "id": 92,
+    "name": "Nimes",
+  },
+
 ]
-
-exports.leagues = [
-  {
-    "id": 39,
-    "name": "Premier League",
-    "type": "League",
-
-  },
-  {
-    "id": 45,
-    "name": "FA Cup",
-    "type": "Cup",
-
-  },
-  {
-    "id": 46,
-    "name": "EFL Trophy",
-    "type": "Cup",
-
-  },
-  {
-    "id": 135,
-    "name": "Serie A",
-    "type": "League",
-    "shortName": "seria"
-  },
-  {
-    "id": 137,
-    "name": "Coppa Italia",
-    "type": "Cup",
-    "country": "italy"
-  },
-  {
-    "id": 140,   // Spain Laliga
-    "name": "Primera Division",
-    "type": "League",
-    "shortName": "laliga"
-  },
-  {
-    "id": 61,
-    "name": "Ligue 1",
-    "type": "League",
-
-  },
-]
-
 
 
 // api-football leagues - api leagues array
@@ -357,9 +472,65 @@ const leagues = [
     "name": "Coupe de France",
     "shortname": "frcup",
     country: "France"
+  },
+  {
+    "id": 39,
+    "name": "Premier League",
+  },
+  {
+    "id": 45,
+    "name": "FA Cup",
+  },
+  {
+    "id": 46,
+    "name": "EFL Trophy",
+  },
+  {
+    "id": 135,
+    "name": "Serie A",
+    "shortName": "seria"
+  },
+  {
+    "id": 137,
+    "name": "Coppa Italia",
+    "country": "italy"
+  },
+  {
+    "id": 140,   // Spain Laliga
+    "name": "Primera Division",
+    "shortName": "laliga"
+  },
+  {
+    "id": 61,
+    "name": "Ligue 1",
+    "type": "League",
+
   }
 ]
 
+// ** Top 20+ teams ids
+const topTeams = [
+  33, // man utd
+  40, // liverpool
+  42, // arsenal
+  47, // tottenham
+  49, // chelsea
+  50, // man city
+  541, // rmadrid
+  529, // barca
+  530,  // at madrid
+  536,  // sevilla
+  489, // ac milan
+  505, // inter
+  496, // juventus
+  497  // as roma
+  // 85,  // psg
+  // bayern munich
+  // dortmund
+  // ajax
+  //benfica
+  // porto
+]
 
-module.exports.teams = teams
-module.exports.leagues = leagues
+
+module.exports = { teams, leagues } 

@@ -59,7 +59,7 @@ const WinrsPg = () => {
         //selected={ week.id_ === lastWeek.id_ ? true : false }   // default
         value={ week._id }
       >
-        Week { week.number } of { week.year }
+        { week.year } / Week { week.number }
       </option> )
     }
   </>
@@ -103,29 +103,32 @@ const WinrsPg = () => {
       </div>
 
       <div className="winners-table-box" style={ { maxWidth: '800px' } }>
-        <div className="row mb-2 curved-5">
+        <div className="row py-2 mb-2 curved-5 bold em-11">
           <div className="col pt-2">
-
             <i className="fas fa-star gold mx-2" /> { ' ' }
-            <span className="em-12 bold " style={ { color: '#ffffff' } }> Top Users </span>
-
+            <span className="bold " style={ { color: '#ffffff' } }> Top Users of </span>
           </div>
 
           {/* <WeekSelector onchange={ handleWeekSelect } /> */ }
-          <div className="col p-1">
+          <div className="col  ">
             <Form.Control as="select"
               value={ selectedWeek }
               //onChange={ ( e ) => setSelectedWeek( e.target.value ) }
               onChange={ ( e ) => handleWeekSelect( e.target.value ) }
-              className='bold blue border-none em-11'
+              className='bold blue border-none'
             >
               <SelectOptions />
             </Form.Control>
           </div>
 
+          <div className="col pt-1">
+            { selectedWeek === lastWeek._id && <span style={ { color: '#ffffff' } }>الاسبوع الماضي</span> }
+          </div>
+
           <div className="col pt-2">
-            { selectedWeek === lastWeek._id && <span className="em-12 bold"
-              style={ { color: '#ffffff' } }>الاسبوع الماضي</span> }
+            <div className=" ib">
+              <a href="#me" className="white clickable ulineonhover">Find me <i className="fas fa-search" /></a>
+            </div>
           </div>
 
         </div>
@@ -141,3 +144,11 @@ const WinrsPg = () => {
 }
 
 export default WinrsPg
+
+
+
+ // <div className="col pt-2">
+ //            { selectedWeek === lastWeek._id && <span className="em-12 bold"
+  //             style={ { color: '#ffffff' } }>الاسبوع الماضي</span> }
+  //         </div>
+  //     Week { week.number } of { week.year } { ' ' }{ week._id === lastWeek._id ? 'الاسبوع الماضي' : '' }

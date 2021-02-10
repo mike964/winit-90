@@ -31,7 +31,7 @@ const MatchItem = ( { match } ) => {
   const { currentTimeUnix } = useSelector( state => state.clock )
 
   const [ alreadyPredicted, setalreadyPredicted ] = useState( false )
-  const [ matchFinished, setMatchFinished ] = useState( finished ? true : false )
+  const [ matchFinished, setMatchFinished ] = useState( false )
   const [ matchStarted, setMatchStarted ] = useState( false )
   const [ firstClick, setFirstClick ] = useState( true )
   const [ goalDiff, setGoalDiff ] = useState( null )
@@ -50,13 +50,12 @@ const MatchItem = ( { match } ) => {
   useEffect( () => {
     const matchTimeUnix = parseInt( moment( date ).format( 'X' ) )
     // console.log( matchTimeUnix )   // string
-    if ( !matchFinished && currentTimeUnix > ( matchTimeUnix + 7200 ) )  // 7200 scnds = 2h
-      setMatchFinished( true )
     if ( !matchStarted && currentTimeUnix > ( matchTimeUnix + 100 ) )
       setMatchStarted( true )
+    if ( !matchFinished && currentTimeUnix > ( matchTimeUnix + 7200 ) )  // 7200 scnds = 2h
+      setMatchFinished( true )
 
     setTimeout( () => setShowSpiner( false ), 300 )
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ currentTimeUnix ] )
 
@@ -217,6 +216,21 @@ const MatchItem = ( { match } ) => {
     <Spinner variant='warning' animation="border" />
   </div>
 
+  const SpinrGrow = () => <Spinner animation="grow" size="sm" variant='danger' />
+
+  const MatchTime = () => <>
+    { matchFinished
+      ? <span className="skyblue"> FT انتهت </span>
+      : <>
+        { matchStarted
+          ? <span className='italic' style={ { color: '#ff2929' } }  > <SpinrGrow /> { ' ' } LIVE </span>
+          : <>
+            { matchIstoday
+              ? <span className="orange">  { moment( date ).calendar() }  </span>
+              : <span className='x'>{ moment( date ).format( 'YYYY-MM-DD' ) }</span> }
+          </> }
+      </> }
+  </>
 
   //============================================================================================
   return <>
@@ -258,14 +272,12 @@ const MatchItem = ( { match } ) => {
         <div className="col center" >
           { showSpiner ? <Spinr />
             : <>
-              <div className=" py-1 em-09">
-                <span className={ matchIstoday ? "orange" : "c-999" }>
-                  { match_date }
-                </span>
+              <div className=" py-1 em-09 c-999">
+                <MatchTime />
               </div>
 
               { matchStarted && !alreadyPredicted && <div className="py-3">
-                <span className="x" style={ { color: '#44db4b' } }>انتهی وقت تسجیل التوقع لهذه المباراة</span>
+                <span className="x" style={ { color: '#6fd874' } }>انتهی وقت تسجیل التوقع لهذه المباراة</span>
               </div> }
 
               { alreadyPredicted && <div className="col py-2 center" dir="rtl"  >
