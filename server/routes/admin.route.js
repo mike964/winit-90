@@ -4,7 +4,8 @@ const {
   createUser,
   getUsers,
   getTopUsersOfWeek,
-  payWeeklyWinners
+  payWeeklyWinners,
+  updateOdds
 } = require( '../controllers/admin.cont' )
 const userRouter = require( './user.route' )
 const {
@@ -17,6 +18,7 @@ const {
   payWinrByKarnameId
 } = require( '../controllers/admin.cont' )
 const { doExtra } = require( '../utils/extra' )
+const Odds = require( '../models/Odds' )
 
 // router.use( '/adm', require( './routes/admin.route' ) )
 //=============================================================
@@ -65,11 +67,26 @@ router.route( '/pay-winner-by-karname-id' )
 
 router.route( '/do-extra' ).get( doExtra )
 
+// * Update Odds for 6 ligs in DB by admin using external api
+router.route( '/update-odds' ).get( updateOdds )
+router.route( '/odds' ).get( async ( req, res, next ) => {
+  // **  
+
+
+  let odds = await Odds.findById( "6024309eaa5a162990d0bd4f" )
+
+  res.json( {
+    success: true,
+    odds
+  } )
+} )
+
 // router
 //   .route( '/update-karname-stats' )
 //   .get( updateKarnameStats )
 
 router.use( '/users', userRouter )
+
 
 // router.route( '/:id' )
 //   .delete( deleteUser )

@@ -4,31 +4,25 @@ const Schema = mongoose.Schema
 
 const oddsSchema = new Schema( {
   ucl: {
-    type: String
+    type: Array
   },
   uel: {
-    type: String
+    type: Array
   },
   epl: {  // england pr lig
-    type: String
+    type: Array
   },
-  laliga: {
-    type: String
+  la_liga: {
+    type: Array
   },
-  italy_lig: {
-    type: String
+  it_lig: {
+    type: Array
   },
-  france_lig: {
-    type: String
+  fr_lig: {
+    type: Array
   },
   bundesliga: {
-    type: String
-  },
-
-
-  createdAt: {   // var d = new Date("2015-03-25T12:00:00Z")
-    type: Date,
-    default: Date.now
+    type: Array
   }
 }
   ,

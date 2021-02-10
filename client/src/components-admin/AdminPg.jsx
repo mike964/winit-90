@@ -9,16 +9,19 @@ import ViprdsPg from './pages/ViprdsPg'
 import { getMatches_DB } from '../redux/actions/match.actions'
 import MatchPg from './pages/MatchPg'
 import MultiplePg from './pages/MultiplePg'
+import OddsPg from './pages/OddsPg'
+import { getOdds_DB } from '../redux/actions/odds.action'
 
 const AdminPg = () => {
-  const history = useHistory()
-  let { path, url } = useRouteMatch();
+  // const history = useHistory()
+  // let { path, url } = useRouteMatch();
 
   const { thisWeek } = useSelector( state => state.week )
 
   useEffect( () => {
     // getAllMatches()
     getMatches_DB()
+    getOdds_DB()
   }, [] )
 
 
@@ -48,6 +51,7 @@ const AdminPg = () => {
         <Route path="/admin/matches" component={ MatchPg } />
         <Route path="/admin/multiple" component={ MultiplePg } />   {/* api-football */ }
         <Route path="/admin/vipredictions" component={ ViprdsPg } />
+        <Route path="/admin/odds" component={ OddsPg } />
         <Route path="/admin/karnames" component={ KarnamesPg } />
         <Route path="/admin/users" component={ UsersPg } />
         <Route path="/admin/instructions" component={ InstructionsPg } />

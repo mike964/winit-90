@@ -7,6 +7,8 @@ const Ulist = require( '../models/Ulist' )
 const { qrFunc } = require( '../utils/queryFunction.js' )
 const { sendMsgToUser } = require( './msg.cont.js' )
 const { updateUserBalance } = require( './user.cont' )
+const axios = require( 'axios' )
+const Odds = require( '../models/Odds' )
 
 
 
@@ -250,9 +252,119 @@ const payWinrByKarnameId = asyncHandler( async ( req, res, next ) => {
 } )
 
 
+const updateOdds = asyncHandler( async ( req, res, next ) => {
+  // ** 1st get odds from external api
+
+  const api_url = ( sport_key ) => `https://api.the-odds-api.com/v3/odds/?sport=${ sport_key }&region=uk&apiKey=b1b905be8592f1f23055592b8b4a268c&mkt=h2h`
+
+  // const api_url =  `https://api.the-odds-api.com/v3/odds/?sport=soccer_epl&region=uk&apiKey=b1b905be8592f1f23055592b8b4a268c&mkt=h2h`  
+  // const response = await axios.get( api_url )
+  // const matches = response.data.success ? response.data.data : ''
+
+
+  // * Filtered & Modified Matches
+  // let matches_ = matches.map( ( item, index ) => {
+
+  //   let team_away = item.teams[ 0 ] === item.home_team ? item.teams[ 1 ] : item.teams[ 0 ]
+
+  //   let odds_ = item.sites.find( ( item ) => item.site_key === "onexbet" )
+  //   console.log( odds_ )
+
+  //   return {
+  //     teams: item.teams,
+  //     team_home: item.home_team,
+  //     team_away,
+  //     odds: odds_
+  //   }
+  // } )
+
+  // let updatedOdds = await Odds.findByIdAndUpdate( matchId, _match, { new: true, runValidators: true } )
+
+
+  // "key": "soccer_uefa_champs_league",
+  // "key": "soccer_uefa_europa_league",
+  // "key": "soccer_spain_la_liga",
+  // "key": "soccer_italy_serie_a",
+  // "key": "soccer_germany_bundesliga",
+  // "key": "soccer_france_ligue_one",
+  // "key": "soccer_fa_cup",
+  // "key": "soccer_epl",
+  // "key": "soccer_efl_champ",
+
+  // * EPL Stage 1
+  const epl_st_1 = await axios.get( api_url( "soccer_epl" ) )
+  const epl_st_2 = epl_st_1.data.success ? epl_st_1.data.data : ''
+
+  // let epl_st_3 = 
+
+  const getOdds = async ( sport_key ) => {
+    const api_url = `https://api.the-odds-api.com/v3/odds/?sport=${ sport_key }&region=uk&apiKey=b1b905be8592f1f23055592b8b4a268c&mkt=h2h`
+    const response = await axios.get( api_url )
+    const games = response.data.success ? response.data.data : []
+
+    // * Filtered & Modified Matches
+    let games_ = games.map( ( item, index ) => {
+      let team_away = item.teams[ 0 ] === item.home_team ? item.teams[ 1 ] : item.teams[ 0 ]
+      let odds_onexbet = item.sites.find( ( item ) => item.site_key === "onexbet" )
+      let odds_betway = item.sites.find( ( item ) => item.site_key === "betway" )
+      let odds_unibet = item.sites.find( ( item ) => item.site_key === "unibet" )
+      let odds_ = odds_onexbet ? odds_onexbet : ( odds_betway ? odds_betway : odds_unibet )
+
+      return {
+        sport: item.sport_nice,
+        teams: item.teams,
+        team_home: item.home_team,
+        team_away,
+        odds: odds_ ? odds_.odds.h2h : [],
+        last_update: odds_ ? odds_.last_update : ''
+      }
+    } )
+
+    return games_
+  }
+
+
+
+  let ucl_odds = await getOdds( "soccer_uefa_champs_league" )
+  let uel_odds = await getOdds( "soccer_uefa_europa_league" )
+  let epl_odds = await getOdds( 'soccer_epl' )
+  let splig_odds = await getOdds( 'soccer_spain_la_liga' )
+  let itlig_odds = await getOdds( 'soccer_italy_serie_a' )
+  let frlig_odds = await getOdds( 'soccer_france_ligue_one' )
+
+  // let newOdds = await Odds.create( { epl: [] } )
+
+  const odds_id = "6024309eaa5a162990d0bd4f"  // odds _id in DB
+
+  const doc = await Odds.findByIdAndUpdate( odds_id, {
+    ucl: ucl_odds,
+    uel: uel_odds,
+    epl: epl_odds,
+    la_liga: splig_odds,
+    itlig: itlig_odds,
+    frlig: frlig_odds
+  }, {
+    new: true,
+    runValidators: true
+  } )
+
+
+  // ** FUK YES
+  res.json( {
+    success: true,
+    msg: 'All six top leagues odds updated.'
+    // doc
+    // lenth: data.length,
+    // data
+    // matches: matches_, 
+    // ucl_odds,
+    // epl_odds,
+    // splig_odds
+  } )
+} )
 
 
 
 module.exports = {
-  getTopUsersOfWeek, payWeeklyWinners, payWinrByKarnameId
+  getTopUsersOfWeek, payWeeklyWinners, payWinrByKarnameId, updateOdds
 }

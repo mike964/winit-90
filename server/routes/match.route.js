@@ -55,14 +55,7 @@ router.route( '/insertmany-multiple-ligs' )
 
     // let ligCodes = req.body.allLigs === true ? topLigs : req.body.ligs
 
-    // let ligsArr = ligCodes
-    // console.log( ligCodes )
-    // console.log( ligsArr )
-
     ligCodes = req.body.ligs
-
-
-
     // ** forEach is not promise-aware. It deosnt support async and await.  
 
     const forLoop = async ( ligCodesArr ) => {
@@ -93,7 +86,6 @@ router.route( '/insertmany-multiple-ligs' )
       success: success_,
       end: true
     } )
-
   } )
 
 // ** Update multiple match results using api-football

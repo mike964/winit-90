@@ -15,7 +15,7 @@ const AdminNavbar = () => {
 
   //==================================================================================
   return <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div className="collapse navbar-collapse  pl-5" id="navbarSupportedContent">
+    <div className="collapse navbar-collapse pl-5" id="navbarSupportedContent">
       <ul className="navbar-nav mrr-auto">
         <NavItem linkto="/admin/matches" label="Matches" />
 
@@ -27,6 +27,8 @@ const AdminNavbar = () => {
 
         <NavItem linkto="/admin/karnames" label="Weeks / Karnames" />
         <NavItem linkto="/admin/vipredictions" label="VIP Prds" />
+        <NavItem linkto="/admin/odds" label="Odds" />
+
         <NavItem linkto="/admin/users" label="Users" />
         <NavItem linkto="/admin/payments" label="Payments" />
         <NavItem linkto="/admin/Instructions" label="Instructions" />

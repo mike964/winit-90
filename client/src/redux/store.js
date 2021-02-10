@@ -10,6 +10,7 @@ import vip from './reducers/vip.reducer';
 import karname from './reducers/karname.reducer';
 import wnr from './reducers/winners.reducer';
 import msg from './reducers/msg.reducer';
+import odds from './reducers/odds.reducer';
 
 
 const rootReducer = combineReducers( {
@@ -26,6 +27,7 @@ const rootReducer = combineReducers( {
   karname,
   wnr,    // winners
   msg,    // messages
+  odds
   // trof:
 
 } )
